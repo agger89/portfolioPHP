@@ -1,0 +1,395 @@
+/* 공통 */
+
+/* 윈도우 스토어 링크 */
+.store-down-content {
+    position: relative;
+    padding: 10px 15px;
+    background: #e3425b; /* Old browsers */
+    background: -moz-linear-gradient(left, #e3425b 0%, #c1317f 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #e3425b 0%, #c1317f 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #e3425b 0%, #c1317f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e3425b', endColorstr='#c1317f', GradientType=1); /* IE6-9 */
+    color: #fff;
+}
+.store-down-content .text-wrap .insta-title {
+    font-size: 15px;
+    font-weight: 600;
+}
+.store-down-content .text-wrap .info-text {
+    font-size: 12px;
+}
+.store-down-content .down-btn {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 15px;
+    padding: 6px 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
+.content-wrap {
+    padding: 72px 40px 50px;
+    text-align: center;
+}
+
+/* 로그인 폼 */
+.login-wrap .top-login-area {
+    margin: 0 auto 12px;
+    color: #999;
+    text-align: center;
+}
+.login-wrap .insta-logo {
+    width: 181px;
+    height: 53px;
+    margin: 0 auto 10px;
+    background-image: url(../image/landing_page/insta-logo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.login-wrap .insta-logo-subtext {
+    line-height: 20px;
+    margin-bottom: 20px;
+    font-size: 17px;
+    font-weight: 600;
+    word-break: keep-all;
+}
+.login-wrap .common-btn-login-form{
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    margin-bottom: 20px;
+    border: 0;
+    border-radius: 3px;
+    background-color: #3897f0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    -webkit-appearance: none;
+}
+.login-wrap .common-btn-login-form .facebook-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    background-image: url(../image/landing_page/facebook_icon.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    vertical-align: sub;
+}
+.login-wrap .common-half-line {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    background-color: #c7c7c7;
+}
+.login-wrap .common-half-line-text {
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    padding: 0 15px;
+    background-color: #fff;
+    font-size: 13px;
+    text-align: center;
+}
+.login-wrap .form-wrap {
+    margin: 20px 0 14px;
+}
+.login-wrap .form-wrap .login-custom-input {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    padding: 11px 10px;
+    margin-bottom: 6px;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    font-size: 14px;
+}
+.login-wrap .form-wrap .input-content-wrap ::-webkit-input-placeholder {
+    color: #999;
+}
+.login-wrap .signup-info-text {
+    line-height: 18px;
+    font-size: 14px;
+}
+.login-wrap .bottom-login-area {
+    height: 70px;
+    line-height: 70px;
+    margin: 60px 0;
+    font-size: 14px;
+    text-align: center;
+}
+.login-wrap .bottom-login-area .move-login-link {
+    color: #3897f0;
+}
+.login-wrap .app-download-area {
+    margin-top: 30px;
+}
+.login-wrap .app-download-area .app-info-text {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.login-wrap .app-download-area .store-link-custom {
+    display: inline-block;
+    height: 40px;
+    background-image: url(../image/landing_page/store_sprite_image01.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.login-wrap .app-download-area .app-store-link {
+    width: 136px;
+    background-position: 0 0;
+}
+.login-wrap .app-download-area .google-play-link {
+    width: 134px;
+    background-position: 55% 0;
+}
+.login-wrap .app-download-area .microsoft-link {
+    width: 111px;
+    background-position: 100% 0;
+}
+/* 푸터 네비 사이트맵 */
+.footer-navi {
+    padding: 78px 0 0;
+    font-size: 0;
+}
+.footer-navi .navi-wrap {
+    display: inline-block;
+}
+.footer-navi .navi-content {
+    display: inline-block;
+    margin: 0 15px 12px 0;
+    font-size: 12px;
+    color: #003569;
+}
+.footer-navi .navi-content:last-child {
+    margin-right: 0;
+}
+.footer-navi .footer-right-text {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+}
+
+/*================ photo_page ===============*/
+.header-content-wrap{
+    border-bottom: 1px solid #e6e6e6;
+    height: 75px;
+}
+.header-content{
+    max-width: 930px;
+    height: 100%;
+    padding: 25px 40px;
+    margin: 0 auto;
+}
+.header-content .content{
+    float: left;
+}
+.header-content .left-content{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40px;
+    height: 33px;
+    z-index: -1;
+}
+.header-content .left-content .scale{
+    display: inline-block;
+    transform: scale(.8);
+}
+.header-content .left-content .line{
+    width: 1px;
+    height: 28px;
+    margin-left: 6px;
+    background-color: #999;
+}
+.header-content .search-wrap{
+    display: none;
+}
+@media screen and (min-width: 500px){
+    .header-content .search-wrap{
+        display: block;
+        float: right;
+        padding-left: 10px;
+        background-color: #fff;
+    }
+    .header-content .search-wrap .static-search{
+        width: 215px;
+        height: 28px;
+        line-height: 26px;
+        border: 1px solid #dbdbdb;
+        background-color: #fafafa;
+        font-size: 14px;
+        color: #999;
+        text-align: center;
+    }
+}
+@media screen and (min-width: 630px){
+    .header-content .search-wrap{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+.header-content .right-content{
+    float: right;
+}
+.header-content .right-content .icon-wrap{
+    font-size: 0;
+}
+.header-content .right-content .icon{
+    display: inline-block;
+    margin-left: 30px;
+}
+
+/* 컨텐츠 바디 */
+.body-content-wrap .object-content-wrap{
+    max-width: 600px;
+    margin: 0 auto 60px;
+    border: 1px solid #e6e6e6;
+}
+.body-content-wrap .header-title-wrap{
+    padding: 15px 20px;
+    font-size: 0;
+}
+.body-content-wrap .header-object{
+    display: inline-block;
+}
+.header-title-wrap .icon-wrap{
+    margin-right: 15px;
+}
+.header-title-wrap .text-wrap{
+    font-size: 14px;
+    color: #262626;
+}
+.header-title-wrap .text-wrap .title{
+    display: block;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+.body-content-wrap .body-image-wrap{
+    padding-bottom: 80%;
+    background-image: url(../image/photo_page/content01_body_img.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.body-content-wrap .object02 .body-image-wrap{
+    background-image: url(../image/photo_page/content02_body_img.jpg);
+}
+.body-content-wrap .object03 .body-image-wrap{
+    background-image: url(../image/photo_page/content03_body_img.jpg);
+}
+.body-content-wrap .footer-comment-wrap{
+    padding: 13px 16px 20px;
+}
+.footer-comment-wrap .like-wrap{
+    margin-bottom: 12px;
+    font-size: 0;
+}
+.footer-comment-wrap .like-wrap > span{
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.footer-comment-wrap .like-wrap .like{
+    margin-right: 16px;
+    background-image: url(../image/photo_page/like_icon.png);
+}
+.footer-comment-wrap .like-wrap .comment{
+    background-image: url(../image/photo_page/comment_icon.png);
+}
+.footer-comment-wrap .like-wrap .option{
+    float: right;
+    background-image: url(../image/photo_page/option_icon.png);
+}
+.footer-comment-wrap .comment-wrap{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #efefef;
+    font-size: 14px;
+}
+.footer-comment-wrap .comment-wrap .view-count{
+    margin-bottom: 15px;
+    color: #262626;
+}
+.footer-comment-wrap .comment-wrap .comment{
+    margin-bottom: 8px;
+    color: #000;
+}
+.footer-comment-wrap .comment-wrap .comment > span{
+    word-break: keep-all;
+}
+.footer-comment-wrap .comment-wrap .comment .user-name{
+    margin-right: 5px;
+    font-weight: 600;
+}
+.footer-comment-wrap .comment-wrap .record-time{
+    font-size: 10px;
+    color: #999;
+}
+.footer-comment-wrap .comment-typing-board{
+    padding-top: 20px;
+}
+.footer-comment-wrap .comment-typing-board .comment-form{
+    width: calc(100% - 14px);
+    float: left;
+}
+.footer-comment-wrap .comment-typing-board .comment-textarea{
+    width: 100%;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+}
+.footer-comment-wrap .comment-typing-board ::-webkit-input-placeholder{
+    font-size: 14px;
+    color: #b5b5b5;
+}
+.footer-comment-wrap .comment-typing-board .modal-menu{
+    float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

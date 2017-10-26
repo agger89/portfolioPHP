@@ -1,0 +1,27 @@
+/* 로그인 폼 */
+.login-wrap .right-area{
+    display: inline-block;
+    width: 400px;
+}
+.login-wrap .login-area{
+    padding: 0 25px;
+}
+.top-login-area{
+    padding: 30px 40px 45px;
+    border: 1px solid #e6e6e6;
+}
+/* 로그인 인풋 */
+.login-wrap .form-wrap .login-custom-input{
+    background-color: #fafafa;
+}
+
+/* 로그인 버튼 영역*/
+.login-wrap .bottom-login-area{
+    margin: 0;
+    border: 1px solid #e6e6e6;
+}
+/* 푸터 네비 */
+.footer-navi{
+    width: 400px;
+    margin: 0 auto;
+}
