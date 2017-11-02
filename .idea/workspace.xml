@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="303bc780-708b-4003-9382-854af4ccd6db" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logged-in.php" afterPath="$PROJECT_DIR$/logged-in.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -218,7 +218,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81053000" />
+    <option name="totallyTimeSpent" value="81351000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="922" y="0" width="943" height="1087" extended-state="0" />
