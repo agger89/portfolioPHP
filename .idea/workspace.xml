@@ -36,8 +36,8 @@
       <file leaf-file-name="logged-in.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/logged-in.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="94" column="14" lean-forward="true" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
+            <state relative-caret-position="196">
+              <caret line="95" column="105" lean-forward="true" selection-start-line="95" selection-start-column="105" selection-end-line="95" selection-end-column="105" />
               <folding />
             </state>
           </provider>
@@ -218,7 +218,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80314000" />
+    <option name="totallyTimeSpent" value="80437000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="922" y="0" width="943" height="1087" extended-state="1" />
@@ -673,8 +673,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/logged-in.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="94" column="14" lean-forward="true" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
+        <state relative-caret-position="196">
+          <caret line="95" column="105" lean-forward="true" selection-start-line="95" selection-start-column="105" selection-end-line="95" selection-end-column="105" />
           <folding />
         </state>
       </provider>
