@@ -273,15 +273,8 @@
 }
 .body-content-wrap .body-image-wrap{
     padding-bottom: 80%;
-    background-image: url(../image/photo_page/content01_body_img.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-}
-.body-content-wrap .object02 .body-image-wrap{
-    background-image: url(../image/photo_page/content02_body_img.jpg);
-}
-.body-content-wrap .object03 .body-image-wrap{
-    background-image: url(../image/photo_page/content03_body_img.jpg);
 }
 .body-content-wrap .footer-comment-wrap{
     padding: 13px 16px 20px;
