@@ -94,7 +94,7 @@
             </div>
         </div>
         <div class="body-image-wrap" style="background-image:url('<?php echo $value["image"] ?>')"></div>
-        <div class="footer-comment-wrap">
+        <div class="footer-comment-wrap col">
             <div class="like-wrap clear">
                 <span class="like inline-block"></span>
                 <span class="comment inline-block"></span>
