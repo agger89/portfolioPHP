@@ -24,7 +24,7 @@ include '../main.php';
     </div>
 </div><!-- header-content-wrap -->
 <div class="body-content-wrap">
-    <?php foreach ($articles as $article) :  ?>
+    <?php foreach ($articles as $article) : var_dump($article['pics'])?>
         <div class="object-content-wrap">
             <div class="header-title-wrap">
                 <div class="icon-wrap header-object">
@@ -44,10 +44,12 @@ include '../main.php';
                 </div>
                 <div class="comment-wrap">
                     <div class="view-count">좋아요 <span class="status-number inline-block"><?= $article['likes']['check']?></span>개</div>
+                    <?php foreach($article['comments'] as $comment): ?>
                     <p class="comment">
-                        <span class="user-name inline-block"><?= $article['comments']['name'] ?></span>
-                        <span class="user-comment inline-block"><?= $article['comments']['comment'] ?></span>
+                        <span class="user-name inline-block"><?= $comment['name'] ?></span>
+                        <span class="user-comment inline-block"><?= $comment['comment'] ?></span>
                     </p>
+                    <?php endforeach;?>
                     <span class="record-time block">10시간 전</span>
                 </div>
                 <div class="comment-typing-board clear">
