@@ -160,8 +160,8 @@
 
 /* Display value */
 .hide {
-    display: none !important; }
-
+    display: none !important;
+}
 .block {
     display: block !important; }
 

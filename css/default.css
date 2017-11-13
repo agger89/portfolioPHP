@@ -45,7 +45,7 @@
     width: 181px;
     height: 53px;
     margin: 0 auto 10px;
-    background-image: url(../image/landing_page/insta-logo.png);
+    background-image: url(../images/landing_page/insta-logo.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -74,7 +74,7 @@
     width: 16px;
     height: 16px;
     margin-right: 10px;
-    background-image: url(../image/landing_page/facebook_icon.png);
+    background-image: url(../images/landing_page/facebook_icon.png);
     background-size: cover;
     background-repeat: no-repeat;
     vertical-align: sub;
@@ -136,7 +136,7 @@
 .login-wrap .app-download-area .store-link-custom {
     display: inline-block;
     height: 40px;
-    background-image: url(../image/landing_page/store_sprite_image01.png);
+    background-image: url(../images/landing_page/store_sprite_image01.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -262,6 +262,15 @@
 .header-title-wrap .icon-wrap{
     margin-right: 15px;
 }
+.header-title-wrap .icon-wrap i{
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-size: contain;
+    background-position: center;
+}
 .header-title-wrap .text-wrap{
     font-size: 14px;
     color: #262626;
@@ -291,14 +300,14 @@
 }
 .footer-comment-wrap .like-wrap .like{
     margin-right: 16px;
-    background-image: url(../image/photo_page/like_icon.png);
+    background-image: url(../images/photo_page/like_icon.png);
 }
 .footer-comment-wrap .like-wrap .comment{
-    background-image: url(../image/photo_page/comment_icon.png);
+    background-image: url(../images/photo_page/comment_icon.png);
 }
 .footer-comment-wrap .like-wrap .option{
     float: right;
-    background-image: url(../image/photo_page/option_icon.png);
+    background-image: url(../images/photo_page/option_icon.png);
 }
 .footer-comment-wrap .comment-wrap{
     padding-bottom: 10px;
@@ -344,6 +353,9 @@
 .footer-comment-wrap .comment-typing-board .modal-menu{
     float: right;
 }
+/*=========================================================*/
+
+
 
 
 
