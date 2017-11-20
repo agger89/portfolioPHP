@@ -9,14 +9,14 @@
             $this->dbname = $mydb; // $this 에 dbname이라는 변수를 만들어서 $mydb 매개변수(인자)의 값을 받는다
         }
 
-        public function articles(){ // article 메소드(함수)를 생성
+        public function articles(){  // article 메소드(함수)를 생성
             $stmt = $this->dbname->prepare('SELECT * FROM article'); // $stmt 변수에 DB article테이블 쿼리를 반환
             $stmt->execute(); // 위에서 반환한 쿼리를 서버로 전송
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
         }
 
-        public function users($id){ // users 메소드(함수)에 매개변수(인자)를 삽입
+        public function authors($id){ // users 메소드(함수)에 매개변수(인자)를 삽입
             $stmt = $this->dbname->prepare('SELECT * FROM users WHERE id = :id'); // $stmt 변수에 DB users테이블에 id 쿼리를 반환
             // PDO::PARAM_INT(sql 정수 유형을 호출)
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);  // 위에서 반환한 id의 값를 매개 변수(인자)로 만듬 binding(묶음) (고정이 아닌 유동적으로 개수만큼 출력하기 위하여)
@@ -54,7 +54,5 @@
 
         }
     }
-
-
 
 ?>

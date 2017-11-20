@@ -1,3 +1,7 @@
+<?php
+//session_start(); // 세션을 사용하기 위해 사용하는 필수 함수
+
+?>
 <div class="store-down-content">
     <div class="text-wrap">
         <h3 class="insta-title">Instagram</h3>
@@ -15,27 +19,27 @@
                     <p class="insta-logo-subtext">친구들의 사진과 동영상을 보려면<br class="hide sm-block"> 가입하세요.</p>
                     <a href="#" class="common-btn-login-form block"><i class="facebook-icon"></i>Facebook으로 로그인</a>
                     <div class="common-half-line"><span class="common-half-line-text">또는</span></div>
-                    <form id="login-form" action="" method="post">
+                    <form id="" action="" method="">
                         <div class="form-wrap">
                             <div class="input-content-wrap">
                                 <label for="email" class="input-label"></label>
-                                <input type="email" id="email" class="login-custom-input" placeholder="휴대폰 번호 또는 이메일 주소">
+                                <input type="text" id="" name="email" class="login-custom-input" placeholder="이메일 주소 (example@gmail.com)">
                             </div>
                             <div class="input-content-wrap">
                                 <label for="name" class="input-label"></label>
-                                <input type="text" id="name" class="login-custom-input" placeholder="성명">
+                                <input type="text" id="" name="name" class="login-custom-input" placeholder="성명">
                             </div>
                             <div class="input-content-wrap">
                                 <label for="user-name" class="input-label"></label>
-                                <input type="text" id="user-name" class="login-custom-input" placeholder="사용자 이름">
+                                <input type="text" id="" name="nickname" class="login-custom-input" placeholder="사용자 이름">
                             </div>
                             <div class="input-content-wrap">
                                 <label for="password" class="input-label"></label>
-                                <input type="password" id="password" class="login-custom-input" placeholder="비밀번호">
+                                <input type="password" id="" name="password" class="login-custom-input" placeholder="비밀번호">
                             </div>
                         </div>
                     </form>
-                    <button type="submit" class="common-btn-login-form block pointer">가입</button>
+                    <button type="submit" class="common-btn-login-form block pointer" formmethod="post" formaction="signup.php">가입</button>
                     <p class="signup-info-text">가입하면 Instagram의 <b>약관</b> 및 <b>개인<br class="hide sm-block"> 정보처리방침</b>에 동의하게 됩니다.</p>
                 </div>
                 <div class="bottom-login-area">

@@ -24,7 +24,7 @@ include '../main.php';
     </div>
 </div><!-- header-content-wrap -->
 <div class="body-content-wrap">
-    <?php foreach ($articles as $article) : var_dump($article['pics'])?>
+    <?php foreach ($articles as $article) : var_dump($articles)?>
         <div class="object-content-wrap">
             <div class="header-title-wrap">
                 <div class="icon-wrap header-object">
@@ -50,7 +50,7 @@ include '../main.php';
                         <span class="user-comment inline-block"><?= $comment['comment'] ?></span>
                     </p>
                     <?php endforeach;?>
-                    <span class="record-time block">10시간 전</span>
+                    <span class="record-time block"><?= date("Y-m-d", strtotime($article['content'])) ?></span>
                 </div>
                 <div class="comment-typing-board clear">
                     <form action="" class="comment-form">

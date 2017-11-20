@@ -112,6 +112,11 @@
 .login-wrap .form-wrap .input-content-wrap ::-webkit-input-placeholder {
     color: #999;
 }
+.login-wrap .error-message{
+    margin: 20px 0;
+    font-size: 14px;
+    color: #ed4956;
+}
 .login-wrap .signup-info-text {
     line-height: 18px;
     font-size: 14px;

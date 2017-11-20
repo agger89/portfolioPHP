@@ -13,9 +13,13 @@
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/default_small.css" media="all and (min-width: 450px)">
     <link rel="stylesheet" href="../css/default_medium.css" media="all and (min-width: 876px)">
+    <!-- lib -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- js -->
+    <script src="../js/index.js"></script>
 </head>
 <body>
-<!--    --><?php //include("landing.php")?>
-    <?php include("main.php") ?>
+    <?php include("index.php") ?>
+<!--    --><?php //include("main.php") ?>
 </body>
 </html>
