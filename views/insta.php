@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    // isset = 변수에 값이 존재하는지 존재하면 true 리턴
+    // 삼항연산자 (조건문)? true : false
+    $errorMessage = isset($_SESSION['errorMessage']) ? $_SESSION['errorMessage'] : '';
+    unset($_SESSION['errorMessage']); // 변수 지우기
+?>
 <!DOCTYPE html>
 <html>
 <head>

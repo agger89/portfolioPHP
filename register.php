@@ -12,39 +12,64 @@
     $user = new User($db_data);
 
     // 필터링
-    $email = filter_input(INPUT_POST, 'email', FILTER_DEFAULT); // $email 변수를 필터링 INPUT_POST = 합법적 이메일 주소인지
+    $email = filter_input(INPUT_POST, 'email', FILTER_DEFAULT); // $email 변수를 필터링 유효한지 검사
     $name = filter_input(INPUT_POST, 'name', FILTER_DEFAULT);
     $nickname = filter_input(INPUT_POST, 'nickname', FILTER_DEFAULT);
     $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
 
-    // 회원가입 조건
 
+    // 회원가입 조건
     // $email
     if (empty($email)) {
         $_SESSION['errorMessage'] = "이메일을 입력하지 않았습니다.";
         header('Location: views/insta.php'); // 이 페이지로 리다이렉션
         exit; // 종료
+    } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) { // 이메일 형식 필터링
+        $_SESSION['errorMessage'] = "이메일 형식에 맞지 않습니다.";
+        header('Location: views/insta.php');
+        exit;
     }
 
     // $name
     if (empty($name)) {
-        $_SESSION['errorMessage'] = "성명을 입력하지 않았습니다.";
+        $_SESSION['errorMessage'] = "이름을 입력하지 않았습니다.";
         header('Location: views/insta.php');
-        exit; // 종료
+        exit;
+    } else if (strlen($name) > 6 && strlen($name) < 12) { // strlen() = 한글인 문자열을 한글자당 3byte씩 계산해서 출력
+        $text = 0;
+        $text++;
+    } else {
+        $_SESSION['errorMessage'] = "이름은 2~4자만 허용됩니다.";
+        header('Location: views/insta.php');
+        exit;
     }
 
     // $nickname
     if (empty($nickname)) {
-        $_SESSION['errorMessage'] = "사용자 이름을 입력하지 않았습니다.";
+        $_SESSION['errorMessage'] = "닉네임을 입력하지 않았습니다.";
         header('Location: views/insta.php');
-        exit; // 종료
+        exit;
+    } else if (strlen($nickname) > 2 && strlen($nickname < 10)){
+        $nickname = 0;
+        $nickname++;
+    } else {
+        $_SESSION['errorMessage'] = '닉네임은 2~10자만 허용됩니다.';
+        header('Location: views/insta.php');
+        exit;
     }
 
-    // $nickname
+    // $password
     if (empty($password)) {
         $_SESSION['errorMessage'] = "비밀번호를 입력하지 않았습니다.";
         header('Location: views/insta.php');
-        exit; // 종료
+        exit;
+    } else if (strlen($password) < 8 && strlen($password) > 12) {
+        $pwd = 0;
+        $pwd++;
+    } else {
+        $_SESSION['errorMessage'] = "비밀번호는 8~12자만 허용됩니다.";
+        header('Location: views/insta.php');
+        exit;
     }
 
     $user->register();

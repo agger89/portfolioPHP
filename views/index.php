@@ -1,8 +1,3 @@
-<?php
-    session_start();
-    $errorMessage = isset($_SESSION['errorMessage']) ? $_SESSION['errorMessage'] : '';
-    unset($_SESSION['errorMessage']);
-?>
 <div class="store-down-content">
     <div class="text-wrap">
         <h3 class="insta-title">Instagram</h3>
@@ -28,11 +23,11 @@
                             </div>
                             <div class="input-content-wrap">
                                 <label for="name" class="input-label"></label>
-                                <input type="text" id="name" name="name" class="login-custom-input" placeholder="성명">
+                                <input type="text" id="name" name="name" class="login-custom-input" placeholder="이름">
                             </div>
                             <div class="input-content-wrap">
                                 <label for="nickname" class="input-label"></label>
-                                <input type="text" id="nickname" name="nickname" class="login-custom-input" placeholder="사용자 이름">
+                                <input type="text" id="nickname" name="nickname" class="login-custom-input" placeholder="닉네임">
                             </div>
                             <div class="input-content-wrap">
                                 <label for="password" class="input-label"></label>
