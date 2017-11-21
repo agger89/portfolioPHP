@@ -12,6 +12,7 @@
     $user = new User($db_data);
 
     // 필터링
+    // register 함수에서 받아온 $email = $_POST['email'] 값을 필터링
     $email = filter_input(INPUT_POST, 'email', FILTER_DEFAULT); // $email 변수를 필터링 유효한지 검사
     $name = filter_input(INPUT_POST, 'name', FILTER_DEFAULT);
     $nickname = filter_input(INPUT_POST, 'nickname', FILTER_DEFAULT);
@@ -35,7 +36,7 @@
         $_SESSION['errorMessage'] = "이름을 입력하지 않았습니다.";
         header('Location: views/insta.php');
         exit;
-    } else if (strlen($name) > 6 && strlen($name) < 12) { // strlen() = 한글인 문자열을 한글자당 3byte씩 계산해서 출력
+    } else if (strlen($name) >= 6 && strlen($name) <= 12) { // strlen() = 한글인 문자열을 한글자당 3byte씩 계산해서 출력
         $text = 0;
         $text++;
     } else {
@@ -49,7 +50,7 @@
         $_SESSION['errorMessage'] = "닉네임을 입력하지 않았습니다.";
         header('Location: views/insta.php');
         exit;
-    } else if (strlen($nickname) > 2 && strlen($nickname < 10)){
+    } else if (strlen($nickname) >= 2 && strlen($nickname <= 10)){
         $nickname = 0;
         $nickname++;
     } else {
@@ -63,7 +64,7 @@
         $_SESSION['errorMessage'] = "비밀번호를 입력하지 않았습니다.";
         header('Location: views/insta.php');
         exit;
-    } else if (strlen($password) < 8 && strlen($password) > 12) {
+    } else if (strlen($password) >= 8 && strlen($password) <= 12) {
         $pwd = 0;
         $pwd++;
     } else {
@@ -72,5 +73,5 @@
         exit;
     }
 
-    $user->register();
+    $user->register($email, $name, $nickname, $password);
 ?>

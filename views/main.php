@@ -43,14 +43,15 @@ include '../main.php';
                     <span class="option inline-block"></span>
                 </div>
                 <div class="comment-wrap">
-                    <div class="view-count">좋아요 <span class="status-number inline-block"><?= $article['likes']['check']?></span>개</div>
+                    <!-- htmlspecialchars() = 엔티티문자로 이스케이프하는 함수 -->
+                    <div class="view-count">좋아요 <span class="status-number inline-block"><?= htmlspecialchars($article['likes']['check']); ?></span>개</div>
                     <?php foreach($article['comments'] as $comment): ?>
                     <p class="comment">
-                        <span class="user-name inline-block"><?= $comment['name'] ?></span>
-                        <span class="user-comment inline-block"><?= $comment['comment'] ?></span>
+                        <span class="user-name inline-block"><?= htmlspecialchars($comment['name']); ?></span>
+                        <span class="user-comment inline-block"><?= htmlspecialchars($comment['comment']); ?></span>
                     </p>
                     <?php endforeach;?>
-                    <span class="record-time block"><?= date("Y-m-d", strtotime($article['content'])) ?></span>
+                    <span class="record-time block"><?= date("Y-m-d", strtotime(htmlspecialchars($article['content']))); ?></span>
                 </div>
                 <div class="comment-typing-board clear">
                     <form action="" class="comment-form">
