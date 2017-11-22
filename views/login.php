@@ -1,5 +1,4 @@
 <?php
-//session_start(); // 세션을 사용하기 위해 사용하는 필수 함수
 
 ?>
 <div class="store-down-content">
@@ -23,7 +22,7 @@
                         <div class="form-wrap">
                             <div class="input-content-wrap">
                                 <label for="email" class="input-label"></label>
-                                <input type="text" id="" name="email" class="login-custom-input" placeholder="이메일 주소 (example@gmail.com)">
+                                <input type="text" id="" name="" class="login-custom-input" placeholder="이메일 주소 (example@gmail.com)">
                             </div>
                             <div class="input-content-wrap">
                                 <label for="name" class="input-label"></label>

@@ -12,8 +12,16 @@
     $user = new User($db_data);
 
     // 필터링
-    // register 함수에서 받아온 $email = $_POST['email'] 값을 필터링
-    $email = filter_input(INPUT_POST, 'email', FILTER_DEFAULT); // $email 변수를 필터링 유효한지 검사
+    // register 함수에서 받아온 변수의 $_POST(외부데이터)를 필터링
+    // filter_input = 하나의 입력변수를 가져와서 필터링
+    if(empty($_POST['email'])){
+        $_SESSION['errorMessage'] = "이메일을 입력하지 않았습니다.";
+        header('Location: views/insta.php'); // 이 페이지로 리다이렉션
+        exit; // 종료
+    } else{
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL); // 메일 형식 필터링
+    }
+//    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $name = filter_input(INPUT_POST, 'name', FILTER_DEFAULT);
     $nickname = filter_input(INPUT_POST, 'nickname', FILTER_DEFAULT);
     $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
@@ -21,11 +29,17 @@
 
     // 회원가입 조건
     // $email
-    if (empty($email)) {
-        $_SESSION['errorMessage'] = "이메일을 입력하지 않았습니다.";
-        header('Location: views/insta.php'); // 이 페이지로 리다이렉션
-        exit; // 종료
-    } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) { // 이메일 형식 필터링
+//    if (empty($email)) {
+//        $_SESSION['errorMessage'] = "이메일을 입력하지 않았습니다.";
+//        header('Location: views/insta.php'); // 이 페이지로 리다이렉션
+//        exit; // 종료
+//    } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) { // filter_var = 지정된된 변수를 가져와서 필터링(이메일 형식)
+//        $_SESSION['errorMessage'] = "이메일 형식에 맞지 않습니다.";
+//        header('Location: views/insta.php');
+//        exit;
+//    }
+
+    if(!filter_var($email, FILTER_DEFAULT)) { // filter_var = 지정된된 변수를 가져와서 필터링
         $_SESSION['errorMessage'] = "이메일 형식에 맞지 않습니다.";
         header('Location: views/insta.php');
         exit;
@@ -36,7 +50,7 @@
         $_SESSION['errorMessage'] = "이름을 입력하지 않았습니다.";
         header('Location: views/insta.php');
         exit;
-    } else if (strlen($name) >= 6 && strlen($name) <= 12) { // strlen() = 한글인 문자열을 한글자당 3byte씩 계산해서 출력
+    } else if (mb_strlen($name) >= 2 && mb_strlen($name) <= 4) { // mb_strlen() = 한글이던 영문이던 한글자당 1개로 계산하여 출력
         $text = 0;
         $text++;
     } else {
@@ -50,7 +64,7 @@
         $_SESSION['errorMessage'] = "닉네임을 입력하지 않았습니다.";
         header('Location: views/insta.php');
         exit;
-    } else if (strlen($nickname) >= 2 && strlen($nickname <= 10)){
+    } else if (mb_strlen($nickname) >= 2 && mb_strlen($nickname <= 10)){
         $nickname = 0;
         $nickname++;
     } else {
@@ -64,7 +78,7 @@
         $_SESSION['errorMessage'] = "비밀번호를 입력하지 않았습니다.";
         header('Location: views/insta.php');
         exit;
-    } else if (strlen($password) >= 8 && strlen($password) <= 12) {
+    } else if (mb_strlen($password) >= 8 && mb_strlen($password) <= 12) {
         $pwd = 0;
         $pwd++;
     } else {
