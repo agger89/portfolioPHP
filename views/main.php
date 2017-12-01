@@ -1,6 +1,3 @@
-<?php
-include '../main.php';
-?>
 <div class="header-content-wrap">
     <div class="header-content relative clear">
         <div class="left-content content">
@@ -24,7 +21,7 @@ include '../main.php';
     </div>
 </div><!-- header-content-wrap -->
 <div class="body-content-wrap">
-    <?php foreach ($articles as $article) : var_dump($articles)?>
+    <?php foreach ($articles as $article) : ?>
         <div class="object-content-wrap">
             <div class="header-title-wrap">
                 <div class="icon-wrap header-object">

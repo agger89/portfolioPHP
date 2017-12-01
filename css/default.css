@@ -121,6 +121,13 @@
     line-height: 18px;
     font-size: 14px;
 }
+.login-wrap .find-pwd {
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 12px;
+    text-align: center;
+    color: #003569;
+}
 .login-wrap .bottom-login-area {
     height: 70px;
     line-height: 70px;

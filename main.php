@@ -1,8 +1,14 @@
 <?php
+    require 'Session.php';
+
+    if (!isset($_SESSION['is_login'])) {
+        header('Location: login.php');
+        exit;
+    }
+
     require 'Database.php';
     require 'models/Main.php'; //데이터베이스에 연결 또는 코드의 실행에 있어서 필요한 로직을 점검해야할때는 require
     require 'config.php';
-    var_dump($host);
 
     $database = new Database($host, $dbname, $user, $pass);
     $main = new Main($database->getConnect()); // $main 변수 안에 Main 클래스 생성해서 담고 Main 클래스안에 Database 클래스가 연결한 DB를 담는다
@@ -22,4 +28,6 @@
 
     }
 
+    include 'views/header.php';
+    include 'views/main.php';
 ?>

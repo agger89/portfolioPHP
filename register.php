@@ -16,7 +16,6 @@
 
     $countForm = 0;
 
-
     // 입력 폼 데이터 저장
     if(isset($_POST['submitBtn'])) :
         $_SESSION['email'] =  $_POST['email'];
@@ -24,18 +23,25 @@
         $_SESSION['nickname'] =  $_POST['nickname'];
     endif;
 
+    // submitBtn 안에 배열 생성
     $formArray = array('submitBtn'=>array('email'=>$_SESSION['email'], 'name'=>$_SESSION['name'], 'nickname'=>$_SESSION['nickname']));
     $_SESSION['formSession'] = $formArray;
 
+    // 공통 함수
     function redirect(){
-        header('Location: views/insta.php'); // 이 페이지로 리다이렉션
+        header('Location: index.php'); // 이 페이지로 리다이렉션
         exit; // 종료
     }
 
     // 회원가입 조건
-    // $email
+    // 이메일
     if(empty($_POST['email'])) {
         $_SESSION['errorMessage'] = "이메일을 입력하지 않았습니다.";
+        redirect();
+    }
+    $emailDubChk = $user->emailDubChk($email); // $emailDubChk안에 User 클래스에 속한 emailDubChk함수에 인자값($email)을 넣어준다
+    if($emailDubChk){
+        $_SESSION['errorMessage'] = "이미 존재하는 이메일 입니다.";
         redirect();
     }
     if(!$email) {
@@ -43,8 +49,7 @@
         redirect();
     }
 
-
-    // $name
+    // 이름
     if (empty($name)) {
         $_SESSION['errorMessage'] = "이름을 입력하지 않았습니다.";
         redirect();
@@ -56,9 +61,14 @@
         redirect();
     }
 
-    // $nickname
+    // 닉네임
     if (empty($nickname)) {
         $_SESSION['errorMessage'] = "닉네임을 입력하지 않았습니다.";
+        redirect();
+    }
+    $nicknameDubChk = $user->nicknameDubChk($nickname);
+    if($nicknameDubChk){
+        $_SESSION['errorMessage'] = "이미 존재하는 닉네임 입니다.";
         redirect();
     }
     if (mb_strlen($nickname) >= 2 && mb_strlen($nickname <= 10)){
@@ -68,7 +78,7 @@
         redirect();
     }
 
-    // $password
+    // 비밀번호
     if (empty($password)) {
         $_SESSION['errorMessage'] = "비밀번호를 입력하지 않았습니다.";
         redirect();
@@ -81,4 +91,5 @@
     }
 
     $user->register($email, $name, $nickname, $password);
+    header('Location: views/main.php');
 ?>

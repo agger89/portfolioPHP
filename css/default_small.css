@@ -3,11 +3,14 @@
     display: inline-block;
     width: 400px;
 }
+.login-wrap .login-right-area{
+    margin-top: 130px;
+}
 .login-wrap .login-area{
     padding: 0 25px;
 }
 .top-login-area{
-    padding: 30px 40px 45px;
+    padding: 30px 40px;
     border: 1px solid #e6e6e6;
 }
 /* 로그인 인풋 */

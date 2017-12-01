@@ -43,7 +43,7 @@
                     <p class="signup-info-text">가입하면 Instagram의 <b>약관</b> 및 <b>개인<br class="hide sm-block"> 정보처리방침</b>에 동의하게 됩니다.</p>
                 </div>
                 <div class="bottom-login-area">
-                    <p>계정이 있으신가요? <a href="#" class="move-login-link inline-block">로그인</a></p>
+                    <p>계정이 있으신가요? <a href="login.php" class="move-login-link inline-block">로그인</a></p>
                 </div>
             </div><!-- login-area -->
             <div class="app-download-area">
