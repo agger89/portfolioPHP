@@ -280,7 +280,7 @@
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
 }
 .header-title-wrap .text-wrap{

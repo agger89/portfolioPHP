@@ -20,14 +20,14 @@
         $articles[$i]['authors'] = $main->authors($articles[$i]['users_id']);
         // $articles 변수에 users 라는 배열을 담는다 = users 메소드에 $articles의 users_id 배열을 담는다
 
-        $articles[$i]['pics'] = $main->pics($articles[$i]['users_id']);
+        $articles[$i]['pics'] = $main->pics($articles[$i]['id']);
 
         $articles[$i]['comments'] = $main->comments($articles[$i]['id']);
 
         $articles[$i]['likes'] = $main->likes($articles[$i]['id']);
-
     }
 
     include 'views/header.php';
     include 'views/main.php';
+
 ?>

@@ -11,6 +11,9 @@
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_2.png" alt=""></a></li>
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
             </ul>
+            <form method="post" action="../logout_process.php">
+                <input type="submit" name="logout" value="로그아웃">
+            </form>
         </div>
         <div class="search-wrap content">
             <div class="static-search">
@@ -19,20 +22,20 @@
             </div>
         </div>
     </div>
-</div><!-- header-content-wrap -->
+</div><!-- header-content-wrap end -->
 <div class="body-content-wrap">
     <?php foreach ($articles as $article) : ?>
         <div class="object-content-wrap">
             <div class="header-title-wrap">
                 <div class="icon-wrap header-object">
-                    <i class="inline-block" style="background-image: url(<?= $article['users']['profile_pic']?>)"></i>
+                    <i class="inline-block" style="background-image: url(<?= $article['authors']['icon']?>)"></i>
                 </div>
                 <div class="text-wrap header-object">
                     <span class="title block">instagram</span>
-                    <p class="location-title"></p>
+                    <p class="location-title"><?= $article['location'] ?></p>
                 </div>
             </div>
-            <div class="body-image-wrap" style="background-image:url(<?= $article['pics']['url'] ?>)"></div>
+            <div class="body-image-wrap" style="background-image:url(<?= $article['pics']['url']?>)"></div>
             <div class="footer-comment-wrap test">
                 <div class="like-wrap clear">
                     <span class="like inline-block"></span>
@@ -41,14 +44,14 @@
                 </div>
                 <div class="comment-wrap">
                     <!-- htmlspecialchars() = 엔티티문자로 이스케이프하는 함수 -->
-                    <div class="view-count">좋아요 <span class="status-number inline-block"><?= htmlspecialchars($article['likes']['check']); ?></span>개</div>
-                    <?php foreach($article['comments'] as $comment): ?>
+                    <div class="view-count">좋아요 <span class="status-number inline-block"></span>개</div>
+                    <?php foreach ($article['comments'] as $comment) :?>
                     <p class="comment">
-                        <span class="user-name inline-block"><?= htmlspecialchars($comment['name']); ?></span>
-                        <span class="user-comment inline-block"><?= htmlspecialchars($comment['comment']); ?></span>
+                        <span class="user-name inline-block"><?= $comment['name'] ?></span>
+                        <span class="user-comment inline-block"><?= $comment['content'] ?></span>
                     </p>
-                    <?php endforeach;?>
-                    <span class="record-time block"><?= date("Y-m-d", strtotime(htmlspecialchars($article['content']))); ?></span>
+                    <?php endforeach; ?>
+                    <span class="record-time block"></span>
                 </div>
                 <div class="comment-typing-board clear">
                     <form action="" class="comment-form">

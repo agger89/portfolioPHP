@@ -9,6 +9,5 @@
     include 'views/header.php';
     include 'views/index.php';
 ?>
-
 </body>
 </html>

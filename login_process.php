@@ -22,6 +22,7 @@
         $_SESSION['email'] =  $_POST['email'];
     endif;
 
+
     //로그인 검증
     // 이메일
     if(empty($_POST['email'])) {
