@@ -13,7 +13,7 @@
         }
 
         public function articles(){  // article 메소드(함수)를 생성
-            $stmt = $this->connect->prepare('SELECT * FROM articles'); // $stmt 변수에 DB article테이블 쿼리를 반환
+            $stmt = $this->connect->prepare('SELECT * FROM articles ORDER BY id DESC'); // $stmt 변수에 DB article테이블 쿼리를 반환
             $stmt->execute(); // 위에서 반환한 쿼리를 서버로 전송
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
@@ -45,7 +45,7 @@
         }
 
         public function comments($articles_id){
-            $stmt = $this->connect->prepare('SELECT content, name FROM comments JOIN users ON comments.users_id = users.id WHERE articles_id = :articles_id'); // comments.users_id = users.id ( comments의 users_id와 users.id는 같다 )
+            $stmt = $this->connect->prepare('SELECT content, nickname FROM comments JOIN users ON comments.users_id = users.id WHERE articles_id = :articles_id'); // comments.users_id = users.id ( comments의 users_id와 users.id는 같다 )
             $stmt->bindParam(':articles_id', $articles_id, PDO::PARAM_INT);
             $stmt->execute();
 

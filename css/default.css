@@ -1,5 +1,7 @@
 /* 공통 */
-
+body{
+    background-color: #fafafa;
+}
 /* 윈도우 스토어 링크 */
 .store-down-content {
     position: relative;
@@ -164,42 +166,18 @@
     width: 111px;
     background-position: 100% 0;
 }
-/* 푸터 네비 사이트맵 */
-.footer-navi {
-    padding: 78px 0 0;
-    font-size: 0;
-}
-.footer-navi .navi-wrap {
-    display: inline-block;
-}
-.footer-navi .navi-content {
-    display: inline-block;
-    margin: 0 15px 12px 0;
-    font-size: 12px;
-    color: #003569;
-}
-.footer-navi .navi-content:last-child {
-    margin-right: 0;
-}
-.footer-navi .footer-right-text {
-    font-size: 12px;
-    color: #999;
-    text-transform: uppercase;
-}
 
 /*================ photo_page ===============*/
 .header-content-wrap{
-    border-bottom: 1px solid #e6e6e6;
     height: 75px;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #fff;
 }
 .header-content{
-    max-width: 930px;
+    max-width: 1010px;
     height: 100%;
     padding: 25px 40px;
     margin: 0 auto;
-}
-.header-content .content{
-    float: left;
 }
 .header-content .left-content{
     position: absolute;
@@ -207,7 +185,6 @@
     transform: translateY(-50%);
     left: 40px;
     height: 33px;
-    z-index: -1;
 }
 .header-content .left-content .scale{
     display: inline-block;
@@ -222,12 +199,13 @@
 .header-content .search-wrap{
     display: none;
 }
-@media screen and (min-width: 500px){
+@media screen and (min-width: 600px){
     .header-content .search-wrap{
         display: block;
-        float: right;
-        padding-left: 10px;
-        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
     }
     .header-content .search-wrap .static-search{
         width: 215px;
@@ -240,15 +218,12 @@
         text-align: center;
     }
 }
-@media screen and (min-width: 630px){
-    .header-content .search-wrap{
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
 .header-content .right-content{
-    float: right;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateY(-50%);
+    right: 40px;
 }
 .header-content .right-content .icon-wrap{
     font-size: 0;
@@ -258,11 +233,16 @@
     margin-left: 30px;
 }
 
-/* 컨텐츠 바디 */
+/* 컨텐츠 바디 main */
+.body-content-wrap{
+    min-height: 700px;
+    padding-top: 30px;
+}
 .body-content-wrap .object-content-wrap{
     max-width: 600px;
     margin: 0 auto 60px;
     border: 1px solid #e6e6e6;
+    background-color: #fff;
 }
 .body-content-wrap .header-title-wrap{
     padding: 15px 20px;
@@ -300,6 +280,130 @@
 .body-content-wrap .footer-comment-wrap{
     padding: 13px 16px 20px;
 }
+
+/* profile */
+.body-content-wrap .profile-body-wrap{
+    max-width: 930px;
+    margin: 0 auto;
+}
+.body-content-wrap .profile-container{
+    padding-bottom: 12px;
+}
+.body-content-wrap .profile-header-wrap{
+    margin: 0 16px;
+}
+.profile-header-wrap .profile-pic{
+    width: 77px;
+    height: 77px;
+    float: left;
+    margin-right: 28px;
+    border-radius: 50%;
+    background-color: #c1317f;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.profile-header-wrap .profile-top-status{
+    width: calc(100% - 74px - 28px - 3px);
+    float: left;
+}
+.profile-header-wrap .profile-top-status span{
+    vertical-align: middle;
+}
+.profile-header-wrap .profile-top-status .nickname{
+    margin-right: 7px;
+    font-size: 26px;
+    font-weight: 200;
+}
+.profile-header-wrap .profile-top-status .logout-form input {
+    padding: 4px 8px;
+    border: 1px solid #dbdbdb;
+    background: none;
+    font-size: 12px;
+    cursor: pointer !important;
+}
+.profile-header-wrap .profile-top-status .profile-edit{
+    margin-top: 10px;
+    border: 1px solid #dbdbdb;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+.profile-header-wrap .profile-top-status .profile-edit a{
+    padding: 4px 0;
+}
+.profile-header-wrap .profile-bottom-status{
+    padding: 24px 0 20px;
+    clear: left;
+    font-size: 14px;
+}
+.profile-header-wrap .profile-bottom-status .status-contents{
+    width: 33.333%;
+    float: left;
+    text-align: center;
+}
+.profile-header-wrap .profile-bottom-status .status-contents .status-count{
+    display: block;
+    margin-top: 3px;
+    font-weight: 600;
+}
+.articles-container{
+    border-top: 1px solid #efefef;
+}
+.articles-container .tab-title-wrap{
+    text-align: center;
+}
+.articles-container .tab-title-wrap .tab-title{
+    width: 50%;
+    float: left;
+    font-size: 20px;
+    color: #999;
+}
+.articles-container .tab-title-wrap .tab-title a{
+    padding: 20px 0;
+}
+.articles-container .tab-title-wrap .tab-title.on{
+    color: #3897f0;
+}
+.articles-container .tab-content-wrap .tab-cont{
+    display: none;
+}
+.articles-container .tab-content-wrap .tab-cont.on{
+    display: block;
+}
+.articles-container .tab-content-wrap .article-list span{
+    display: block;
+    padding-top: 100%;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.articles-container .tab-content-wrap .article-list:nth-child(odd){
+    margin-right: 0;
+}
+.articles-container .tab-content-wrap .tab-content-save{
+    text-align: center;
+}
+.articles-container .tab-content-wrap .tab-content-save h3{
+    margin-bottom: 16px;
+    font-size: 26px;
+}
+.articles-container .tab-content-wrap .tab-content-save h3:before{
+    content: "";
+    display: block;
+    width: 62px;
+    height: 62px;
+    margin: 20px auto 12px;
+    background-image: url(/images/profile_page/save_icon.png);
+    background-repeat: no-repeat;
+}
+.articles-container .tab-content-wrap .tab-content-save p{
+    line-height: 18px;
+    font-size: 14px;
+}
+
+
+/* footer */
 .footer-comment-wrap .like-wrap{
     margin-bottom: 12px;
     font-size: 0;
@@ -355,8 +459,8 @@
 .footer-comment-wrap .comment-typing-board .comment-textarea{
     width: 100%;
     border: none;
-    outline: none;
     -webkit-appearance: none;
+    outline: none;
 }
 .footer-comment-wrap .comment-typing-board ::-webkit-input-placeholder{
     font-size: 14px;
@@ -364,6 +468,32 @@
 }
 .footer-comment-wrap .comment-typing-board .modal-menu{
     float: right;
+}
+
+
+/* 푸터 네비 사이트맵 */
+.footer-navi {
+    max-width: 935px;
+    margin: 0 auto;
+    padding: 78px 0 0;
+    font-size: 0;
+}
+.footer-navi .navi-wrap {
+    display: inline-block;
+}
+.footer-navi .navi-content {
+    display: inline-block;
+    margin: 0 15px 12px 0;
+    font-size: 12px;
+    color: #003569;
+}
+.footer-navi .navi-content:last-child {
+    margin-right: 0;
+}
+.footer-navi .footer-right-text {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
 }
 /*=========================================================*/
 

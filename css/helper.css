@@ -176,6 +176,14 @@
     .sm-inline-block {
         display: inline-block !important; } }
 
+@media screen and (min-width: 736px) {
+    .md-half-hide {
+        display: none !important; }
+    .md-half-block {
+        display: block !important; }
+    .md-half-inline-block {
+        display: inline-block !important; } }
+
 @media screen and (min-width: 876px) {
     .md-hide {
         display: none !important; }

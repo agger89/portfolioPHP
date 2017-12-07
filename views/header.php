@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="../css/helper.css">
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/default_small.css" media="all and (min-width: 450px)">
+    <link rel="stylesheet" href="../css/default_small_half.css" media="all and (min-width: 736px)">
     <link rel="stylesheet" href="../css/default_medium.css" media="all and (min-width: 876px)">
     <!-- lib -->
+    <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- js -->
     <script src="../js/index.js"></script>

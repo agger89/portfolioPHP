@@ -21,16 +21,6 @@
     display: inline-block;
 }
 
-/* 푸터 네비 사이트맵 */
-.footer-navi{
-    width: 100%;
-    margin: 0;
-    text-align: left;
-}
-.footer-navi .footer-right-text{
-    float: right;
-}
-
 /*========== photo_page ==========*/
 .header-content .left-content .scale{
     transform: scale(1);
@@ -40,32 +30,17 @@
     margin-right: 20px;
     margin-left: 17px;
 }
-.header-content .right-content{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
-}
 .header-content .search-wrap{
     position: absolute;
     top: 50%;
     margin-top: -14px;
 }
-@media screen and (min-width:930px){
-    .header-content{
-        padding: 25px 0;
-    }
-    .header-content .left-content{
-        left: 0;
-    }
+
+
+/* 푸터 네비 사이트맵 */
+.footer-navi .footer-right-text{
+    float: right;
 }
-
-/* 컨텐츠 바디 */
-.body-content-wrap{
-    padding: 50px 0;
-}
-
-
 
 
 

@@ -9,11 +9,8 @@
             <ul class="icon-wrap">
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_2.png" alt=""></a></li>
-                <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
+                <li class="icon"><a href="profile.php" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
             </ul>
-            <form method="post" action="../logout_process.php">
-                <input type="submit" name="logout" value="로그아웃">
-            </form>
         </div>
         <div class="search-wrap content">
             <div class="static-search">
@@ -47,7 +44,7 @@
                     <div class="view-count">좋아요 <span class="status-number inline-block"></span>개</div>
                     <?php foreach ($article['comments'] as $comment) :?>
                     <p class="comment">
-                        <span class="user-name inline-block"><?= $comment['name'] ?></span>
+                        <span class="user-name inline-block"><?= $comment['nickname'] ?></span>
                         <span class="user-comment inline-block"><?= $comment['content'] ?></span>
                     </p>
                     <?php endforeach; ?>

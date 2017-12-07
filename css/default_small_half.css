@@ -1,0 +1,78 @@
+.body-content-wrap .profile-container{
+    padding-bottom: 44px;
+}
+.body-content-wrap.profile-body{
+    padding-top: 60px;
+}
+.body-content-wrap .profile-header-wrap{
+    position: relative;
+    margin: 0 40px;
+}
+.profile-header-wrap .profile-pic{
+    width: 152px;
+    height: 152px;
+}
+.profile-header-wrap .profile-top-status{
+    width: auto;
+    margin-left: 60px;
+}
+.profile-header-wrap .profile-top-status .nickname{
+    font-size: 32px;
+}
+.profile-header-wrap .profile-top-status .profile-edit{
+    display: inline-block !important;
+    margin-top: 0;
+}
+.profile-header-wrap .profile-top-status .profile-edit a{
+    padding: 4px 24px;
+}
+.profile-header-wrap .profile-top-status .logout-form{
+    float: right;
+    margin-top: 5px;
+    margin-left: 8px;
+}
+.profile-header-wrap .profile-bottom-status{
+    position: absolute;
+    top: 58px;
+    left: 242px;
+    padding: 0;
+    font-size: 16px;
+}
+.profile-header-wrap .profile-bottom-status .status-contents{
+    width: auto;
+    margin-right: 40px;
+    margin-left: -3px;
+}
+.profile-header-wrap .profile-bottom-status .status-contents .status-count{
+    display: inline-block;
+    margin-top: 0;
+}
+/* 컨텐츠 바디 */
+.body-content-wrap{
+    padding: 60px 0;
+}
+.articles-container .tab-title-wrap{
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.articles-container .tab-title-wrap .tab-title{
+    width: auto;
+    margin: -1px 30px 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #999;
+}
+.articles-container .tab-title-wrap .tab-title.on{
+    border-top: 1px solid #000;
+    color: #000;
+}
+.articles-container .tab-content-wrap{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
