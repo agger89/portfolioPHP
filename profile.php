@@ -12,7 +12,7 @@
     $database = new Database($host, $dbname, $user, $pass);
     $profile = new Profile($database->getConnect());
 
-    $nickname = $_SESSION['nickname'];
+    $nickname = $_GET['nickname'];
     $authors = $profile->authors($nickname);
     $articles = $profile->articles($nickname);
 

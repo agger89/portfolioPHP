@@ -7,9 +7,10 @@
         </div>
         <div class="right-content content">
             <ul class="icon-wrap">
+                <li class="icon"><a href="write.php" class="block"><img src="../images/photo_page/header_icon_4.png" alt=""></a></li>
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_2.png" alt=""></a></li>
-                <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
+                <li class="icon"><a href="/profile.php?nickname=<?= htmlspecialchars($_SESSION['nickname'])?>" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
             </ul>
         </div>
         <div class="search-wrap content">
@@ -24,12 +25,14 @@
     <div class="profile-body-wrap">
         <div class="profile-container">
             <div class="profile-header-wrap clear">
-                <div class="profile-pic" style="background-image: url(<?= htmlspecialchars($authors['icon'])?>)"></div>
+                <div class="profile-pic" style="background-image: url(<?= htmlspecialchars($authors['profile_pic'])?>)"></div>
                 <div class="profile-top-status clear">
                     <span class="nickname inline-block"><?= htmlspecialchars($authors['nickname']) ?></span>
+                    <?php if ($authors['nickname'] == $_SESSION['nickname']) : ?>
                     <form method="post" class="logout-form inline-block" action="../logout_process.php">
                         <input type="submit" name="logout" value="로그아웃">
                     </form>
+                    <?php endif; ?>
                     <span class="profile-edit block md-inline-block">
                         <a href="#" class="block">프로필 편집</a>
                     </span>
@@ -42,28 +45,30 @@
             </div>
         </div>
         <div class="articles-container">
-            <div class="tab-wrap relative">
-                <div class="tab-title-wrap clear">
-                    <div class="tab-title on">
-                        <a href="#" class="block md-half-hide">
-                            <i class="fa fa-th-large" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="hide md-half-block">게시물</a>
-                    </div>
-                    <div class="tab-title">
-                        <a href="#" class="block md-half-hide">
-                            <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="hide md-half-inline-block">저장됨</a>
+            <div class="tab-wrap">
+                <div class="tab-title-wrap">
+                    <div class="tab-group clear">
+                        <div class="tab-title on">
+                            <a href="#" class="block md-half-hide">
+                                <i class="fa fa-th-large" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" class="hide md-half-block">게시물</a>
+                        </div>
+                        <div class="tab-title">
+                            <a href="#" class="block md-half-hide">
+                                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" class="hide md-half-inline-block">저장됨</a>
+                        </div>
                     </div>
                 </div>
                 <div class="tab-content-wrap">
                     <div class="tab-content-articles tab-cont on">
-                        <ul class="row">
+                        <ul class="article-list-wrap row">
                             <?php foreach ($articles as $article): ?>
                             <li class="article-list col-4">
                                 <a href="#" class="block">
-                                    <span style="background-image:url(<?= $article['url'] ?>)"></span>
+                                    <span style="background-image:url(<?= htmlspecialchars($article['url']);?>)"></span>
                                 </a>
                             </li>
                             <?php endforeach; ?>

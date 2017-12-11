@@ -26,7 +26,7 @@
                         </div>
                         <button type="submit" name="submitBtn" class="common-btn-login-form block pointer submit-btn">로그인</button>
                         <?php if($errorMessage): ?>
-                            <div class="error-message"><?= htmlspecialchars($errorMessage); ?></div>
+                            <div class="error-message"><?= htmlspecialchars($errorMessage);?></div>
                         <?php endif; ?>
                     </form>
                     <p class="find-pwd"><a href="#" class="block">비밀번호를 잊으셨나요?</a></p>

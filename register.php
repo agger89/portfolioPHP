@@ -91,5 +91,5 @@
     }
 
     $user->register($email, $name, $nickname, $password);
-    header('Location: views/main.php');
+    header('Location: main.php');
 ?>

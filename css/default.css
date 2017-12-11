@@ -228,6 +228,10 @@ body{
 .header-content .right-content .icon-wrap{
     font-size: 0;
 }
+.header-content .right-content .icon-wrap .fa-plus-square-o{
+    font-size: 28px;
+    color: #2b2b2b;
+}
 .header-content .right-content .icon{
     display: inline-block;
     margin-left: 30px;
@@ -239,7 +243,7 @@ body{
     padding-top: 30px;
 }
 .body-content-wrap .object-content-wrap{
-    max-width: 600px;
+    max-width: 614px;
     margin: 0 auto 60px;
     border: 1px solid #e6e6e6;
     background-color: #fff;
@@ -250,6 +254,7 @@ body{
 }
 .body-content-wrap .header-object{
     display: inline-block;
+    vertical-align: middle;
 }
 .header-title-wrap .icon-wrap{
     margin-right: 15px;
@@ -283,7 +288,7 @@ body{
 
 /* profile */
 .body-content-wrap .profile-body-wrap{
-    max-width: 930px;
+    max-width: 975px;
     margin: 0 auto;
 }
 .body-content-wrap .profile-container{
@@ -371,15 +376,16 @@ body{
 .articles-container .tab-content-wrap .tab-cont.on{
     display: block;
 }
+.articles-container .tab-content-wrap .article-list{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
 .articles-container .tab-content-wrap .article-list span{
     display: block;
     padding-top: 100%;
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
-}
-.articles-container .tab-content-wrap .article-list:nth-child(odd){
-    margin-right: 0;
 }
 .articles-container .tab-content-wrap .tab-content-save{
     text-align: center;
@@ -401,7 +407,44 @@ body{
     line-height: 18px;
     font-size: 14px;
 }
-
+.upload-wrap .upload-title{
+    display: inline-block;
+    padding: 20px 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+.upload-wrap .image-preview{
+    margin-bottom: 30px;
+    border: 1px dashed #ddd;
+    text-align: center;
+}
+.upload-wrap .image-preview #img{
+    width: auto;
+    height: 390px;
+}
+.upload-wrap .input-custom{
+    width: 103px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #000;
+    background: none;
+    font-size: 13px;
+    vertical-align: middle;
+}
+.upload-wrap label {
+    display: inline-block;
+    cursor: pointer;
+}
+.upload-wrap input[type="file"] {
+    /* 파일 필드 숨기기 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0); border: 0;
+}
 
 /* footer */
 .footer-comment-wrap .like-wrap{
@@ -475,7 +518,7 @@ body{
 .footer-navi {
     max-width: 935px;
     margin: 0 auto;
-    padding: 78px 0 0;
+    padding: 38px 0;
     font-size: 0;
 }
 .footer-navi .navi-wrap {

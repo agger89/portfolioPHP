@@ -49,13 +49,11 @@
 }
 /* 컨텐츠 바디 */
 .body-content-wrap{
-    padding: 60px 0;
+    padding: 60px 20px;
 }
-.articles-container .tab-title-wrap{
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
+.articles-container .tab-title-wrap .tab-group{
+    width: 200px;
+    margin: 0 auto;
 }
 .articles-container .tab-title-wrap .tab-title{
     width: auto;
@@ -67,12 +65,5 @@
 .articles-container .tab-title-wrap .tab-title.on{
     border-top: 1px solid #000;
     color: #000;
-}
-.articles-container .tab-content-wrap{
-    position: absolute;
-    top: 50px;
-    left: 0;
-    right: 0;
-    bottom: 0;
 }
 

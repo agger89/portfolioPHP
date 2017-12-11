@@ -50,6 +50,7 @@
     }
 
     $_SESSION['is_login'] = true;
+    $_SESSION['id'] = $loginChk['id'];
     $_SESSION['nickname'] = $loginChk['nickname']; // 로그인 조건이 만족하면 $loginChk['nickname'] 데이터를 $_SESSION에 담는다
     header('Location: main.php');
     exit;

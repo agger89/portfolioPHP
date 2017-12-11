@@ -37,7 +37,7 @@
                         </div>
                         <button type="submit" name="submitBtn" class="common-btn-login-form block pointer submit-btn" formmethod="post" formaction="../register.php">가입</button>
                         <?php if($errorMessage): ?>
-                            <div class="error-message"><?= htmlspecialchars($errorMessage); ?></div>
+                            <div class="error-message"><?= htmlspecialchars($errorMessage);?></div>
                         <?php endif; ?>
                     </form>
                     <p class="signup-info-text">가입하면 Instagram의 <b>약관</b> 및 <b>개인<br class="hide sm-block"> 정보처리방침</b>에 동의하게 됩니다.</p>
