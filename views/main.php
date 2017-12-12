@@ -26,13 +26,17 @@
             <div class="header-title-wrap">
                 <a href="/profile.php?nickname=<?= htmlspecialchars($article['authors']['nickname']);?>">
                     <div class="icon-wrap header-object">
+                        <?php if($article['authors']['profile_pic']){ ?>
                         <i class="inline-block" style="background-image: url(<?= htmlspecialchars($article['authors']['profile_pic']);?>)"></i>
+                        <?php } else { ?>
+                        <i class="inline-block"></i>
+                        <?php } ?>
                     </div>
                     <div class="text-wrap header-object">
                         <span class="title block"><?= htmlspecialchars($article['authors']['nickname']);?></span>
-                        <?php if(!$article['location'] == '') : ?>
-                        <p class="location-title"><?= htmlspecialchars($article['location']);?></p>
-                        <?php endif; ?>
+<!--                        --><?php //if(!$article['pics']['location'] == '') : ?>
+<!--                        <p class="location-title">--><?//= htmlspecialchars($article['pics']['location']);?><!--</p>-->
+<!--                        --><?php //endif; ?>
                     </div>
                 </a>
             </div>

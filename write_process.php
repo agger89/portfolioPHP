@@ -1,4 +1,4 @@
-+<?php
+<?php
     session_start();
     require 'Database.php';
     require 'models/Write.php';
@@ -38,10 +38,9 @@
     }
 
     if(!isset($_SESSION['errorMessage'])){ //세션 에러메세지가 없으면
-        if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_file)){
-            $write->articles();
-            $articles_id = $write->usersId($_SESSION['id']);
-            $write->uploadPic($articles_id['id'], $target_file);
+        if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_file)){ //move_uploaded_file = 서버로 전송된 파일 저장
+            $write->articlesReg();
+            $write->picReg($write->getConnect()->lastInsertId(), $target_file); //lastInsertId() = 데이터에 삽입된 마지막 행의 아이디를 리턴
             header('Location: main.php');
         }
     }

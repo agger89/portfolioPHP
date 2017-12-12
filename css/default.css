@@ -2,6 +2,11 @@
 body{
     background-color: #fafafa;
 }
+.error-message{
+    margin: 20px 0;
+    font-size: 14px;
+    color: #ed4956;
+}
 /* 윈도우 스토어 링크 */
 .store-down-content {
     position: relative;
@@ -113,11 +118,6 @@ body{
 }
 .login-wrap .form-wrap .input-content-wrap ::-webkit-input-placeholder {
     color: #999;
-}
-.login-wrap .error-message{
-    margin: 20px 0;
-    font-size: 14px;
-    color: #ed4956;
 }
 .login-wrap .signup-info-text {
     line-height: 18px;
@@ -265,6 +265,7 @@ body{
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
+    background-color: #c1317f;
     background-size: cover;
     background-position: center;
 }
@@ -414,13 +415,15 @@ body{
     font-weight: 600;
 }
 .upload-wrap .image-preview{
-    margin-bottom: 30px;
+    height: 400px;
+    padding: 5px;
+    margin-bottom: 60px;
     border: 1px dashed #ddd;
     text-align: center;
 }
 .upload-wrap .image-preview #img{
     width: auto;
-    height: 390px;
+    max-height: 390px;
 }
 .upload-wrap .input-custom{
     width: 103px;
@@ -431,19 +434,29 @@ body{
     font-size: 13px;
     vertical-align: middle;
 }
-.upload-wrap label {
+.upload-wrap .file-wrap{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.upload-wrap label.input-custom {
     display: inline-block;
     cursor: pointer;
 }
 .upload-wrap input[type="file"] {
     /* 파일 필드 숨기기 */
+    position: relative;
+    outline: none;
+}
+.upload-wrap input[type="file"]:after{
+    content: "";
     position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip:rect(0,0,0,0); border: 0;
+    left: 0;
+    width: 74px;
+    height: 24px;
+    background-color: #fafafa;
 }
 
 /* footer */

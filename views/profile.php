@@ -25,7 +25,11 @@
     <div class="profile-body-wrap">
         <div class="profile-container">
             <div class="profile-header-wrap clear">
-                <div class="profile-pic" style="background-image: url(<?= htmlspecialchars($authors['profile_pic'])?>)"></div>
+                <?php if($authors['profile_pic']){ ?>
+                    <div class="profile-pic" style="background-image: url(<?= htmlspecialchars($authors['profile_pic'])?>)"></div>
+                <?php } else { ?>
+                    <div class="profile-pic"></div>
+                <?php } ?>
                 <div class="profile-top-status clear">
                     <span class="nickname inline-block"><?= htmlspecialchars($authors['nickname']) ?></span>
                     <?php if ($authors['nickname'] == $_SESSION['nickname']) : ?>
