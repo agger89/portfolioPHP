@@ -29,11 +29,12 @@
                 <img src="" id="img">
             </div>
             <form action="/write_process.php" enctype="multipart/form-data" method="post" class="center-align">
+                <textarea name="comment" class="comment-textarea block" placeholder="댓글 달기..."></textarea>
                 <label for="input_img" class="input-custom">이미지 선택</label>
                 <span class="file-wrap input-block">
                     <input type="file" name="fileToUpload" id="input_img">
                 </span>
-                <input type="submit" value="이미지 업로드" name="submit" class="submit-btn input-custom pointer">
+                <input type="submit" value="글 등록" name="submit" class="submit-btn input-custom pointer">
             </form>
         </div>
         <?php if($errorMessage): ?>

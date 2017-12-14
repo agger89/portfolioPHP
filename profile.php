@@ -5,7 +5,7 @@
         exit;
     }
 
-    require 'Database.php';
+    require 'models/Database.php';
     require 'models/Profile.php';
     require 'config.php';
 

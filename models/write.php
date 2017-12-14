@@ -37,5 +37,14 @@
             $stmt->execute();
         }
 
+        public function commentReg($content, $users_id, $articles_id)
+        {
+            $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id) VALUES(:content, :users_id, :articles_id)");
+            $stmt->bindParam(":content", $content);
+            $stmt->bindParam(":users_id", $users_id);
+            $stmt->bindParam(":articles_id", $articles_id);
+            $stmt->execute();
+        }
+
     }
 ?>

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'Database.php';
+    require 'models/Database.php';
     require 'models/Write.php';
     require 'config.php';
 
@@ -27,12 +27,12 @@
 
     // 이미지 사이즈 체크
     if($_FILES["fileToUpload"]['size'] > 500000){
-        $_SESSION['errorMessage'] = "파일용량은 5KB를 초과할 수 없습니다,";
+        $_SESSION['errorMessage'] = "파일용량은 500KB를 초과할 수 없습니다,";
         redirect();
     }
 
     // 이미지 허용 포맷 체크
-    if($imageFileType != 'jpg' && $imageFileType != 'jpeg' && $imageFileType != 'png' && $imageFileType != 'gif'){
+    if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png" && $imageFileType != "gif"){
         $_SESSION['errorMessage'] = "이미지는 JPG, JPEG, PNG, GIF만 허용합니다.";
         redirect();
     }
@@ -41,8 +41,10 @@
         if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_file)){ //move_uploaded_file = 서버로 전송된 파일 저장
             $write->articlesReg();
             $write->picReg($write->getConnect()->lastInsertId(), $target_file); //lastInsertId() = 데이터에 삽입된 마지막 행의 아이디를 리턴
-            header('Location: main.php');
         }
     }
+
+    $write->commentReg($_POST['comment'], $_SESSION['id'], $write->getConnect()->lastInsertId());
+    header('Location: main.php');
 
 ?>

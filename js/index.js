@@ -14,9 +14,28 @@ $(document).ready(function(){
     }
     TabClick();
 
-    $("#input_img").on("change", handleImgFileSelect);
+    // 게시글 삭제 클릭 event
+    $(".delete-input").click(function(){
+        if(confirm("정말 삭제하시겠습니까??") == true){
+            document.form.submit();
+        }else{
+            return false;
+        }
+    });
 
+    $(".comment-textarea").keypress(function (e) {
+        if(e.which == 13 && !e.shiftKey) {
+            $(this).closest("form").submit();
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 이미지 미리보기 함수
+    $("#input_img").on("change", handleImgFileSelect);
 });
+
+
 
 // 이미지 미리보기
 function handleImgFileSelect(e) {
@@ -33,3 +52,11 @@ function handleImgFileSelect(e) {
        reader.readAsDataURL(f);
     });
 }
+
+
+
+
+
+
+
+

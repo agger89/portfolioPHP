@@ -6,7 +6,7 @@
         exit;
     }
 
-    require 'Database.php';
+    require 'models/Database.php';
     require 'models/Main.php'; //데이터베이스에 연결 또는 코드의 실행에 있어서 필요한 로직을 점검해야할때는 require
     require 'config.php';
 

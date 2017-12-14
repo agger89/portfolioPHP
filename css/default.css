@@ -3,7 +3,7 @@ body{
     background-color: #fafafa;
 }
 .error-message{
-    margin: 20px 0;
+    margin: 15px 0;
     font-size: 14px;
     color: #ed4956;
 }
@@ -417,7 +417,7 @@ body{
 .upload-wrap .image-preview{
     height: 400px;
     padding: 5px;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
     border: 1px dashed #ddd;
     text-align: center;
 }
@@ -425,10 +425,20 @@ body{
     width: auto;
     max-height: 390px;
 }
+.upload-wrap .comment-textarea{
+    width: 320px;
+    padding: 3px;
+    margin: 0 auto 10px;
+    border: 1px solid #ddd;
+    background: none;
+    outline: none;
+    resize: none;
+    overflow-y: hidden;
+}
 .upload-wrap .input-custom{
     width: 103px;
     height: 30px;
-    line-height: 30px;
+    line-height: 28px;
     border: 1px solid #000;
     background: none;
     font-size: 13px;
@@ -448,7 +458,7 @@ body{
 .upload-wrap input[type="file"] {
     /* 파일 필드 숨기기 */
     position: relative;
-    outline: none;
+    display: none;
 }
 .upload-wrap input[type="file"]:after{
     content: "";
@@ -480,6 +490,20 @@ body{
 .footer-comment-wrap .like-wrap .option{
     float: right;
     background-image: url(../images/photo_page/option_icon.png);
+}
+.footer-comment-wrap .like-wrap .delete{
+    float: right;
+    margin-top: -1px;
+}
+.footer-comment-wrap .like-wrap .delete-label:before{
+    content: "\f147";
+    margin-left: 5px;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #646464;
+    cursor: pointer;
 }
 .footer-comment-wrap .comment-wrap{
     padding-bottom: 10px;
@@ -517,6 +541,8 @@ body{
     border: none;
     -webkit-appearance: none;
     outline: none;
+    resize: none;
+    overflow-y: hidden;
 }
 .footer-comment-wrap .comment-typing-board ::-webkit-input-placeholder{
     font-size: 14px;

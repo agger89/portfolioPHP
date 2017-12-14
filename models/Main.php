@@ -29,7 +29,7 @@
         }
 
         public function pics($id){
-            $stmt = $this->connect->prepare('SELECT url FROM pics WHERE id = :id');
+            $stmt = $this->connect->prepare('SELECT id, url FROM pics WHERE id = :id');
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
@@ -55,6 +55,15 @@
             }
             return $rows; // $ rows 변수 출력
 
+        }
+
+        public function addComment($content, $users_id, $articles_id)
+        {
+            $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id) VALUES(:content, :users_id, :articles_id)");
+            $stmt->bindParam(":content", $content);
+            $stmt->bindParam(":users_id", $users_id);
+            $stmt->bindParam(":articles_id", $articles_id);
+            $stmt->execute();
         }
     }
 

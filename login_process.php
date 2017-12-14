@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'Database.php';
+    require 'models/Database.php';
     require 'models/User.php';
     require 'config.php';
 

@@ -16,6 +16,8 @@
 
             $stmt = $this->connect->prepare("INSERT INTO users (email, name, nickname, password) VALUES('$email', '$name', '$nickname', '$password')");
             $stmt->execute();
+
+            return $this->connect->lastInsertId(); // 아이디값을 리턴
         }
 
         public function emailDubChk($email){

@@ -45,22 +45,34 @@
                 <div class="like-wrap clear">
                     <span class="like inline-block"></span>
                     <span class="comment inline-block"></span>
+                    <?php if( $article['users_id'] == $_SESSION['id']) : ?>
+                        <form method="post" class="delete inline-block" action="../write_delete_process.php">
+                            <input type="hidden" name="picsId" value="<?= $article['pics']['id'] ?>">
+                            <input type="hidden" name="articleId" value="<?= $article['id'] ?>">
+                            <label for="delete-input" class="delete-label"></label>
+                            <input type="submit" name="delete" class="delete-input hide" id="delete-input">
+                        </form>
+                    <?php endif; ?>
                     <span class="option inline-block"></span>
                 </div>
                 <div class="comment-wrap">
                     <!-- htmlspecialchars() = 엔티티문자를(html특수문자) 이스케이프하는(변환하는) 함수 -->
                     <div class="view-count">좋아요 <span class="status-number inline-block"></span>개</div>
                     <?php foreach ($article['comments'] as $comment) :?>
-                    <p class="comment">
-                        <span class="user-name inline-block"><?= htmlspecialchars($comment['nickname']);?></span>
-                        <span class="user-comment inline-block"><?= htmlspecialchars($comment['content']);?></span>
-                    </p>
+                        <?php if($comment['content']) : ?>
+                            <p class="comment">
+                                <span class="user-name inline-block"><?= htmlspecialchars($comment['nickname']);?></span>
+                                <span class="user-comment inline-block"><?= htmlspecialchars($comment['content']);?></span>
+                            </p>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                     <span class="record-time block"></span>
                 </div>
                 <div class="comment-typing-board clear">
-                    <form action="" class="comment-form">
-                        <textarea class="comment-textarea inline-block" placeholder="댓글 달기..."></textarea>
+                    <form action="../comment_process.php" method="POST" id="comment-form" class="comment-form">
+                        <textarea name="comment" id="comment" class="comment-textarea inline-block" placeholder="댓글 달기..."></textarea>
+                        <input type="hidden" name="articleId" value="<?= $article['id'] ?>">
+                        <input type="submit" name="submit" value="댓글 달기" class="comment-submit">
                     </form>
                     <a href="#" class="modal-menu inline-block"><img src="../images/photo_page/modal_icon.png" alt=""></a>
                 </div>
