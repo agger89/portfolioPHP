@@ -26,25 +26,45 @@
         <div class="profile-container">
             <div class="profile-header-wrap clear">
                 <?php if($authors['profile_pic']){ ?>
-                    <div class="profile-pic" style="background-image: url(<?= htmlspecialchars($authors['profile_pic'])?>)"></div>
+                <div class="profile-pic" style="background-image: url(<?= htmlspecialchars($authors['profile_pic'])?>)"></div>
                 <?php } else { ?>
-                    <div class="profile-pic"></div>
+                <div class="profile-pic"></div>
                 <?php } ?>
                 <div class="profile-top-status clear">
                     <span class="nickname inline-block"><?= htmlspecialchars($authors['nickname']) ?></span>
                     <?php if ($authors['nickname'] == $_SESSION['nickname']) : ?>
                     <form method="post" class="logout-form inline-block" action="../logout_process.php">
-                        <input type="submit" name="logout" value="로그아웃">
+                        <input type="submit" name="logout" value="로그아웃" class="btn-custom">
                     </form>
                     <?php endif; ?>
                     <span class="profile-edit block md-inline-block">
-                        <a href="#" class="block">프로필 편집</a>
+                        <?php if($authors['nickname'] == $_SESSION['nickname']) { ?>
+                        <a href="#" class="block btn-custom">프로필 편집</a>
+                        <?php } else { ?>
+                            <?php if($loginFollowlist) { ?>
+                            <form action="../unfollow_process.php" method="post">
+                                <input type="hidden" name="unfollowNic" value="<?= $authors['nickname'] ?>">
+                                <input type="hidden" name="unfollower" value="<?= $_SESSION['id'] ?>">
+                                <input type="submit" name="follow" value="팔로잉" class="btn-custom">
+                            </form>
+                            <?php } else { ?>
+                            <form action="../follow_process.php" method="post">
+                                <input type="hidden" name="users_id" value="<?= $_SESSION['id'] ?>">
+                                <input type="hidden" name="follow_nickname" value="<?= $authors['nickname'] ?>">
+                                <input type="hidden" name="follow_name" value="<?= $authors['name'] ?>">
+                                <input type="submit" name="follow" value="팔로우" class="btn-custom">
+                            </form>
+                            <?php } ?>
+                        <?php } ?>
                     </span>
                 </div>
                 <div class="profile-bottom-status">
                     <span class="status-contents inline-block">게시물 <span class="status-count"><?=htmlspecialchars(count($articles));?></span></span><!-- count = 배열의 숫자를 센다-->
-                    <span class="status-contents inline-block">팔로워 <span class="status-count">15</span></span>
-                    <span class="status-contents inline-block">팔로우 <span class="status-count">32</span></span>
+                    <span class="status-contents inline-block">팔로워 <span class="status-count">?</span></span>
+                    <span class="status-contents inline-block">
+                        <a href="/follower_list.php?nickname=<?= htmlspecialchars($authors['nickname']);?>">팔로우 </a>
+                        <span class="status-count"><?= htmlspecialchars(count($list)); ?></span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -91,18 +111,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

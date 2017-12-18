@@ -7,6 +7,19 @@ body{
     font-size: 14px;
     color: #ed4956;
 }
+.btn-custom{
+    height: 28px;
+    line-height: 27px;
+    padding: 0 24px;
+    border: 1px solid #dbdbdb;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: none;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer !important;
+}
 /* 윈도우 스토어 링크 */
 .store-down-content {
     position: relative;
@@ -321,22 +334,8 @@ body{
     font-size: 26px;
     font-weight: 200;
 }
-.profile-header-wrap .profile-top-status .logout-form input {
-    padding: 4px 8px;
-    border: 1px solid #dbdbdb;
-    background: none;
-    font-size: 12px;
-    cursor: pointer !important;
-}
 .profile-header-wrap .profile-top-status .profile-edit{
     margin-top: 10px;
-    border: 1px solid #dbdbdb;
-    font-size: 14px;
-    font-weight: 700;
-    text-align: center;
-}
-.profile-header-wrap .profile-top-status .profile-edit a{
-    padding: 4px 0;
 }
 .profile-header-wrap .profile-bottom-status{
     padding: 24px 0 20px;
@@ -467,6 +466,59 @@ body{
     width: 74px;
     height: 24px;
     background-color: #fafafa;
+}
+.follow-list-background{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+}
+.follow-list-wrap{
+    max-width: 600px;
+    min-height: 200px;
+    margin: 200px auto;
+    border: 1px solid #000;
+    background-color: #fff;
+    font-weight: 600;
+    color: #262626;
+}
+.follow-list-wrap .follow-list-title{
+    padding: 16px;
+    border-bottom: solid 1px #dbdbdb;
+    font-size: 16px;
+}
+.follow-list-wrap .follow-list-content{
+    padding: 16px;
+    font-size: 14px;
+}
+.follow-list-wrap .follow-member{
+    margin-bottom: 20px;
+}
+.follow-list-wrap .follow-member:last-child{
+    margin-bottom: 0;
+}
+.follow-list-wrap .follow-member .pic{
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #c1317f;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.follow-list-wrap .follow-member .right-group{
+    padding-left: 43px;
+}
+.follow-list-wrap .follow-member .name{
+    font-weight: 400;
+    color: #999;
 }
 
 /* footer */

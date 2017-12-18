@@ -1,7 +1,7 @@
 <?php
     session_start();
     require 'models/Database.php';
-    require 'models/Write.php';
+    require 'models/write.php';
     require 'config.php';
 
     $database = new Database($host, $dbname, $user, $pass);

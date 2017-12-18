@@ -23,13 +23,10 @@
     display: inline-block !important;
     margin-top: 0;
 }
-.profile-header-wrap .profile-top-status .profile-edit a{
-    padding: 4px 24px;
-}
 .profile-header-wrap .profile-top-status .logout-form{
     float: right;
-    margin-top: 5px;
-    margin-left: 8px;
+    margin-top: 4px;
+    margin-left: 6px;
 }
 .profile-header-wrap .profile-bottom-status{
     position: absolute;
