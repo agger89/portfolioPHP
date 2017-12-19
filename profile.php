@@ -12,15 +12,18 @@
     $database = new Database($host, $dbname, $user, $pass);
     $profile = new Profile($database->getConnect());
 
-    $nickname = $_GET['nickname'];
-    $authors = $profile->authors($nickname);
-    $articles = $profile->articles($nickname);
-    $list = $profile->follower($nickname);
+    $members = $profile->member();
 
-    $follow_nickname = $_GET['nickname'];
-    $nickname = $_SESSION['nickname'];
-    $loginFollowlist = $profile->followerLogin($nickname, $follow_nickname);
+    $id = $_GET['id'];
+    $authors = $profile->authors($id);
+    $articles = $profile->articles($id);
 
+    $users_id = $_GET['id'];
+    $list = $profile->follower($users_id);
+
+    $users_id = $_SESSION['id'];
+    $follow_id = $_GET['id'];
+    $loginFollowlist = $profile->followerLogin($users_id, $follow_id);
 
     include 'views/header.php';
     include 'views/profile.php';

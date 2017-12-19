@@ -10,7 +10,7 @@
                 <li class="icon"><a href="write.php" class="block"><img src="../images/photo_page/header_icon_4.png" alt=""></a></li>
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_2.png" alt=""></a></li>
-                <li class="icon"><a href="/profile.php?nickname=<?= htmlspecialchars($_SESSION['nickname'])?>" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
+                <li class="icon"><a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
             </ul>
         </div>
         <div class="search-wrap content">
@@ -42,19 +42,21 @@
                         <a href="#" class="block btn-custom">프로필 편집</a>
                         <?php } else { ?>
                             <?php if($loginFollowlist) { ?>
-                            <form action="../unfollow_process.php" method="post">
-                                <input type="hidden" name="unfollowNic" value="<?= $authors['nickname'] ?>">
+                            <form action="../unfollow_process.php" method="post" class="inline-block">
+                                <input type="hidden" name="unfollowId" value="<?= $authors['id'] ?>">
                                 <input type="hidden" name="unfollower" value="<?= $_SESSION['id'] ?>">
                                 <input type="submit" name="follow" value="팔로잉" class="btn-custom">
                             </form>
                             <?php } else { ?>
-                            <form action="../follow_process.php" method="post">
+                            <form action="../follow_process.php" method="post" class="inline-block">
+                                <input type="hidden" name="follow_id" value="<?= $authors['id'] ?>">
                                 <input type="hidden" name="users_id" value="<?= $_SESSION['id'] ?>">
-                                <input type="hidden" name="follow_nickname" value="<?= $authors['nickname'] ?>">
-                                <input type="hidden" name="follow_name" value="<?= $authors['name'] ?>">
                                 <input type="submit" name="follow" value="팔로우" class="btn-custom">
                             </form>
                             <?php } ?>
+                            <span class="recommend-person btn-custom inline-block">
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </span>
                         <?php } ?>
                     </span>
                 </div>
@@ -62,13 +64,36 @@
                     <span class="status-contents inline-block">게시물 <span class="status-count"><?=htmlspecialchars(count($articles));?></span></span><!-- count = 배열의 숫자를 센다-->
                     <span class="status-contents inline-block">팔로워 <span class="status-count">?</span></span>
                     <span class="status-contents inline-block">
-                        <a href="/follower_list.php?nickname=<?= htmlspecialchars($authors['nickname']);?>">팔로우 </a>
+                        <a href="/follower_list.php?id=<?= htmlspecialchars($authors['id']);?>">팔로우 </a>
                         <span class="status-count"><?= htmlspecialchars(count($list)); ?></span>
                     </span>
                 </div>
             </div>
         </div>
+        <div class="recommend-person-listwrap">
+            <h3>추천 계정</h3>
+            <div class="list-wrap">
+                <ul class="bxslider clear">
+                    <?php foreach($members as $member) : ?>
+                        <?php if($_SESSION['nickname']) : ?>
+                            <li class="person-info-wrap">
+                                <span class="profile-pic"><?= $member['profile_pic'] ?></span>
+                                <span class="nickname"><?= $member['nickname'] ?></span>
+                                <span class="name"><?= $member['name'] ?></span>
+                                <form action="../follow_process.php" method="post" class="follow-form inline-block">
+                                    <input type="hidden" name="users_id" value="<?= $_SESSION['id'] ?>">
+                                    <input type="hidden" name="follow_nickname" value="<?= $authors['nickname'] ?>">
+                                    <input type="hidden" name="follow_name" value="<?= $authors['name'] ?>">
+                                    <input type="submit" name="follow" value="팔로우" class="btn-custom">
+                                </form>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
         <div class="articles-container">
+            <?php if($_SESSION['nickname'] == $authors['nickname']) { ?>
             <div class="tab-wrap">
                 <div class="tab-title-wrap">
                     <div class="tab-group clear">
@@ -108,6 +133,21 @@
                     </div>
                 </div>
             </div>
+            <?php } else { ?>
+            <div class="tab-content-wrap">
+                <div class="tab-content-articles tab-cont on">
+                    <ul class="article-list-wrap row">
+                        <?php foreach ($articles as $article): ?>
+                            <li class="article-list col-4">
+                                <a href="#" class="block">
+                                    <span style="background-image:url(<?= htmlspecialchars($article['url']);?>)"></span>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

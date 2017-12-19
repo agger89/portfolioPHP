@@ -8,12 +8,11 @@
             $this->connect = $connect;
         }
 
-        public function followReg($follow_nickname, $users_id, $follow_name)
+        public function followReg($follow_id, $users_id)
         {
-            $stmt = $this->connect->prepare("INSERT INTO follow(follow_nickname, users_id, follow_name) VALUES(:follow_nickname, :users_id, :follow_name)");
-            $stmt->bindParam(":follow_nickname", $follow_nickname, PDO::PARAM_STR);
+            $stmt = $this->connect->prepare("INSERT INTO follow(follow_id, users_id) VALUES(:follow_id, :users_id)");
+            $stmt->bindParam(":follow_id", $follow_id, PDO::PARAM_INT);
             $stmt->bindParam(":users_id", $users_id, PDO::PARAM_INT);
-            $stmt->bindParam(":follow_name", $follow_name, PDO::PARAM_STR);
             $stmt->execute();
         }
 

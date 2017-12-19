@@ -7,8 +7,8 @@
     $database = new Database($host, $dbname, $user, $pass);
     $follow_list = new Follow_List($database->getConnect());
 
-    $nickname = $_GET['nickname'];
-    $list = $follow_list->follower($nickname);
+    $users_id = $_GET['id'];
+    $list = $follow_list->follower($users_id);
 
     include 'views/header.php';
     include 'views/follower_list.php';

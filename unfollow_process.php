@@ -7,9 +7,9 @@
     $database = new Database($host, $dbname, $user, $pass);
     $follow = new UnFollow($database->getConnect());
 
-    $follow_nickname = $_POST['unfollowNic'];
+    $follow_id = $_POST['unfollowId'];
     $users_id = $_POST['unfollower'];
-    $follow->unfollowReg($follow_nickname, $users_id);
+    $follow->unfollowReg($follow_id, $users_id);
 
-    header("Location: profile.php?nickname=$follow_nickname");
+    header("Location: profile.php?id=$follow_id");
 ?>

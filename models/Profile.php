@@ -7,18 +7,18 @@
             $this->connect = $connect;
         }
 
-        public function authors($nickname){
-            $stmt = $this->connect->prepare('SELECT * FROM users WHERE nickname = :nickname');
-            $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+        public function authors($id){
+            $stmt = $this->connect->prepare('SELECT id, name, nickname, profile_pic FROM users WHERE id = :id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function articles($nickname)
+        public function articles($id)
         {
-            $stmt = $this->connect->prepare("SELECT articles.id, pics.url FROM pics LEFT JOIN articles ON pics.articles_id = articles.id LEFT JOIN users ON articles.users_id = users.id WHERE nickname = :nickname ORDER BY articles.id DESC");
-            $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+            $stmt = $this->connect->prepare("SELECT articles.id, pics.url FROM pics LEFT JOIN articles ON pics.articles_id = articles.id LEFT JOIN users ON articles.users_id = users.id WHERE id = :id ORDER BY articles.id DESC");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
             $rows = array();
@@ -28,20 +28,27 @@
             return $rows;
         }
 
-        public function follower($nickname)
+        public function follower($users_id)
         {
-            $stmt = $this->connect->prepare('SELECT users.name,nickname, follow.follow_nickname FROM users JOIN follow ON users.id = follow.users_id WHERE nickname = :nickname');
-            $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+            $stmt = $this->connect->prepare('SELECT users.name,nickname, follow.follow_id FROM users JOIN follow ON users.id = follow.users_id WHERE users_id = :users_id');
+            $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
             $stmt->execute();
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function followerLogin($nickname, $follow_nickname)
+        public function followerLogin($users_id, $follow_id)
         {
-            $stmt = $this->connect->prepare('SELECT users.name, follow.follow_nickname FROM users JOIN follow ON users.id = follow.users_id WHERE nickname = :nickname AND follow_nickname = :follow_nickname');
-            $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
-            $stmt->bindParam(':follow_nickname', $follow_nickname, PDO::PARAM_STR);
+            $stmt = $this->connect->prepare('SELECT users.name, follow.follow_id FROM users JOIN follow ON users.id = follow.users_id WHERE users_id = :users_id AND follow_id = :follow_id');
+            $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
+            $stmt->bindParam(':follow_id', $follow_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function member(){
+            $stmt = $this->connect->prepare('SELECT * FROM users');
             $stmt->execute();
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

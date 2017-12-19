@@ -7,8 +7,8 @@
     $database = new Database($host, $dbname, $user, $pass);
     $follow = new Follow($database->getConnect());
 
-    $follow->followReg($_POST['follow_nickname'], $_POST['users_id'], $_POST['follow_name']);
+    $follow->followReg($_POST['follow_id'], $_POST['users_id']);
 
-    $nickname = $_POST['follow_nickname'];
-    header("Location: profile.php?nickname=$nickname");
+    $id = $_POST['follow_id'];
+    header("Location: profile.php?id=$id");
 ?>

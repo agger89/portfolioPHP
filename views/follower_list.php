@@ -4,11 +4,11 @@
         <div class="follow-list-content">
             <?php foreach ($list as $lists) : ?>
             <div class="follow-member relative">
-                <a href="/profile.php?nickname=<?= htmlspecialchars($lists['follow_nickname']);?>" class="block">
+                <a href="/profile.php?id=<?= htmlspecialchars($lists['follow_id']);?>" class="block">
                     <div class="pic"><?= $lists['profile_pic'] ?></div>
                     <div class="right-group">
-                        <div class="nickname"><?= $lists['follow_nickname'] ?></div>
-                        <div class="name"><?= $lists['follow_name'] ?></div>
+                        <div class="nickname"><?= $lists['nickname'] ?></div>
+                        <div class="name"><?= $lists['name'] ?></div>
                     </div>
                 </a>
             </div>

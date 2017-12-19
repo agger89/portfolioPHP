@@ -7,9 +7,9 @@
             $this->connect = $connect;
         }
 
-        public function follower($nickname){
-            $stmt = $this->connect->prepare('SELECT users.name,nickname,profile_pic, follow.follow_name,follow_nickname FROM users JOIN follow ON users.id = follow.users_id WHERE nickname = :nickname');
-            $stmt->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+        public function follower($users_id){
+            $stmt = $this->connect->prepare('SELECT users.name,nickname,profile_pic, follow.follow_id FROM users JOIN follow ON users.id = follow.follow_id WHERE users_id = :users_id');
+            $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
             $stmt->execute();
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

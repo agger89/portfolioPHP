@@ -20,7 +20,7 @@
         }
 
         public function authors($id){ // authors 메소드(함수)에 매개변수(인자)를 삽입
-            $stmt = $this->connect->prepare('SELECT name, nickname, profile_pic FROM users WHERE id = :id'); // $stmt 변수에 DB users테이블에 id 쿼리를 반환
+            $stmt = $this->connect->prepare('SELECT id, name, nickname, profile_pic FROM users WHERE id = :id'); // $stmt 변수에 DB users테이블에 id 쿼리를 반환
             // PDO::PARAM_INT(sql 정수 유형을 호출)
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);  // 위에서 반환한 id의 값를 매개 변수(인자)로 만듬 binding(묶음) (고정이 아닌 유동적으로 개수만큼 출력하기 위하여)
             $stmt->execute();

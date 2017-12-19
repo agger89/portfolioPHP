@@ -17,6 +17,8 @@
     <!-- lib -->
     <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../lib/jquery.bxslider.css">
+    <script src="../lib/jquery.bxslider.js"></script>
     <!-- js -->
     <script src="../js/index.js"></script>
 </head>
