@@ -50,9 +50,24 @@ $(document).ready(function(){
         responsive : true
     });
 
+    // 회원 추천 리스트
     $(".recommend-person").click(function() {
         $(".recommend-person-listwrap").toggleClass("on");
     });
+
+
+    //header offset top
+    $(document).scroll(function(){
+        var position = $(window).scrollTop();
+        var height = $(".object-content-wrap").height();
+        console.log(position);
+        console.log(height);
+
+        if(position == 59){
+            $(".header-content-wrap").toggleClass("on");
+        }
+    })
+
 });
 
 

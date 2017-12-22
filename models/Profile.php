@@ -7,7 +7,8 @@
             $this->connect = $connect;
         }
 
-        public function authors($id){
+        public function authors($id)
+        {
             $stmt = $this->connect->prepare('SELECT id, name, nickname, profile_pic FROM users WHERE id = :id');
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -15,10 +16,10 @@
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function articles($id)
+        public function articles($users_id)
         {
-            $stmt = $this->connect->prepare("SELECT articles.id, pics.url FROM pics LEFT JOIN articles ON pics.articles_id = articles.id LEFT JOIN users ON articles.users_id = users.id WHERE id = :id ORDER BY articles.id DESC");
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt = $this->connect->prepare("SELECT articles.id, pics.url FROM pics LEFT JOIN articles ON pics.articles_id = articles.id LEFT JOIN users ON articles.users_id = users.id WHERE users_id = :users_id ORDER BY articles.id DESC");
+            $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
             $stmt->execute();
 
             $rows = array();

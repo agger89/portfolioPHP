@@ -13,7 +13,17 @@
     $database = new Database($host, $dbname, $user, $pass);
     $main = new Main($database->getConnect()); // $main 변수 안에 Main 클래스 생성해서 담고 Main 클래스안에 Database 클래스가 연결한 DB를 담는다
 
-    $articles = $main->articles(); // $articles 변수에 main 클래스에 소속된 articles 메소드를 담음
+    $users_id = $_SESSION['id'];
+    $follow = $main->follower($users_id);
+
+    $follow_ids = [$users_id];
+    foreach ($follow as $item) {
+        $follow_ids[] = $item['follow_id'];
+    }
+    $in = implode(",", $follow_ids); // 배열로 되어있는 $follow_ids의 값을 ,문자로 결합
+    $users_id = $in;
+
+    $articles = $main->articles($users_id); // $articles 변수에 main 클래스에 소속된 articles 메소드를 담음
     for($i=0; $i < count($articles); $i++) { // $articles 변수에 담겨있는 articles 메소드의 값을 세어서 출력
 
         $articles[$i]['authors'] = $main->authors($articles[$i]['users_id']);
@@ -23,10 +33,13 @@
 
         $articles[$i]['comments'] = $main->comments($articles[$i]['id']);
 
-        $articles[$i]['likes'] = $main->likes($articles[$i]['id']);
+        $articles[$i]['likes'] = $main->likes($articles[$i]['id'], $_SESSION['id']);
+
+        $articles[$i]['likesCnt'] = $main->likesCnt($articles[$i]['id']);
     }
 
-    include 'views/header.php';
-    include 'views/main.php';
 
+
+include 'views/header.php';
+    include 'views/main.php';
 ?>

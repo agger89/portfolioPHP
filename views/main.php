@@ -43,7 +43,19 @@
             <div class="body-image-wrap" style="background-image:url(<?= htmlspecialchars($article['pics']['url'])?>)"></div>
             <div class="footer-comment-wrap test">
                 <div class="like-wrap clear">
-                    <span class="like inline-block"></span>
+                    <?php if($article['likes']['users_id'] != $_SESSION['id']) { ?>
+                    <form method="post" action="../like.php" class="inline-block">
+                        <input type="hidden" name="likeUser" value="<?= $_SESSION['id'] ?>">
+                        <input type="hidden" name="articleId" value="<?= $article['id'] ?>">
+                        <input type="submit" name="like" value="" class="like inline-block pointer">
+                    </form>
+                    <?php } else { ?>
+                    <form method="post" action="../unlike.php" class="inline-block">
+                        <input type="hidden" name="unlikeUser" value="<?= $_SESSION['id'] ?>">
+                        <input type="hidden" name="articleId" value="<?= $article['id'] ?>">
+                        <input type="submit" name="unlike" value="" class="unlike inline-block pointer">
+                    </form>
+                    <?php } ?>
                     <span class="comment inline-block"></span>
                     <?php if( $article['users_id'] == $_SESSION['id']) : ?>
                         <form method="post" class="delete inline-block" action="../write_delete_process.php">
@@ -57,7 +69,7 @@
                 </div>
                 <div class="comment-wrap">
                     <!-- htmlspecialchars() = 엔티티문자를(html특수문자) 이스케이프하는(변환하는) 함수 -->
-                    <div class="view-count">좋아요 <span class="status-number inline-block"></span>개</div>
+                    <div class="view-count">좋아요 <span class="status-number inline-block"><?= htmlspecialchars(count($article['likesCnt'])) ?></span>개</div>
                     <?php foreach ($article['comments'] as $comment) :?>
                         <?php if($comment['content']) : ?>
                             <p class="comment">

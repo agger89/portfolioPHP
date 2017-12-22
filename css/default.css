@@ -182,9 +182,19 @@ body{
 
 /*================ photo_page ===============*/
 .header-content-wrap{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
     height: 75px;
     border-bottom: 1px solid #e6e6e6;
     background-color: #fff;
+    z-index: 9;
+    transition-property: height;
+    transition-duration: 0.3s;
+}
+.header-content-wrap.on{
+    height: 52px;
 }
 .header-content{
     max-width: 1010px;
@@ -252,6 +262,8 @@ body{
 
 /* 컨텐츠 바디 main */
 .body-content-wrap{
+    position: relative;
+    top: 75px;
     min-height: 700px;
     padding-top: 30px;
 }
@@ -579,6 +591,7 @@ body{
     background-color: rgba(0,0,0,.5);
 }
 .follow-list-wrap{
+    position: relative;
     max-width: 600px;
     min-height: 200px;
     margin: 200px auto;
@@ -591,6 +604,17 @@ body{
     padding: 16px;
     border-bottom: solid 1px #dbdbdb;
     font-size: 16px;
+}
+.follow-list-wrap .close-btn{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 18px;
+    height: 18px;
+    background-image: url(../images/photo_page/close-btn.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
 }
 .follow-list-wrap .follow-list-content{
     padding: 16px;
@@ -629,7 +653,10 @@ body{
     margin-bottom: 12px;
     font-size: 0;
 }
-.footer-comment-wrap .like-wrap > span{
+.footer-comment-wrap .like-wrap .like,
+.footer-comment-wrap .like-wrap .unlike,
+.footer-comment-wrap .like-wrap .comment,
+.footer-comment-wrap .like-wrap .option{
     width: 24px;
     height: 24px;
     background-size: cover;
@@ -637,7 +664,15 @@ body{
 }
 .footer-comment-wrap .like-wrap .like{
     margin-right: 16px;
+    border: none;
+    outline: none;
     background-image: url(../images/photo_page/like_icon.png);
+}
+.footer-comment-wrap .like-wrap .unlike{
+    margin-right: 16px;
+    border: none;
+    outline: none;
+    background-image: url(../images/photo_page/like_icon_checked.png);
 }
 .footer-comment-wrap .like-wrap .comment{
     background-image: url(../images/photo_page/comment_icon.png);
@@ -657,7 +692,7 @@ body{
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
-    color: #646464;
+    color: #000;
     cursor: pointer;
 }
 .footer-comment-wrap .comment-wrap{

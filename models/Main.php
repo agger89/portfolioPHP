@@ -12,8 +12,17 @@
             $this->connect = $connect; // $this 에 connect이라는 변수를 만들어서 $connect 매개변수(인자)의 값을 받는다 ($this->variable은 약속언어)
         }
 
-        public function articles(){  // article 메소드(함수)를 생성
-            $stmt = $this->connect->prepare('SELECT * FROM articles ORDER BY id DESC'); // $stmt 변수에 DB article테이블 쿼리를 반환
+        public function follower($users_id){
+            $stmt = $this->connect->prepare('SELECT follow_id FROM follow WHERE users_id IN (users_id = :users_id)');
+            $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
+        }
+
+        public function articles($users_id){  // article 메소드(함수)를 생성
+            $stmt = $this->connect->prepare('SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC'); // $stmt 변수에 DB article테이블 쿼리를 반환
+            $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
             $stmt->execute(); // 위에서 반환한 쿼리를 서버로 전송
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
@@ -36,12 +45,21 @@
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function likes($articles_id){
+        public function likes($articles_id, $users_id){
+            $stmt = $this->connect->prepare('SELECT users_id FROM likes WHERE articles_id = :articles_id AND users_id = :users_id');
+            $stmt->bindParam(':articles_id', $articles_id, PDO::PARAM_INT);
+            $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function likesCnt($articles_id){
             $stmt = $this->connect->prepare('SELECT * FROM likes WHERE articles_id = :articles_id');
             $stmt->bindParam(':articles_id', $articles_id, PDO::PARAM_INT);
             $stmt->execute();
 
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function comments($articles_id){
@@ -54,15 +72,14 @@
                 $rows[] = $row; // $rows 변수와 $row 변수는 같다
             }
             return $rows; // $ rows 변수 출력
-
         }
 
         public function addComment($content, $users_id, $articles_id)
         {
             $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id) VALUES(:content, :users_id, :articles_id)");
-            $stmt->bindParam(":content", $content);
-            $stmt->bindParam(":users_id", $users_id);
-            $stmt->bindParam(":articles_id", $articles_id);
+            $stmt->bindParam(":content", $content, PDO::PARAM_STR);
+            $stmt->bindParam(":users_id", $users_id, PDO::PARAM_INT);
+            $stmt->bindParam(":articles_id", $articles_id, PDO::PARAM_INT);
             $stmt->execute();
         }
     }

@@ -1,6 +1,7 @@
 <div class="follow-list-background">
     <div class="follow-list-wrap">
         <h2 class="follow-list-title">팔로잉</h2>
+        <span class="close-btn block pointer" onclick="history.back()"></span>
         <div class="follow-list-content">
             <?php foreach ($list as $lists) : ?>
             <div class="follow-member relative">
