@@ -1,15 +1,15 @@
 <?php
-    session_start();
-    require 'models/Database.php';
-    require 'models/UnFollow.php';
-    require 'config.php';
+session_start();
 
-    $database = new Database($host, $dbname, $user, $pass);
-    $follow = new UnFollow($database->getConnect());
+require 'config.php';
+require __DIR__. './vendor/autoload.php';
 
-    $follow_id = $_POST['unfollowId'];
-    $users_id = $_POST['unfollower'];
-    $follow->unfollowReg($follow_id, $users_id);
+$database = new \App\Database($host, $dbname, $user, $pass);
+$follow = new \App\UnFollow($database->getConnect());
 
-    header("Location: profile.php?id=$follow_id");
-?>
+$authors_id = $_POST['unfollowId'];
+$unfollower_id = $_POST['unfollower'];
+
+$follow->unfollowReg($authors_id, $unfollower_id);
+
+header("Location: profile.php?id=$authors_id");

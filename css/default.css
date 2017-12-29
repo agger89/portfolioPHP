@@ -190,11 +190,13 @@ body{
     border-bottom: 1px solid #e6e6e6;
     background-color: #fff;
     z-index: 9;
-    transition-property: height;
-    transition-duration: 0.3s;
 }
-.header-content-wrap.on{
+.header-content-wrap.nav-up{
     height: 52px;
+}
+.header-content-wrap.nav-up .header-insta-line,
+.header-content-wrap.nav-up .header-insta-logo{
+    opacity: 0;
 }
 .header-content{
     max-width: 1010px;

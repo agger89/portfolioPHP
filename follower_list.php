@@ -1,15 +1,14 @@
 <?php
-    session_start();
-    require 'models/Database.php';
-    require 'models/Follow_List.php';
-    require 'config.php';
+session_start();
 
-    $database = new Database($host, $dbname, $user, $pass);
-    $follow_list = new Follow_List($database->getConnect());
+require 'config.php';
+require __DIR__. './vendor/autoload.php';
 
-    $users_id = $_GET['id'];
-    $list = $follow_list->follower($users_id);
+$database = new \App\Database($host, $dbname, $user, $pass);
+$follow_list = new \App\Follow_List($database->getConnect());
 
-    include 'views/header.php';
-    include 'views/follower_list.php';
-?>
+$users_id = $_GET['id'];
+$list = $follow_list->follower($users_id);
+
+include 'views/header.php';
+include 'views/follower_list.php';

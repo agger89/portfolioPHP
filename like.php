@@ -1,15 +1,15 @@
 <?php
-    session_start();
-    require 'models/Database.php';
-    require 'models/Like.php';
-    require 'config.php';
+session_start();
 
-    $database = new Database($host, $dbname, $user, $pass);
-    $like = new Like($database->getConnect());
+require 'config.php';
+require __DIR__. './vendor/autoload.php';
 
-    $users_id = $_POST['likeUser'];
-    $articles_id = $_POST['articleId'];
+$database = new \App\Database($host, $dbname, $user, $pass);
+$like = new \App\Like($database->getConnect());
 
-    $like->like($users_id, $articles_id);
-    header("Location: main.php");
-?>
+$likeUsers_id = $_POST['likeUser'];
+$articles_id = $_POST['articleId'];
+
+$like->like($likeUsers_id, $articles_id);
+
+header("Location: main.php");

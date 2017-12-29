@@ -1,17 +1,19 @@
 <?php
-    session_start();
-    require 'models/Database.php';
-    require 'models/Write_Delete.php';
-    require 'config.php';
+session_start();
 
-    $database = new Database($host, $dbname, $user, $pass);
-    $write_delete = new Write_Delete($database->getConnect());
+require 'config.php';
+require __DIR__. './vendor/autoload.php';
 
-    // 댓글은 cascade 액션으로 글이 지워 지면 같이 지워지게 변경 해놓음
+$database = new \App\Database($host, $dbname, $user, $pass);
+$write_delete = new \App\Write_Delete($database->getConnect());
 
-    $write_delete->deletePic($_POST["picsId"]);
-    $write_delete->deleteArticle($_POST["articleId"]);
+// 댓글은 cascade 액션으로 글이 지워 지면 같이 지워지게 변경 해놓음
+
+$pics_id = $_POST["picsId"];
+$articles_id = $_POST["articleId"];
+
+$write_delete->deletePic($pics_id);
+$write_delete->deleteArticle($articles_id);
 
 
-    header('Location: main.php');
-?>
+header('Location: main.php');

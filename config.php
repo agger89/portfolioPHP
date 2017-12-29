@@ -1,6 +1,10 @@
 <?php
-    $host = 'localhost';
-    $dbname = 'insta_db';
-    $user = 'root';
-    $pass = '111111';
-?>
+require './vendor/autoload.php';
+
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+
+$host = getenv ('HOST');
+$dbname = getenv ('DBNAME');
+$user = getenv ('USER');
+$pass = getenv ('PASS');

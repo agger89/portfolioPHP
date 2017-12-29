@@ -1,14 +1,17 @@
 <?php
-    session_start();
-    require 'models/Database.php';
-    require 'models/Follow.php';
-    require 'config.php';
+session_start();
 
-    $database = new Database($host, $dbname, $user, $pass);
-    $follow = new Follow($database->getConnect());
+require 'config.php';
+require __DIR__. './vendor/autoload.php';
 
-    $follow->followReg($_POST['follow_id'], $_POST['users_id']);
+$database = new \App\Database($host, $dbname, $user, $pass);
+$follow = new \App\Follow($database->getConnect());
 
-    $id = $_POST['follow_id'];
-    header("Location: profile.php?id=$id");
-?>
+$authors_id = $_POST['follow_id'];
+$follower_id = $_POST['users_id'];
+
+$follow->followReg($authors_id, $follower_id);
+
+$authors_id = $_POST['follow_id'];
+
+header("Location: profile.php?id=$authors_id");

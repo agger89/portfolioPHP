@@ -1,31 +1,28 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['is_login'])) {
-        header('Location: login.php');
-        exit;
-    }
+session_start();
 
-    require 'models/Database.php';
-    require 'models/Profile.php';
-    require 'config.php';
+if (!isset($_SESSION['is_login'])) {
+    header('Location: login.php');
+    exit;
+}
 
-    $database = new Database($host, $dbname, $user, $pass);
-    $profile = new Profile($database->getConnect());
+require 'config.php';
+require __DIR__. './vendor/autoload.php';
 
-    $members = $profile->member();
+$database = new \App\Database($host, $dbname, $user, $pass);
+$profile = new \App\Profile($database->getConnect());
 
-    $id = $_GET['id'];
-    $authors = $profile->authors($id);
-    $articles = $profile->articles($id);
+$members = $profile->member();
 
-    $users_id = $_GET['id'];
-    $list = $profile->follower($users_id);
+$users_id = $_GET['id']; // url로 넘어온 파라미터값 아이디의 유저
+$authors = $profile->authors($users_id);
+$articles = $profile->articles($users_id);
+$list = $profile->follower($users_id);
 
-    $users_id = $_SESSION['id'];
-    $follow_id = $_GET['id'];
-    $loginFollowlist = $profile->followerLogin($users_id, $follow_id);
+$users_id = $_SESSION['id']; // 로그인한 유저 아이디
+$follow_id = $_GET['id']; // 로그인한 유저가 팔로우한 유저 아이디
+$loginFollowlist = $profile->followerLogin($users_id, $follow_id);
 
-    include 'views/header.php';
-    include 'views/profile.php';
-    include 'views/footer.php';
-?>
+include 'views/header.php';
+include 'views/profile.php';
+include 'views/footer.php';

@@ -57,16 +57,42 @@ $(document).ready(function(){
 
 
     //header offset top
-    $(document).scroll(function(){
-        var position = $(window).scrollTop();
-        var height = $(".object-content-wrap").height();
-        console.log(position);
-        console.log(height);
+    var didScroll;
+    var lastScrollTop = 0;
+    var delta = 0;
+    var navbarHeight = $('.header-content-wrap').outerHeight();
 
-        if(position == 59){
-            $(".header-content-wrap").toggleClass("on");
+    $(window).scroll(function(event){
+        didScroll = true;
+    });
+
+    setInterval(function() {
+        if (didScroll) {
+            hasScrolled();
+            didScroll = false;
         }
-    })
+    }, 250);
+
+    function hasScrolled() {
+        var st = $(this).scrollTop();
+        console.log(st);
+
+        if(Math.abs(lastScrollTop - st) <= delta)
+            return;
+
+        if (st > lastScrollTop && st > navbarHeight){
+            // Scroll Down
+            $('.header-content-wrap').removeClass('nav-down').addClass('nav-up');
+        } else {
+            // Scroll Up
+            if(st + $(window).height() < $(document).height()) {
+                $('.header-content-wrap').removeClass('nav-up').addClass('nav-down');
+            }
+        }
+
+        lastScrollTop = st;
+    }
+
 
 });
 

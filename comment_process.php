@@ -1,16 +1,16 @@
 <?php
-    session_start();
-    require 'models/Database.php';
-    require 'models/Main.php';
-    require 'config.php';
+session_start();
 
-    $database = new Database($host, $dbname, $user, $pass);
-    $main = new Main($database->getConnect());
+require 'config.php';
+require __DIR__. './vendor/autoload.php';
 
-    $comment = filter_input(INPUT_POST, 'comment', FILTER_DEFAULT);
+$database = new \App\Database($host, $dbname, $user, $pass);
+$main = new \App\Main($database->getConnect());
 
+$comment = filter_input(INPUT_POST, 'comment', FILTER_DEFAULT);
+$users_id = $_SESSION['id'];
+$articles_id = $_POST['articleId'];
 
-    $main->addComment($comment, $_SESSION['id'], $_POST['articleId']);
+$main->addComment($comment, $users_id, $articles_id);
 
-    header('Location: main.php');
-?>
+header('Location: main.php');
