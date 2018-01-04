@@ -15,7 +15,7 @@
         <div class="search-wrap content">
             <div class="static-search">
                 <span class="inline-block"><img src="../images/photo_page/input_search_icon.png" alt=""></span>
-                <span class="inline-block">검색</span>
+                <span class="inline-block">search</span>
             </div>
         </div>
     </div>
@@ -34,9 +34,6 @@
                     </div>
                     <div class="text-wrap header-object">
                         <span class="title block"><?= htmlspecialchars($article['authors']['nickname']);?></span>
-<!--                        --><?php //if(!$article['pics']['location'] == '') : ?>
-<!--                        <p class="location-title">--><?//= htmlspecialchars($article['pics']['location']);?><!--</p>-->
-<!--                        --><?php //endif; ?>
                     </div>
                 </a>
             </div>
@@ -91,25 +88,23 @@
             </div>
         </div>
     <?php endforeach; ?>
+    <div class="paging">
+        <div class="prev-wrap">
+            <?php if($prevPage > 0) { ?>
+                <a href="/main.php?page=<?=$firstPage?>"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                <a href="/main.php?page=<?=$prevPage?>"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+            <?php } ?>
+        </div>
+        <ul class="number-wrap">
+            <?php for($i = $firstPage; $i <= $lastPage; $i++) { ?>
+            <li><a href="/main.php?page=<?=$i?>"><?=$i?></a></li>
+            <?php } ?>
+        </ul>
+        <div class="next-wrap">
+            <?php if($nextPage <= $lastPage) { ?>
+                <a href="/main.php?page=<?=$nextPage?>"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <a href="/main.php?page=<?=$lastPage?>"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+            <?php } ?>
+        </div>
+    </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

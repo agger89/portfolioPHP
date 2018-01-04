@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>Object</h1>
+        <h2>Create</h2>
+        <script>
+            var coworkers = {
+                "programmer":"egoing",
+                "designer":"leezche"
+            };
+            document.write("programmer: "+coworkers.programmer+"<br>");
+            document.write("designer: "+coworkers.designer+"<br>");
+            coworkers.bookkeeper = "duru";
+            document.write("bookkeeper: "+coworkers.bookkeeper+"<br>");
+            coworkers["data scientist"] = "taeho"; // 띄어쓰기가 들어가서 대괄호로 감싸줌
+            document.write("data scientist: "+coworkers["data scientist"]+"<br>");
+        </script>
+    </body>
+</html>

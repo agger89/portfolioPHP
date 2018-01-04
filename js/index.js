@@ -75,7 +75,6 @@ $(document).ready(function(){
 
     function hasScrolled() {
         var st = $(this).scrollTop();
-        console.log(st);
 
         if(Math.abs(lastScrollTop - st) <= delta)
             return;
@@ -85,7 +84,7 @@ $(document).ready(function(){
             $('.header-content-wrap').removeClass('nav-down').addClass('nav-up');
         } else {
             // Scroll Up
-            if(st + $(window).height() < $(document).height()) {
+            if(st < lastScrollTop && st < navbarHeight) {
                 $('.header-content-wrap').removeClass('nav-up').addClass('nav-down');
             }
         }
@@ -93,10 +92,14 @@ $(document).ready(function(){
         lastScrollTop = st;
     }
 
+    // 현재 페이지에 클래스 추가
+    $("[href]").each(function() {
+        if (this.href == window.location.href) {
+            $(this).addClass("active");
+        }
+    });
 
 });
-
-
 
 // 이미지 미리보기
 function handleImgFileSelect(e) {
@@ -113,11 +116,4 @@ function handleImgFileSelect(e) {
        reader.readAsDataURL(f);
     });
 }
-
-
-
-
-
-
-
 

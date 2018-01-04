@@ -461,14 +461,6 @@ body{
     color: #fff;
 }
 
-
-
-
-
-
-
-
-
 .articles-container .tab-wrap{
     border-top: 1px solid #efefef;
 }
@@ -489,6 +481,7 @@ body{
 }
 .articles-container .tab-content-wrap .tab-cont{
     display: none;
+    padding-bottom: 30px;
 }
 .articles-container .tab-content-wrap .tab-cont.on{
     display: block;
@@ -497,12 +490,21 @@ body{
     padding-top: 1%;
     padding-bottom: 1%;
 }
-.articles-container .tab-content-wrap .article-list span{
+.articles-container .tab-content-wrap .article-list .pic{
     display: block;
     padding-top: 100%;
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+.articles-container .tab-content-wrap .article-list .no-img{
+    position: absolute;
+    top: 50%;
+    margin-top: -9px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    color: #999;
 }
 .articles-container .tab-content-wrap .tab-content-save{
     text-align: center;
@@ -743,7 +745,29 @@ body{
 .footer-comment-wrap .comment-typing-board .modal-menu{
     float: right;
 }
-
+.paging{
+    display: block;
+    margin: 50px 0;
+    text-align: center;
+}
+.paging .prev-wrap,
+.paging .number-wrap,
+.paging .next-wrap{
+    display: inline-block;
+}
+.paging .prev-wrap,
+.paging .next-wrap{
+    margin: 0 8px;
+    font-size: 18px;
+}
+.paging .number-wrap li{
+    display: inline-block;
+    margin: 0 5px;
+}
+.paging .number-wrap .default,
+.paging .number-wrap .active{
+    font-weight: 700;
+}
 
 /* 푸터 네비 사이트맵 */
 .footer-navi {
@@ -769,48 +793,3 @@ body{
     color: #999;
     text-transform: uppercase;
 }
-/*=========================================================*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

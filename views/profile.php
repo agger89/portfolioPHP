@@ -1,9 +1,9 @@
-<div class="header-content-wrap">
+<div class="header-content-wrap nav-down trs-du-03">
     <div class="header-content relative clear">
         <div class="left-content content">
             <a href="/" class="scale"><img src="../images/photo_page/insta_icon.png" alt=""></a>
-            <span class="line scale"></span>
-            <a href="/" class="scale"><img src="../images/photo_page/insta_logo.png" alt=""></a>
+            <span class="line scale header-insta-line trs-du-03 trs-prop-opacity"></span>
+            <a href="/" class="scale header-insta-logo trs-du-03 trs-prop-opacity"><img src="../images/photo_page/insta_logo.png" alt=""></a>
         </div>
         <div class="right-content content">
             <ul class="icon-wrap">
@@ -16,7 +16,7 @@
         <div class="search-wrap content">
             <div class="static-search">
                 <span class="inline-block"><img src="../images/photo_page/input_search_icon.png" alt=""></span>
-                <span class="inline-block">검색</span>
+                <span class="inline-block">search</span>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
                     </span>
                 </div>
                 <div class="profile-bottom-status">
-                    <span class="status-contents inline-block">게시물 <span class="status-count"><?=htmlspecialchars(count($articles));?></span></span><!-- count = 배열의 숫자를 센다-->
+                    <span class="status-contents inline-block">게시물 <span class="status-count"><?=htmlspecialchars($countArticle['COUNT(*)']);?></span></span><!-- count = 배열의 숫자를 센다-->
                     <span class="status-contents inline-block">팔로워 <span class="status-count">?</span></span>
                     <span class="status-contents inline-block">
                         <a href="/follower_list.php?id=<?= htmlspecialchars($authors['id']);?>">팔로우 </a>
@@ -114,15 +114,38 @@
                 <div class="tab-content-wrap">
                     <div class="tab-content-articles tab-cont on">
                         <ul class="article-list-wrap row">
-                            <?php foreach ($articles as $article): ?>
+                            <?php foreach ($articles as $article) : ?>
                             <li class="article-list col-4">
-                                <a href="#" class="block">
-                                    <span style="background-image:url(<?= htmlspecialchars($article['url']);?>)"></span>
+                                <a href="#" class="block" style="border: 1px solid #dbdbdb;">
+                                    <?php if($article['pics']['url']) { ?>
+                                    <span class="pic relative" style="background-image:url(<?= htmlspecialchars($article['pics']['url']);?>)"></span>
+                                    <?php } else { ?>
+                                    <span class="pic relative"><span class="no-img">NO IMAGE</span></span>
+                                    <?php } ?>
                                 </a>
                             </li>
                             <?php endforeach; ?>
                         </ul>
-                    </div>
+                        <div class="paging">
+                            <div class="prev-wrap">
+                                <?php if($prevPage > 0) { ?>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?> & page=<?=$firstPage?>">first</a>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?> & page=<?=$prevPage?>">prev</a>
+                                <?php } ?>
+                            </div>
+                            <ul class="number-wrap">
+                                <?php for($i = $firstPage; $i <= $lastPage; $i++) { ?>
+                                    <li><a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?> & page=<?=$i?>"><?=$i?></a></li>
+                                <?php } ?>
+                            </ul>
+                            <div class="next-wrap">
+                                <?php if($nextPage <= $lastPage) { ?>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?> & page=<?=$nextPage?>">next</a>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?> & page=<?=$lastPage?>">last</a>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div><!-- tab-content-articles -->
                     <div class="tab-content-save tab-cont">
                         <div class="info-text-wrap">
                             <h3>저장</h3>
@@ -137,7 +160,7 @@
             <div class="tab-content-wrap">
                 <div class="tab-content-articles tab-cont on">
                     <ul class="article-list-wrap row">
-                        <?php foreach ($articles as $article): ?>
+                        <?php foreach ($articles as $article) : ?>
                             <li class="article-list col-4">
                                 <a href="#" class="block">
                                     <span style="background-image:url(<?= htmlspecialchars($article['url']);?>)"></span>
@@ -150,4 +173,4 @@
             <?php } ?>
         </div>
     </div>
-</div>
+</div><!-- body-content-wrap -->

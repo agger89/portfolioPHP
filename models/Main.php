@@ -23,10 +23,12 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
         return $stmt->fetchAll(\PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
     }
 
-    public function articles($users_id)// article 메소드(함수)를 생성
+    public function articles($users_id, $limitIdx, $pageSet)// article 메소드(함수)를 생성
     {
-        $stmt = $this->connect->prepare('SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC'); // $stmt 변수에 DB article테이블 쿼리를 반환
+        $stmt = $this->connect->prepare('SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC LIMIT :limitIdx, :pageSet'); // $stmt 변수에 DB article테이블 쿼리를 반환
         $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->bindParam(':limitIdx', $limitIdx, \PDO::PARAM_INT);
+        $stmt->bindParam(':pageSet', $pageSet, \PDO::PARAM_INT);
         $stmt->execute(); // 위에서 반환한 쿼리를 서버로 전송
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
@@ -90,5 +92,30 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
         $stmt->bindParam(":users_id", $users_id, \PDO::PARAM_INT);
         $stmt->bindParam(":articles_id", $articles_id, \PDO::PARAM_INT);
         $stmt->execute();
+    }
+
+    public function maxRandomUsers()
+    {
+        $stmt = $this->connect->prepare('SELECT MAX(id) FROM users');
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function maxRandomArticle()
+    {
+        $stmt = $this->connect->prepare('SELECT MAX(id) FROM articles');
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function countArticle($users_id)
+    {
+        $stmt = $this->connect->prepare('SELECT COUNT(*) FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id');
+        $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
     }
 }

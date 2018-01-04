@@ -19,17 +19,24 @@ class Profile{
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function articles($users_id)
+    public function articles($users_id, $limitIdx, $pageSet)
     {
-        $stmt = $this->connect->prepare("SELECT articles.id, pics.url FROM pics LEFT JOIN articles ON pics.articles_id = articles.id LEFT JOIN users ON articles.users_id = users.id WHERE users_id = :users_id ORDER BY articles.id DESC");
+        $stmt = $this->connect->prepare("SELECT id FROM articles WHERE users_id = :users_id ORDER BY articles.id DESC LIMIT :limitIdx, :pageSet");
         $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->bindParam(':limitIdx', $limitIdx, \PDO::PARAM_INT);
+        $stmt->bindParam(':pageSet', $pageSet, \PDO::PARAM_INT);
         $stmt->execute();
 
-        $rows = array();
-        while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){
-            $rows[] = $row;
-        }
-        return $rows;
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function pics($id)
+    {
+        $stmt = $this->connect->prepare('SELECT id, url FROM pics WHERE id = :id');
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function follower($users_id)
@@ -57,6 +64,15 @@ class Profile{
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function countArticle($users_id)
+    {
+        $stmt = $this->connect->prepare('SELECT COUNT(*) FROM articles WHERE users_id = :users_id');
+        $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
 }
