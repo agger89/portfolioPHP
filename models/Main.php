@@ -23,12 +23,10 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
         return $stmt->fetchAll(\PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
     }
 
-    public function articles($users_id, $limitIdx, $pageSet)// article 메소드(함수)를 생성
+    public function articles($users_id)// article 메소드(함수)를 생성
     {
-        $stmt = $this->connect->prepare('SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC LIMIT :limitIdx, :pageSet'); // $stmt 변수에 DB article테이블 쿼리를 반환
+        $stmt = $this->connect->prepare('SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC'); // $stmt 변수에 DB article테이블 쿼리를 반환
         $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
-        $stmt->bindParam(':limitIdx', $limitIdx, \PDO::PARAM_INT);
-        $stmt->bindParam(':pageSet', $pageSet, \PDO::PARAM_INT);
         $stmt->execute(); // 위에서 반환한 쿼리를 서버로 전송
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
@@ -74,7 +72,7 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
 
     public function comments($articles_id)
     {
-        $stmt = $this->connect->prepare('SELECT content, nickname FROM comments JOIN users ON comments.users_id = users.id WHERE articles_id = :articles_id'); // comments.users_id = users.id ( comments의 users_id와 users.id는 같다 )
+        $stmt = $this->connect->prepare('SELECT content, datetime, nickname FROM comments JOIN users ON comments.users_id = users.id WHERE articles_id = :articles_id'); // comments.users_id = users.id ( comments의 users_id와 users.id는 같다 )
         $stmt->bindParam(':articles_id', $articles_id, \PDO::PARAM_INT);
         $stmt->execute();
 
@@ -85,12 +83,13 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
         return $rows; // $ rows 변수 출력
     }
 
-    public function addComment($content, $users_id, $articles_id)
+    public function addComment($content, $users_id, $articles_id, $datetime)
     {
-        $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id) VALUES(:content, :users_id, :articles_id)");
+        $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id, datetime) VALUES(:content, :users_id, :articles_id, :datetime)");
         $stmt->bindParam(":content", $content, \PDO::PARAM_STR);
         $stmt->bindParam(":users_id", $users_id, \PDO::PARAM_INT);
         $stmt->bindParam(":articles_id", $articles_id, \PDO::PARAM_INT);
+        $stmt->bindParam(":datetime", $datetime, \PDO::PARAM_INT);
         $stmt->execute();
     }
 

@@ -11,6 +11,11 @@ class User
         $this->connect = $connect;
     }
 
+    public function getConnect()
+    {
+        return $this->connect;
+    }
+
     public function register()
     {
         $email = $_POST['email'];
@@ -49,6 +54,13 @@ class User
         $stmt->execute();
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function profilePic($url)
+    {
+        $stmt = $this->connect->prepare("INSERT INTO profile_pic(url) VALUES(:url)");
+        $stmt->bindParam(":url", $url, \PDO::PARAM_STR);
+        $stmt->execute();
     }
 
 }

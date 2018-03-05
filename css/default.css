@@ -20,6 +20,11 @@ body{
     text-align: center;
     cursor: pointer !important;
 }
+.body-content-wrap .profile-body-wrap,
+.body-content-wrap .user-find-body-wrap{
+    max-width: 975px;
+    margin: 0 auto;
+}
 /* 윈도우 스토어 링크 */
 .store-down-content {
     position: relative;
@@ -228,6 +233,8 @@ body{
     .header-content .search-wrap{
         display: block;
         position: absolute;
+        top: 50%;
+        margin-top: -14px;
         left: 50%;
         -webkit-transform: translateX(-50%);
         transform: translateX(-50%);
@@ -309,16 +316,13 @@ body{
     padding-bottom: 80%;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
 }
 .body-content-wrap .footer-comment-wrap{
     padding: 13px 16px 20px;
 }
 
 /* profile */
-.body-content-wrap .profile-body-wrap{
-    max-width: 975px;
-    margin: 0 auto;
-}
 .body-content-wrap .profile-container{
     padding-bottom: 12px;
 }
@@ -350,6 +354,18 @@ body{
 }
 .profile-header-wrap .profile-top-status .profile-edit{
     margin-top: 10px;
+}
+.profile-header-wrap .profile-top-status .profile-upload{
+    padding: 0;
+}
+.profile-header-wrap .profile-top-status .profile-upload label{
+    display: inline-block;
+    padding: 0 24px;
+}
+.profile-header-wrap .profile-top-status .follow-btn{
+    background-color: #3897f0;
+    border-color: #3897f0;
+    color: #fff;
 }
 .profile-header-wrap .profile-top-status .recommend-person{
     padding: 0 12px;
@@ -490,6 +506,9 @@ body{
     padding-top: 1%;
     padding-bottom: 1%;
 }
+.articles-container .tab-content-wrap .article-list:hover .pic-status{
+    display: block !important;
+}
 .articles-container .tab-content-wrap .article-list .pic{
     display: block;
     padding-top: 100%;
@@ -505,6 +524,32 @@ body{
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     color: #999;
+}
+.articles-container .tab-content-wrap .article-list .pic-status{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.3);
+}
+.articles-container .tab-content-wrap .article-list .pic-status-text-wrap{
+    position: absolute;
+    top: 50%;
+    margin-top: -9px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-weight: 600;
+    color: #fff;
+}
+.articles-container .tab-content-wrap .article-list .pic-status-text-wrap span{
+    padding: 0 10px;
+    font-size: 20px;
+}
+.articles-container .tab-content-wrap .article-list .pic-status-text-wrap .fa-heart,
+.articles-container .tab-content-wrap .article-list .pic-status-text-wrap .fa-comment{
+    font-size: 20px;
 }
 .articles-container .tab-content-wrap .tab-content-save{
     text-align: center;
@@ -659,8 +704,7 @@ body{
 }
 .footer-comment-wrap .like-wrap .like,
 .footer-comment-wrap .like-wrap .unlike,
-.footer-comment-wrap .like-wrap .comment,
-.footer-comment-wrap .like-wrap .option{
+.footer-comment-wrap .like-wrap .comment{
     width: 24px;
     height: 24px;
     background-size: cover;
@@ -680,10 +724,6 @@ body{
 }
 .footer-comment-wrap .like-wrap .comment{
     background-image: url(../images/photo_page/comment_icon.png);
-}
-.footer-comment-wrap .like-wrap .option{
-    float: right;
-    background-image: url(../images/photo_page/option_icon.png);
 }
 .footer-comment-wrap .like-wrap .delete{
     float: right;
@@ -706,6 +746,7 @@ body{
 }
 .footer-comment-wrap .comment-wrap .view-count{
     margin-bottom: 15px;
+    font-weight: 600;
     color: #262626;
 }
 .footer-comment-wrap .comment-wrap .comment{
@@ -720,6 +761,7 @@ body{
     font-weight: 600;
 }
 .footer-comment-wrap .comment-wrap .record-time{
+    padding-top: 5px;
     font-size: 10px;
     color: #999;
 }
@@ -764,10 +806,44 @@ body{
     display: inline-block;
     margin: 0 5px;
 }
-.paging .number-wrap .default,
 .paging .number-wrap .active{
     font-weight: 700;
 }
+
+/* user_list */
+.user-find-body-wrap .recommend-person-listwrap{
+    border: none;
+    background: none;
+}
+.user-find-body-wrap .recommend-person-listwrap .person-info-wrap{
+    width: 33.333% !important;
+    height: 220px;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-right: 0 !important;
+    border: 0;
+    background: none;
+}
+.user-find-body-wrap .recommend-person-listwrap .person-info-wrap > span{
+    padding-top: 25px;
+    padding-bottom: 23px;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #fff;
+}
+.user-find-body-wrap .recommend-person-listwrap .person-info-wrap .follow-form{
+    width: 92px;
+}
+
+
+
+
+
+
+
+
+
+
 
 /* 푸터 네비 사이트맵 */
 .footer-navi {
@@ -793,3 +869,12 @@ body{
     color: #999;
     text-transform: uppercase;
 }
+
+
+.masonry{width:400px;padding:0px;font-size:0px;}
+.masonry .item{
+    display:block;border:1px solid #ffffff;min-height:50px;box-sizing:border-box;
+    background:#1fa98d;font-size:30px;color:#ffffff;text-align:center;
+}
+.masonry .w100{width:100px;}
+.masonry .w200{width:200px;}

@@ -39,12 +39,13 @@ class Write
         $stmt->execute();
     }
 
-    public function commentReg($content, $users_id, $articles_id)
+    public function commentReg($content, $users_id, $articles_id, $datetime)
     {
-        $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id) VALUES(:content, :users_id, :articles_id)");
+        $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id, datetime) VALUES(:content, :users_id, :articles_id, :datetime)");
         $stmt->bindParam(":content", $content, \PDO::PARAM_STR);
         $stmt->bindParam(":users_id", $users_id, \PDO::PARAM_INT);
         $stmt->bindParam(":articles_id", $articles_id, \PDO::PARAM_INT);
+        $stmt->bindParam(":datetime", $datetime, \PDO::PARAM_INT);
         $stmt->execute();
     }
 

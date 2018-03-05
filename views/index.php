@@ -5,7 +5,6 @@
     </div>
     <a href="https://www.microsoft.com/en-us/store/p/instagram/9nblggh5l9xt" class="down-btn" target="_blank">받기</a>
 </div>
-
 <div class="content-wrap relative">
     <div class="login-wrap clear">
         <div class="device-image hide md-inline-block"></div>

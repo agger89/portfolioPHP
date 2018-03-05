@@ -75,4 +75,21 @@ class Profile{
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function likesCnt($articles_id)
+    {
+        $stmt = $this->connect->prepare('SELECT count(*) FROM likes WHERE articles_id = :articles_id');
+        $stmt->bindParam(':articles_id', $articles_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function comments($articles_id)
+    {
+        $stmt = $this->connect->prepare('SELECT count(*) FROM comments JOIN users ON comments.users_id = users.id WHERE articles_id = :articles_id'); // comments.users_id = users.id ( comments의 users_id와 users.id는 같다 )
+        $stmt->bindParam(':articles_id', $articles_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }

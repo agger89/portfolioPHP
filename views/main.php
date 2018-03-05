@@ -7,9 +7,9 @@
         </div>
         <div class="right-content content">
             <ul class="icon-wrap">
-                <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
+                <li class="icon"><a href="user_list.php?nickname=<?= htmlspecialchars($_SESSION['nickname']);?>" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_2.png" alt=""></a></li>
-                <li class="icon"><a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id']);?>" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
+                <li class="icon"><a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id']);?>&page=1" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
             </ul>
         </div>
         <div class="search-wrap content">
@@ -22,9 +22,10 @@
 </div><!-- header-content-wrap end -->
 <div class="body-content-wrap">
     <?php foreach ($articles as $article): ?>
+        <?php $lastComment = count($article['comments']) -1; ?>
         <div class="object-content-wrap">
             <div class="header-title-wrap">
-                <a href="/profile.php?id=<?= htmlspecialchars($article['authors']['id']);?>">
+                <a href="/profile.php?id=<?= htmlspecialchars($article['authors']['id']);?>&page=1">
                     <div class="icon-wrap header-object">
                         <?php if($article['authors']['profile_pic']){ ?>
                         <i class="inline-block" style="background-image: url(<?= htmlspecialchars($article['authors']['profile_pic']);?>)"></i>
@@ -53,7 +54,7 @@
                         <input type="submit" name="unlike" value="" class="unlike inline-block pointer">
                     </form>
                     <?php } ?>
-                    <span class="comment inline-block"></span>
+                    <span class="comment inline-block pointer"></span>
                     <?php if( $article['users_id'] == $_SESSION['id']) : ?>
                         <form method="post" class="delete inline-block" action="../write_delete_process.php">
                             <input type="hidden" name="picsId" value="<?= $article['pics']['id'] ?>">
@@ -62,7 +63,6 @@
                             <input type="submit" name="delete" class="delete-input hide" id="delete-input">
                         </form>
                     <?php endif; ?>
-                    <span class="option inline-block"></span>
                 </div>
                 <div class="comment-wrap">
                     <!-- htmlspecialchars() = 엔티티문자를(html특수문자) 이스케이프하는(변환하는) 함수 -->
@@ -70,12 +70,12 @@
                     <?php foreach ($article['comments'] as $comment) :?>
                         <?php if($comment['content']) : ?>
                             <p class="comment">
-                                <span class="user-name inline-block"><?= htmlspecialchars($comment['nickname']);?></span>
+                                <span class="user-name inline-block"><?= htmlspecialchars($comment['nickname']) ;?></span>
                                 <span class="user-comment inline-block"><?= htmlspecialchars($comment['content']);?></span>
                             </p>
                         <?php endif; ?>
                     <?php endforeach; ?>
-                    <span class="record-time block"></span>
+                    <span class="record-time block"><?= $article['comments']? htmlspecialchars($article['comments'][$lastComment]['datetime']) : ""; ?></span>
                 </div>
                 <div class="comment-typing-board clear">
                     <form action="../comment_process.php" method="POST" id="comment-form" class="comment-form">
@@ -88,23 +88,4 @@
             </div>
         </div>
     <?php endforeach; ?>
-    <div class="paging">
-        <div class="prev-wrap">
-            <?php if($prevPage > 0) { ?>
-                <a href="/main.php?page=<?=$firstPage?>"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-                <a href="/main.php?page=<?=$prevPage?>"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-            <?php } ?>
-        </div>
-        <ul class="number-wrap">
-            <?php for($i = $firstPage; $i <= $lastPage; $i++) { ?>
-            <li><a href="/main.php?page=<?=$i?>"><?=$i?></a></li>
-            <?php } ?>
-        </ul>
-        <div class="next-wrap">
-            <?php if($nextPage <= $lastPage) { ?>
-                <a href="/main.php?page=<?=$nextPage?>"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                <a href="/main.php?page=<?=$lastPage?>"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-            <?php } ?>
-        </div>
-    </div>
 </div>

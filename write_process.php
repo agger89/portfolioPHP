@@ -49,6 +49,9 @@ if(!isset($_SESSION['errorMessage'])){ //세션 에러메세지가 없으면
     }
 }
 
-$write->commentReg($comment, $users_id, $write->getConnect()->lastInsertId());
+$datetime = \Carbon\Carbon::now();
+if($comment) {
+    $write->commentReg($comment, $users_id, $write->getConnect()->lastInsertId(), $datetime);
+}
 
 header('Location: main.php');

@@ -22,10 +22,7 @@ foreach ($follow as $item) {
 $in = implode(",", $follow_ids); // 배열로 되어있는 $follow_ids의 값을 ,문자로 결합
 $users_id = $in;
 
-// paging
-require 'paging_process_main.php';
-
-$articles = $main->articles($users_id, $limitIdx, $pageSet);
+$articles = $main->articles($users_id);
 for($i=0; $i < count($articles); $i++) { // $articles 변수에 담겨있는 articles 메소드의 값을 세어서 출력
 
     $articles[$i]['authors'] = $main->authors($articles[$i]['users_id']);

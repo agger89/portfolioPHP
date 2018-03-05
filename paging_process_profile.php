@@ -12,7 +12,7 @@ $block = ceil ($page /  $blockSet); // 현재 블럭
 
 $limitIdx = ($page - 1) * $pageSet; // limit 시작위치
 
-$users_id = $_SESSION['id'];
+$users_id = $_GET['id'];
 $countArticle = $profile->countArticle($users_id); // $articles 변수에 main 클래스에 소속된 articles 메소드를 담음
 $total = $countArticle['COUNT(*)']; // 전체 글 수
 

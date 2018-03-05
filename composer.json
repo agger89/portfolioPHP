@@ -4,6 +4,7 @@
     },
     "require": {
         "vlucas/phpdotenv": "^2.4",
-        "fzaninotto/faker": "^1.7"
+        "fzaninotto/faker": "^1.7",
+        "nesbot/carbon": "~1.21"
     }
 }

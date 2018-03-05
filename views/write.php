@@ -8,9 +8,9 @@
         <div class="right-content content">
             <ul class="icon-wrap">
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_4.png" alt=""></a></li>
-                <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
+                <li class="icon"><a href="user_list.php?nickname=<?= htmlspecialchars($_SESSION['nickname']);?>" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_2.png" alt=""></a></li>
-                <li class="icon"><a href="profile.php?nickname=<?= htmlspecialchars($_SESSION['nickname']);?>" class="block"><img src="../images/photo_page/header_icon_3.png" alt="프로필"></a></li>
+                <li class="icon"><a href="profile.php?id=<?= htmlspecialchars($_SESSION['id']);?>&page=1" class="block"><img src="../images/photo_page/header_icon_3.png" alt="프로필"></a></li>
             </ul>
         </div>
         <div class="search-wrap content">

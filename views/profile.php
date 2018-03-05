@@ -8,9 +8,9 @@
         <div class="right-content content">
             <ul class="icon-wrap">
                 <li class="icon"><a href="write.php" class="block"><img src="../images/photo_page/header_icon_4.png" alt=""></a></li>
-                <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
+                <li class="icon"><a href="user_list.php?nickname=<?= htmlspecialchars($_SESSION['nickname']);?>" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
                 <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_2.png" alt=""></a></li>
-                <li class="icon"><a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
+                <li class="icon"><a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=1" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
             </ul>
         </div>
         <div class="search-wrap content">
@@ -39,24 +39,34 @@
                     <?php endif; ?>
                     <span class="profile-edit block md-inline-block">
                         <?php if($authors['nickname'] == $_SESSION['nickname']) { ?>
-                        <a href="#" class="block btn-custom">프로필 편집</a>
+                            <form action="/profile_fileUp.php" enctype="multipart/form-data" method="post" id="frm">
+                                <a href="javascript:void(0)" class="block btn-custom profile-upload">
+                                    <label for="input_img" class="input-custom pointer">프로필 편집</label>
+                                </a>
+                                <span class="file-wrap input-block hide">
+                                    <input type="file" name="fileToUpload" id="input_img">
+                                </span>
+                            </form>
                         <?php } else { ?>
                             <?php if($loginFollowlist) { ?>
                             <form action="../unfollow_process.php" method="post" class="inline-block">
                                 <input type="hidden" name="unfollowId" value="<?= $authors['id'] ?>">
                                 <input type="hidden" name="unfollower" value="<?= $_SESSION['id'] ?>">
-                                <input type="submit" name="follow" value="팔로잉" class="btn-custom">
+                                <input type="submit" name="follow" value="팔로잉" class="btn-custom following-btn">
                             </form>
+                             <span class="recommend-person btn-custom inline-block following-btn">
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </span>
                             <?php } else { ?>
                             <form action="../follow_process.php" method="post" class="inline-block">
                                 <input type="hidden" name="follow_id" value="<?= $authors['id'] ?>">
                                 <input type="hidden" name="users_id" value="<?= $_SESSION['id'] ?>">
-                                <input type="submit" name="follow" value="팔로우" class="btn-custom">
+                                <input type="submit" name="follow" value="팔로우" class="btn-custom follow-btn">
                             </form>
-                            <?php } ?>
-                            <span class="recommend-person btn-custom inline-block">
+                             <span class="recommend-person btn-custom inline-block follow-btn">
                                 <i class="fa fa-caret-down" aria-hidden="true"></i>
                             </span>
+                            <?php } ?>
                         <?php } ?>
                     </span>
                 </div>
@@ -77,13 +87,12 @@
                     <?php foreach($members as $member) : ?>
                         <?php if($_SESSION['nickname']) : ?>
                             <li class="person-info-wrap">
-                                <span class="profile-pic"><?= $member['profile_pic'] ?></span>
+                                <span class="profile-pic" style="background-image: url(<?= htmlspecialchars($member['profile_pic'])?>)"><a href="/profile.php?id=<?= $member['id']?>" class="block" style="width:100%;height:100%;"></a></span>
                                 <span class="nickname"><?= $member['nickname'] ?></span>
                                 <span class="name"><?= $member['name'] ?></span>
                                 <form action="../follow_process.php" method="post" class="follow-form inline-block">
+                                    <input type="hidden" name="follow_id" value="<?= $member['id'] ?>">
                                     <input type="hidden" name="users_id" value="<?= $_SESSION['id'] ?>">
-                                    <input type="hidden" name="follow_nickname" value="<?= $authors['nickname'] ?>">
-                                    <input type="hidden" name="follow_name" value="<?= $authors['name'] ?>">
                                     <input type="submit" name="follow" value="팔로우" class="btn-custom">
                                 </form>
                             </li>
@@ -101,7 +110,8 @@
                             <a href="#" class="block md-half-hide">
                                 <i class="fa fa-th-large" aria-hidden="true"></i>
                             </a>
-                            <a href="#" class="hide md-half-block">게시물</a>
+                            <!-- 셔플 -->
+                            <a href="#" class="hide md-half-inline-block">게시물</a>
                         </div>
                         <div class="tab-title">
                             <a href="#" class="block md-half-hide">
@@ -113,35 +123,44 @@
                 </div>
                 <div class="tab-content-wrap">
                     <div class="tab-content-articles tab-cont on">
-                        <ul class="article-list-wrap row">
+                        <!-- 셔플 -->
+                        <ul class="article-list-wrap row thumbnail-container">
                             <?php foreach ($articles as $article) : ?>
                             <li class="article-list col-4">
-                                <a href="#" class="block" style="border: 1px solid #dbdbdb;">
-                                    <?php if($article['pics']['url']) { ?>
-                                    <span class="pic relative" style="background-image:url(<?= htmlspecialchars($article['pics']['url']);?>)"></span>
-                                    <?php } else { ?>
-                                    <span class="pic relative"><span class="no-img">NO IMAGE</span></span>
-                                    <?php } ?>
-                                </a>
+                                <span class="pic-wrap relative block">
+                                    <a href="javascript:void(0)" class="block" style="border: 1px solid #dbdbdb;">
+                                        <?php if($article['pics']['url']) { ?>
+                                        <span class="pic relative" style="background-image:url(<?= htmlspecialchars($article['pics']['url']);?>)"></span>
+                                        <?php } else { ?>
+                                        <span class="pic relative"><span class="no-img">NO IMAGE</span></span>
+                                        <?php } ?>
+                                    </a>
+                                    <a href="javascript:void(0)" class="pic-status hide">
+                                        <span class="pic-status-text-wrap">
+                                            <span><i class="fas fa-heart"></i> <?= htmlspecialchars($article['likesCnt']['count(*)']); ?></span>
+                                            <span><i class="fas fa-comment"></i> <?= htmlspecialchars($article['comments']['count(*)']); ?></span>
+                                        </span>
+                                    </a>
+                                </span>
                             </li>
                             <?php endforeach; ?>
                         </ul>
                         <div class="paging">
                             <div class="prev-wrap">
                                 <?php if($prevPage > 0) { ?>
-                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?> & page=<?=$firstPage?>">first</a>
-                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?> & page=<?=$prevPage?>">prev</a>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$firstPage?>">first</a>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$prevPage?>">prev</a>
                                 <?php } ?>
                             </div>
                             <ul class="number-wrap">
                                 <?php for($i = $firstPage; $i <= $lastPage; $i++) { ?>
-                                    <li><a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?> & page=<?=$i?>"><?=$i?></a></li>
+                                    <li><a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$i?>"><?=$i?></a></li>
                                 <?php } ?>
                             </ul>
                             <div class="next-wrap">
                                 <?php if($nextPage <= $lastPage) { ?>
-                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?> & page=<?=$nextPage?>">next</a>
-                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?> & page=<?=$lastPage?>">last</a>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$nextPage?>">next</a>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$lastPage?>">last</a>
                                 <?php } ?>
                             </div>
                         </div>
@@ -162,12 +181,43 @@
                     <ul class="article-list-wrap row">
                         <?php foreach ($articles as $article) : ?>
                             <li class="article-list col-4">
-                                <a href="#" class="block">
-                                    <span style="background-image:url(<?= htmlspecialchars($article['url']);?>)"></span>
-                                </a>
+                                <span class="pic-wrap relative block">
+                                    <a href="javascript:void(0)" class="block" style="border: 1px solid #dbdbdb;">
+                                        <?php if($article['pics']['url']) { ?>
+                                            <span class="pic relative" style="background-image:url(<?= htmlspecialchars($article['pics']['url']);?>)"></span>
+                                        <?php } else { ?>
+                                            <span class="pic relative"><span class="no-img">NO IMAGE</span></span>
+                                        <?php } ?>
+                                    </a>
+                                    <a href="javascript:void(0)" class="pic-status hide">
+                                        <span class="pic-status-text-wrap">
+                                            <span><i class="fas fa-heart"></i> <?= htmlspecialchars($article['likesCnt']['count(*)']); ?></span>
+                                            <span><i class="fas fa-comment"></i> <?= htmlspecialchars($article['comments']['count(*)']); ?></span>
+                                        </span>
+                                    </a>
+                                </span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
+                    <div class="paging">
+                        <div class="prev-wrap">
+                            <?php if($prevPage > 0) { ?>
+                                <a href="/profile.php?id=<?= htmlspecialchars($_GET['id'])?>&page=<?=$firstPage?>">first</a>
+                                <a href="/profile.php?id=<?= htmlspecialchars($_GET['id'])?>&page=<?=$prevPage?>">prev</a>
+                            <?php } ?>
+                        </div>
+                        <ul class="number-wrap">
+                            <?php for($i = $firstPage; $i <= $lastPage; $i++) { ?>
+                                <li><a href="/profile.php?id=<?= htmlspecialchars($_GET['id'])?>&page=<?=$i?>"><?=$i?></a></li>
+                            <?php } ?>
+                        </ul>
+                        <div class="next-wrap">
+                            <?php if($nextPage <= $lastPage) { ?>
+                                <a href="/profile.php?id=<?= htmlspecialchars($_GET['id'])?>&page=<?=$nextPage?>">next</a>
+                                <a href="/profile.php?id=<?= htmlspecialchars($_GET['id'])?>&page=<?=$lastPage?>">last</a>
+                            <?php } ?>
+                        </div>
+                    </div>
                 </div>
             </div>
             <?php } ?>

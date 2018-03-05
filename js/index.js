@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+    // 프로필 사진 자동 제출
+    $("#input_img").on("change", function() {
+        $("#frm").submit();
+    });
+
     // 프로필 탭
     function TabClick(){
         $('.tab-wrap .tab-title-wrap a').on("click",function(e){
@@ -99,6 +104,10 @@ $(document).ready(function(){
         }
     });
 
+    // 말풍선 클릭시 댓글 입력창으로 focus
+    $(".comment").on("click", function() {
+        $(".comment-textarea").focus();
+    });
 });
 
 // 이미지 미리보기
@@ -116,4 +125,24 @@ function handleImgFileSelect(e) {
        reader.readAsDataURL(f);
     });
 }
+
+// ajax로 파일업로드 자동 제출
+// $(function() {
+//     $('#input_img').on('change', function() {
+//         $("<form action='/profile.php' enctype='multipart/form-data' method='post'/>")
+//             .ajaxForm({
+//                 dataType: 'json',
+//                 beforeSend: function() {
+//                     $('#result').append( "beforeSend...\n" );
+//                 },
+//                 complete: function(data) {
+//                     $('#result')
+//                         .append( "complete...\n" )
+//                         .append( JSON.stringify( data.responseJSON ) + "\n" );
+//                 }
+//             })
+//             .append( $(this) )
+//             .submit();
+//     });
+// });
 
