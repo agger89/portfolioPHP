@@ -5,7 +5,10 @@
     </div>
     <a href="https://www.microsoft.com/en-us/store/p/instagram/9nblggh5l9xt" class="down-btn" target="_blank">받기</a>
 </div>
-
+<!-- login loading -->
+<div id="login-progress">
+    <div id="login-bar"></div>
+</div>
 <div class="content-wrap relative">
     <div class="login-wrap clear">
         <div class="device-image hide md-inline-block"></div>
@@ -13,7 +16,7 @@
             <div class="login-area">
                 <div class="top-login-area">
                     <h1 class="insta-logo"></h1>
-                    <form action="../login_process.php" method="post">
+                    <form action="../login_process.php" method="post" id="login-form">
                         <div class="form-wrap">
                             <div class="input-content-wrap">
                                 <label for="email" class="input-label"></label>
@@ -24,7 +27,7 @@
                                 <input type="password" id="password" name="password" class="login-custom-input" placeholder="비밀번호">
                             </div>
                         </div>
-                        <button type="submit" name="submitBtn" class="common-btn-login-form block pointer submit-btn">로그인</button>
+                        <button type="submit" name="submitBtn" class="common-btn-login-form block pointer submit-btn" onclick="move();">로그인</button>
                         <?php if($errorMessage): ?>
                             <div class="error-message"><?= htmlspecialchars($errorMessage);?></div>
                         <?php endif; ?>
@@ -44,3 +47,4 @@
         </div><!-- right-area -->
     </div>
 </div>
+<script src="../js/login.js"></script>

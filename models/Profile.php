@@ -12,7 +12,7 @@ class Profile{
 
     public function authors($id)
     {
-        $stmt = $this->connect->prepare('SELECT id, name, nickname, profile_pic FROM users WHERE id = :id');
+        $stmt = $this->connect->prepare('SELECT id, email, name, nickname, profile_pic FROM users WHERE id = :id');
         $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
         $stmt->execute();
 

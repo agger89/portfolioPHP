@@ -85,17 +85,17 @@
             <div class="list-wrap">
                 <ul class="bxslider clear">
                     <?php foreach($members as $member) : ?>
-                        <?php if($_SESSION['nickname']) : ?>
-                            <li class="person-info-wrap">
-                                <span class="profile-pic" style="background-image: url(<?= htmlspecialchars($member['profile_pic'])?>)"><a href="/profile.php?id=<?= $member['id']?>" class="block" style="width:100%;height:100%;"></a></span>
-                                <span class="nickname"><?= $member['nickname'] ?></span>
-                                <span class="name"><?= $member['name'] ?></span>
-                                <form action="../follow_process.php" method="post" class="follow-form inline-block">
-                                    <input type="hidden" name="follow_id" value="<?= $member['id'] ?>">
-                                    <input type="hidden" name="users_id" value="<?= $_SESSION['id'] ?>">
-                                    <input type="submit" name="follow" value="팔로우" class="btn-custom">
-                                </form>
-                            </li>
+                        <?php if($follow_id != $member['id'] && $_SESSION['id'] != $member['id']) :?>
+                        <li class="person-info-wrap">
+                            <span class="profile-pic" style="background-image: url(<?= htmlspecialchars($member['profile_pic'])?>)"><a href="/profile.php?id=<?= $member['id']?>" class="block" style="width:100%;height:100%;"></a></span>
+                            <span class="nickname"><?= $member['nickname'] ?></span>
+                            <span class="name"><?= $member['name'] ?></span>
+                            <form action="../follow_process.php" method="post" class="follow-form inline-block">
+                                <input type="hidden" name="follow_id" value="<?= $member['id'] ?>">
+                                <input type="hidden" name="users_id" value="<?= $_SESSION['id'] ?>">
+                                <input type="submit" name="follow" value="팔로우" class="btn-custom">
+                            </form>
+                        </li>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </ul>
