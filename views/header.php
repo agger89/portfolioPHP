@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="../css/default_medium.css" media="all and (min-width: 876px)">
     <!-- lib css -->
     <link rel="stylesheet" href="../lib/jquery.bxslider.css">
-    <link rel="stylesheet" href="../css/photoswipe.css">
-    <link rel="stylesheet" href="../css/default-skin.css">
+    <link rel="stylesheet" href="../lib/photoswipe.css">
+    <link rel="stylesheet" href="../lib/default-skin.css">
     <!-- lib js-->
     <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>

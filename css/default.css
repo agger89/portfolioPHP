@@ -267,6 +267,8 @@ body{
     -webkit-transform: translateX(-50%);
     transform: translateY(-50%);
     right: 40px;
+    padding: 10px 0;
+    background-color: #fff;
 }
 .header-content .right-content .icon-wrap{
     font-size: 0;
@@ -334,9 +336,6 @@ body{
 }
 
 /* profile */
-.body-content-wrap .profile-container{
-    padding-bottom: 12px;
-}
 .body-content-wrap .profile-header-wrap{
     margin: 0 16px;
 }
@@ -386,6 +385,7 @@ body{
     padding: 24px 0 20px;
     clear: left;
     font-size: 14px;
+    overflow: hidden;
 }
 .profile-header-wrap .profile-bottom-status .status-contents{
     width: 33.333%;
@@ -410,8 +410,7 @@ body{
     display: block;
 }
 .recommend-person-listwrap .bx-wrapper{
-    width: 953px !important;
-    max-width: 953px !important;
+    max-width: inherit !important;
     margin: 0;
     box-shadow: none;
 }
@@ -442,11 +441,9 @@ body{
     color: #999;
 }
 .recommend-person-listwrap .person-info-wrap{
-    width: 176px !important;
     height: 196px;
     float: left;
     padding: 20px;
-    margin-right: 24px !important;
     border: 1px solid #e6e6e6;
     border-radius: 3px;
     background-color: #fff;
