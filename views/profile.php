@@ -110,7 +110,6 @@
                             <a href="#" class="block md-half-hide">
                                 <i class="fa fa-th-large" aria-hidden="true"></i>
                             </a>
-                            <!-- 셔플 -->
                             <a href="#" class="hide md-half-inline-block">게시물</a>
                         </div>
                         <div class="tab-title">
@@ -123,14 +122,17 @@
                 </div>
                 <div class="tab-content-wrap">
                     <div class="tab-content-articles tab-cont on">
-                        <!-- 셔플 -->
-                        <ul class="article-list-wrap row thumbnail-container">
+                        <ul class="article-list-wrap row">
                             <?php foreach ($articles as $article) : ?>
                             <li class="article-list col-4">
                                 <span class="pic-wrap relative block">
                                     <a href="javascript:void(0)" class="block" style="border: 1px solid #dbdbdb;">
                                         <?php if($article['pics']['url']) { ?>
-                                        <span class="pic relative" style="background-image:url(<?= htmlspecialchars($article['pics']['url']);?>)"></span>
+                                            <span class="pic relative"
+                                                  style="background-image:url(<?= htmlspecialchars($article['pics']['url']);?>)"
+                                                  data-pic="<?= $article['pics']['url']?>"
+                                                  data-w="auto">
+                                            </span>
                                         <?php } else { ?>
                                         <span class="pic relative"><span class="no-img">NO IMAGE</span></span>
                                         <?php } ?>
@@ -148,8 +150,8 @@
                         <div class="paging">
                             <div class="prev-wrap">
                                 <?php if($prevPage > 0) { ?>
-                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$firstPage?>">first</a>
-                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$prevPage?>">prev</a>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$firstPage?>"><i class="fa-angle-left"></i><i class="fa-angle-left"></i></a>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$prevPage?>"><i class="fa-angle-left"></i></a>
                                 <?php } ?>
                             </div>
                             <ul class="number-wrap">
@@ -159,8 +161,8 @@
                             </ul>
                             <div class="next-wrap">
                                 <?php if($nextPage <= $lastPage) { ?>
-                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$nextPage?>">next</a>
-                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$lastPage?>">last</a>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$nextPage?>"><i class="fa-angle-right"></i></a>
+                                    <a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=<?=$lastPage?>"><i class="fa-angle-right"></i><i class="fa-angle-right"></i></a>
                                 <?php } ?>
                             </div>
                         </div>
@@ -223,4 +225,42 @@
             <?php } ?>
         </div>
     </div>
+    <!-- 포토스와이프 버튼 -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg" style="opacity: .75 !important;"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                </button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                </button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div><!-- body-content-wrap -->
+<script src="../js/profile.js"></script>

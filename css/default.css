@@ -544,12 +544,12 @@ body{
     color: #fff;
 }
 .articles-container .tab-content-wrap .article-list .pic-status-text-wrap span{
-    padding: 0 10px;
-    font-size: 20px;
+    padding: 0 1px;
+    font-size: 12px;
 }
 .articles-container .tab-content-wrap .article-list .pic-status-text-wrap .fa-heart,
 .articles-container .tab-content-wrap .article-list .pic-status-text-wrap .fa-comment{
-    font-size: 20px;
+    font-size: 12px;
 }
 .articles-container .tab-content-wrap .tab-content-save{
     text-align: center;
@@ -704,7 +704,7 @@ body{
 }
 .footer-comment-wrap .like-wrap .like,
 .footer-comment-wrap .like-wrap .unlike,
-.footer-comment-wrap .like-wrap .comment{
+.footer-comment-wrap .like-wrap .comment-icon{
     width: 24px;
     height: 24px;
     background-size: cover;
@@ -722,7 +722,7 @@ body{
     outline: none;
     background-image: url(../images/photo_page/like_icon_checked.png);
 }
-.footer-comment-wrap .like-wrap .comment{
+.footer-comment-wrap .like-wrap .comment-icon{
     background-image: url(../images/photo_page/comment_icon.png);
 }
 .footer-comment-wrap .like-wrap .delete{
@@ -804,10 +804,21 @@ body{
 }
 .paging .number-wrap li{
     display: inline-block;
-    margin: 0 5px;
 }
 .paging .number-wrap .active{
     font-weight: 700;
+}
+.paging a {
+    margin: 0 5px;
+}
+.paging i {
+    font-family: FontAwesome;
+}
+.paging .prev-wrap .fa-angle-left:before {
+    content:"\f104";
+}
+.paging .next-wrap .fa-angle-right:before {
+    content: "\f105";
 }
 
 /* user_list */
@@ -869,12 +880,3 @@ body{
     color: #999;
     text-transform: uppercase;
 }
-
-
-.masonry{width:400px;padding:0px;font-size:0px;}
-.masonry .item{
-    display:block;border:1px solid #ffffff;min-height:50px;box-sizing:border-box;
-    background:#1fa98d;font-size:30px;color:#ffffff;text-align:center;
-}
-.masonry .w100{width:100px;}
-.masonry .w200{width:200px;}

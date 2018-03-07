@@ -54,7 +54,7 @@
                         <input type="submit" name="unlike" value="" class="unlike inline-block pointer">
                     </form>
                     <?php } ?>
-                    <span class="comment inline-block pointer"></span>
+                    <span class="comment-icon inline-block pointer"></span>
                     <?php if( $article['users_id'] == $_SESSION['id']) : ?>
                         <form method="post" class="delete inline-block" action="../write_delete_process.php">
                             <input type="hidden" name="picsId" value="<?= $article['pics']['id'] ?>">
@@ -66,7 +66,9 @@
                 </div>
                 <div class="comment-wrap">
                     <!-- htmlspecialchars() = 엔티티문자를(html특수문자) 이스케이프하는(변환하는) 함수 -->
+                    <?php if($article['likesCnt']) : ?>
                     <div class="view-count">좋아요 <span class="status-number inline-block"><?= htmlspecialchars(count($article['likesCnt'])) ?></span>개</div>
+                    <?php endif; ?>
                     <?php foreach ($article['comments'] as $comment) :?>
                         <?php if($comment['content']) : ?>
                             <p class="comment">
@@ -81,7 +83,7 @@
                     <form action="../comment_process.php" method="POST" id="comment-form" class="comment-form">
                         <textarea name="comment" id="comment" class="comment-textarea inline-block" placeholder="댓글 달기..."></textarea>
                         <input type="hidden" name="articleId" value="<?= $article['id'] ?>">
-                        <input type="submit" name="submit" value="댓글 달기" class="comment-submit">
+                        <input type="submit" name="submit" value="댓글 달기" class="comment-submit hide">
                     </form>
                     <a href="#" class="modal-menu inline-block"><img src="../images/photo_page/modal_icon.png" alt=""></a>
                 </div>

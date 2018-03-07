@@ -28,11 +28,13 @@ $(document).ready(function(){
         }
     });
 
-    $(".comment-textarea").keypress(function (e) {
-        if(e.which == 13 && !e.shiftKey) {
-            $(this).closest("form").submit();
-            e.preventDefault();
-            return false;
+    // enter submit comment
+    $(".comment-textarea").on("keypress", function(event) {
+        if(event.keyCode == 13) {
+            if(!event.shiftKey) {
+                event.preventDefault();
+                $(this).parent().find(".comment-submit").click();
+            }
         }
     });
 
@@ -105,8 +107,8 @@ $(document).ready(function(){
     });
 
     // 말풍선 클릭시 댓글 입력창으로 focus
-    $(".comment").on("click", function() {
-        $(".comment-textarea").focus();
+    $(".comment-icon").on("click", function() {
+        $(this).closest(".footer-comment-wrap").find(".comment-textarea").focus();
     });
 });
 
@@ -145,4 +147,3 @@ function handleImgFileSelect(e) {
 //             .submit();
 //     });
 // });
-

@@ -44,6 +44,15 @@
     display: inline-block;
     margin-top: 0;
 }
+.articles-container .tab-content-wrap .article-list .pic-status-text-wrap span{
+    padding: 0 8px;
+    font-size: 20px;
+}
+.articles-container .tab-content-wrap .article-list .pic-status-text-wrap .fa-heart,
+.articles-container .tab-content-wrap .article-list .pic-status-text-wrap .fa-comment{
+    font-size: 20px;
+}
+
 /* 컨텐츠 바디 */
 .body-content-wrap{
     padding: 60px 20px;
