@@ -63,4 +63,12 @@ class User
         $stmt->execute();
     }
 
+    public function userFollowTop()
+    {
+        $stmt = $this->connect->prepare('SELECT name, nickname, profile_pic, users_id, COUNT(users_id) AS coun FROM follow JOIN users ON follow.users_id = users.id GROUP BY users_id ORDER BY coun DESC LIMIT 3');
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }

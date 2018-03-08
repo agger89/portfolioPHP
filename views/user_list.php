@@ -24,12 +24,16 @@
     <div class="user-find-body-wrap">
         <div class="recommend-person-listwrap md-half-block">
             <h3 class="sub-common-title">사람 찾기</h3>
+            <a href="#" class="all-show-person">모두 보기</a>
             <ul class="row">
+                <?php foreach ($followTops as $followTop) :?>
                 <li class="person-info-wrap col-4">
                     <span class="block">
-                        <span class="profile-pic"><a href="#" class="block" style="width:100%;height:100%;"></a></span>
-                        <span class="nickname">test</span>
-                        <span class="name">test1111111</span>
+                        <a href="/profile.php?id=<?= htmlspecialchars($followTop['users_id']);?>&page=1" class="inline-block">
+                            <span class="profile-pic" style="background-image:url(<?= htmlspecialchars($followTop['profile_pic']); ?>)"></span>
+                        </a>
+                        <span class="nickname"><?= $followTop['nickname'] ?></span>
+                        <span class="name"><?= $followTop['name'] ?></span>
                         <form action="../follow_process.php" method="post" class="follow-form inline-block">
                             <input type="hidden" name="follow_id" value="">
                             <input type="hidden" name="users_id" value="">
@@ -37,30 +41,7 @@
                         </form>
                     </span>
                 </li>
-                <li class="person-info-wrap">
-                    <span class="block">
-                        <span class="profile-pic"><a href="#" class="block" style="width:100%;height:100%;"></a></span>
-                        <span class="nickname">test</span>
-                        <span class="name">test1111111</span>
-                        <form action="../follow_process.php" method="post" class="follow-form inline-block">
-                            <input type="hidden" name="follow_id" value="">
-                            <input type="hidden" name="users_id" value="">
-                            <input type="submit" name="follow" value="팔로우" class="btn-custom">
-                        </form>
-                    </span>
-                </li>
-                <li class="person-info-wrap">
-                    <span class="block">
-                        <span class="profile-pic"><a href="#" class="block" style="width:100%;height:100%;"></a></span>
-                        <span class="nickname">test</span>
-                        <span class="name">test1111111</span>
-                        <form action="../follow_process.php" method="post" class="follow-form inline-block">
-                            <input type="hidden" name="follow_id" value="">
-                            <input type="hidden" name="users_id" value="">
-                            <input type="submit" name="follow" value="팔로우" class="btn-custom">
-                        </form>
-                    </span>
-                </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>

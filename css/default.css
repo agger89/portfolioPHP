@@ -834,6 +834,15 @@ body{
     border: none;
     background: none;
 }
+.user-find-body-wrap .recommend-person-listwrap .sub-common-title{
+    display: inline-block;
+}
+.user-find-body-wrap .recommend-person-listwrap .all-show-person{
+    float: right;
+    font-size: 12px;
+    font-weight: 600;
+    color: #3897f0;
+}
 .user-find-body-wrap .recommend-person-listwrap .person-info-wrap{
     width: 33.333% !important;
     height: 220px;
@@ -849,6 +858,10 @@ body{
     border: 1px solid #e6e6e6;
     border-radius: 3px;
     background-color: #fff;
+}
+.user-find-body-wrap .recommend-person-listwrap .person-info-wrap .profile-pic{
+    width: 74px;
+    height: 74px;
 }
 .user-find-body-wrap .recommend-person-listwrap .person-info-wrap .follow-form{
     width: 92px;
