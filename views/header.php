@@ -8,7 +8,7 @@
     <?php if(isset($authors)) {?>
         <title><?= $authors['nickname'] ?> (<?= $authors['email'] ?>)</title>
     <?php } else { ?>
-        <title>Instagram</title>
+        <title>Portfolio</title>
     <?php } ?>
     <!-- favicon -->
     <link rel="icon" type="image/png" href="../images/photo_page/insta_profile.png">
