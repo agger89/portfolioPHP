@@ -23,10 +23,12 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
         return $stmt->fetchAll(\PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
     }
 
-    public function articles($users_id)// article 메소드(함수)를 생성
+    public function articles($users_id, $offset)// article 메소드(함수)를 생성
     {
-        $stmt = $this->connect->prepare('SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC'); // $stmt 변수에 DB article테이블 쿼리를 반환
+        var_dump($offset);
+        $stmt = $this->connect->prepare('SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC LIMIT 2 OFFSET 1');
         $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, \PDO::PARAM_INT);
         $stmt->execute(); // 위에서 반환한 쿼리를 서버로 전송
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
@@ -72,7 +74,7 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
 
     public function comments($articles_id)
     {
-        $stmt = $this->connect->prepare('SELECT content, datetime, nickname FROM comments JOIN users ON comments.users_id = users.id WHERE articles_id = :articles_id'); // comments.users_id = users.id ( comments의 users_id와 users.id는 같다 )
+        $stmt = $this->connect->prepare('SELECT comments.content,date, users.id,nickname FROM comments JOIN users ON comments.users_id = users.id WHERE articles_id = :articles_id'); // comments.users_id = users.id ( comments의 users_id와 users.id는 같다 )
         $stmt->bindParam(':articles_id', $articles_id, \PDO::PARAM_INT);
         $stmt->execute();
 
@@ -83,13 +85,27 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
         return $rows; // $ rows 변수 출력
     }
 
-    public function addComment($content, $users_id, $articles_id, $datetime)
+    public function addComment($content, $users_id, $articles_id, $date)
     {
-        $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id, datetime) VALUES(:content, :users_id, :articles_id, :datetime)");
+        $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id, date) VALUES(:content, :users_id, :articles_id, :date)");
         $stmt->bindParam(":content", $content, \PDO::PARAM_STR);
         $stmt->bindParam(":users_id", $users_id, \PDO::PARAM_INT);
         $stmt->bindParam(":articles_id", $articles_id, \PDO::PARAM_INT);
-        $stmt->bindParam(":datetime", $datetime, \PDO::PARAM_INT);
+        $stmt->bindParam(":date", $date, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function notification($data)
+    {
+        $stmt = $this->connect->prepare("INSERT INTO notification(users_id, action, target_type, target_id, target_user_id, date, target_pic_url, target_content) VALUES(:users_id, :action, :target_type, :target_id, :target_user_id, :date, :target_pic_url, :target_content)");
+        $stmt->bindParam(":users_id", $data['users_id'], \PDO::PARAM_INT);
+        $stmt->bindParam(":action", $data['action'], \PDO::PARAM_STR);
+        $stmt->bindParam(":target_type", $data['target_type'], \PDO::PARAM_STR);
+        $stmt->bindParam(":target_id", $data['target_id'], \PDO::PARAM_INT);
+        $stmt->bindParam(":target_user_id", $data['target_user_id'], \PDO::PARAM_INT);
+        $stmt->bindParam(":date", $data['date'], \PDO::PARAM_INT);
+        $stmt->bindParam(":target_pic_url", $data['target_pic_url'], \PDO::PARAM_INT);
+        $stmt->bindParam(":target_content", $data['target_content'], \PDO::PARAM_INT);
         $stmt->execute();
     }
 
@@ -115,6 +131,24 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
         $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetch(\PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function followerStatus($users_id)
+    {
+        $stmt = $this->connect->prepare("SELECT notification.action,target_type,target_id,target_user_id,date,target_pic_url,target_content, users.id,nickname,profile_pic FROM notification JOIN users ON notification.users_id = users.id ORDER BY notification.id DESC");
+        $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+//    public function followerStatus($users_id)
+//    {
+//        $stmt = $this->connect->prepare("SELECT users.nickname,profile_pic, comments.content,users_id,articles_id,datetime FROM users JOIN comments ON users.id = comments.users_id WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) ORDER BY comments.id DESC");
+//        $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+//        $stmt->execute();
+//
+//        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+//    }
 }

@@ -41,7 +41,7 @@ class Profile{
 
     public function follower($users_id)
     {
-        $stmt = $this->connect->prepare('SELECT users.name,nickname, follow.follow_id FROM users JOIN follow ON users.id = follow.users_id WHERE users_id = :users_id');
+        $stmt = $this->connect->prepare('SELECT users.name,nickname,profile_pic, follow.follow_id FROM users JOIN follow ON users.id = follow.follow_id WHERE users_id = :users_id');
         $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
         $stmt->execute();
 
@@ -58,9 +58,10 @@ class Profile{
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function member()
+    public function userNotfollower($users_id)
     {
-        $stmt = $this->connect->prepare('SELECT * FROM users');
+        $stmt = $this->connect->prepare('SELECT * FROM users WHERE id NOT IN (SELECT follow_id FROM follow WHERE users_id = :users_id)');
+        $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);

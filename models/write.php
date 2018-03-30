@@ -16,36 +16,30 @@ class Write
         return $this->connect;
     }
 
-    public function articlesReg()
+    public function articlesReg($users_id, $date)
     {
-        $users_id = $_SESSION['id'];
-        $stmt = $this->connect->prepare("INSERT INTO articles(users_id) VALUES('$users_id')");
+        $stmt = $this->connect->prepare("INSERT INTO articles(users_id, date) VALUES(:users_id, :date)");
+        $stmt->bindParam(":users_id", $users_id, \PDO::PARAM_INT);
+        $stmt->bindParam(":date", $date, \PDO::PARAM_INT);
         $stmt->execute();
     }
 
-//        public function articleId($users_id)
-//        {
-//            $stmt = $this->connect->prepare("SELECT id FROM articles WHERE users_id = :users_id ORDER BY id DESC"); // ORDER BY id DESC = 오름차순으로 데이터 정렬
-//            $stmt->bindParam(":users_id", $users_id);
-//            $stmt->execute();
-//            return $stmt->fetch(PDO::FETCH_ASSOC); // fetch() = 데이터의 행에 위에 값부터 가져가서 배열로 뿌려준다
-//        }
-
-    public function picReg($articles_id, $url)
+    public function picReg($url, $articles_id)
     {
-        $stmt = $this->connect->prepare("INSERT INTO pics(articles_id, url) VALUES(:articles_id, :url)");
-        $stmt->bindParam(":articles_id", $articles_id, \PDO::PARAM_INT);
+        $stmt = $this->connect->prepare("INSERT INTO pics(url, articles_id) VALUES(:url, :articles_id)");
         $stmt->bindParam(":url", $url, \PDO::PARAM_STR);
+        $stmt->bindParam(":articles_id", $articles_id, \PDO::PARAM_INT);
         $stmt->execute();
     }
 
-    public function commentReg($content, $users_id, $articles_id, $datetime)
+    public function commentReg($content, $users_id, $articles_id, $date)
     {
-        $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id, datetime) VALUES(:content, :users_id, :articles_id, :datetime)");
+
+        $stmt = $this->connect->prepare("INSERT INTO comments(content, users_id, articles_id, date) VALUES(:content, :users_id, :articles_id, :date)");
         $stmt->bindParam(":content", $content, \PDO::PARAM_STR);
         $stmt->bindParam(":users_id", $users_id, \PDO::PARAM_INT);
         $stmt->bindParam(":articles_id", $articles_id, \PDO::PARAM_INT);
-        $stmt->bindParam(":datetime", $datetime, \PDO::PARAM_INT);
+        $stmt->bindParam(":date", $date, \PDO::PARAM_INT);
         $stmt->execute();
     }
 

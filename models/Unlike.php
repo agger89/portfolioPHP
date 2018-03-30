@@ -17,4 +17,12 @@ class Unlike{
         $stmt->execute();
     }
 
+    public function notification($users_id, $target_id)
+    {
+        $stmt = $this->connect->prepare("DELETE FROM notification WHERE users_id = :users_id AND target_id = :target_id");
+        $stmt->bindParam('users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->bindParam('target_id', $target_id, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
 }

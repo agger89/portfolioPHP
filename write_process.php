@@ -15,6 +15,9 @@ $target_dir = './uploads/';
 $target_file = $target_dir . basename($_FILES['fileToUpload']['name']);
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION); // 파일의 확장자를 문자열로 출력한다.
 
+
+$date = \Carbon\Carbon::now();
+
 function redirect()
 {
     header('Location: write.php'); // 이 페이지로 리다이렉션
@@ -42,16 +45,15 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png
     redirect();
 }
 
-if(!isset($_SESSION['errorMessage'])){ //세션 에러메세지가 없으면
+if(!isset($_SESSION['errorMessage'])){
     if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_file)){ //move_uploaded_file = 서버로 전송된 파일 저장
-        $write->articlesReg();
-        $write->picReg($write->getConnect()->lastInsertId(), $target_file); //lastInsertId() = 데이터에 삽입된 마지막 행의 아이디를 리턴
+        $write->articlesReg($users_id, $date);
+        $write->picReg($target_file, $write->getConnect()->lastInsertId()); //lastInsertId() = 데이터에 삽입된 마지막 행의 아이디를 리턴
     }
 }
 
-$datetime = \Carbon\Carbon::now();
 if($comment) {
-    $write->commentReg($comment, $users_id, $write->getConnect()->lastInsertId(), $datetime);
+    $write->commentReg($comment, $users_id, $write->getConnect()->lastInsertId(), $date);
 }
 
 header('Location: main.php');

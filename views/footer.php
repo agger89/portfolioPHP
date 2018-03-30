@@ -11,5 +11,5 @@
         <li class="navi-content"><a href="#" class="block">디렉터리</a></li>
         <li class="navi-content"><a href="#" class="block">언어</a></li>
     </ul>
-    <span class="footer-right-text block">© 2017 Instagram</span>
+    <span class="footer-right-text block">© 2017 Portfolio</span>
 </footer>

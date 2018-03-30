@@ -56,19 +56,82 @@ class User
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function profilePic($url)
+    public function profilePic($profile_pic)
     {
-        $stmt = $this->connect->prepare("INSERT INTO profile_pic(url) VALUES(:url)");
-        $stmt->bindParam(":url", $url, \PDO::PARAM_STR);
+        $stmt = $this->connect->prepare("INSERT INTO users(profile_pic) VALUES(:profile_pic)");
+        $stmt->bindParam(":profile_pic", $profile_pic, \PDO::PARAM_STR);
         $stmt->execute();
     }
 
-    public function userFollowTop()
+    public function followerLogin($users_id, $follow_id)
     {
-        $stmt = $this->connect->prepare('SELECT name, nickname, profile_pic, users_id, COUNT(users_id) AS coun FROM follow JOIN users ON follow.users_id = users.id GROUP BY users_id ORDER BY coun DESC LIMIT 3');
+        $stmt = $this->connect->prepare('SELECT users.name, follow.follow_id FROM users JOIN follow ON users.id = follow.users_id WHERE users_id = :users_id AND follow_id = :follow_id');
+        $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->bindParam(':follow_id', $follow_id, \PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function userFollowTop($users_id)
+    {
+        $stmt = $this->connect->prepare('SELECT users.id,name,nickname,profile_pic, follow.users_id, COUNT(users_id) AS coun FROM users JOIN follow ON follow.users_id = users.id WHERE users_id NOT IN (SELECT follow_id FROM follow WHERE users_id = :users_id UNION SELECT id FROM users WHERE id = :users_id) GROUP BY users_id ORDER BY coun DESC LIMIT 3');
+        $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function userNotFollower($users_id)
+    {
+        $stmt = $this->connect->prepare('SELECT * FROM users WHERE id NOT IN (SELECT follow_id FROM follow WHERE users_id = :users_id UNION SELECT id FROM users WHERE id = :users_id)');
+        $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function notFollowerArticles($users_id)
+    {
+        $stmt = $this->connect->prepare("SELECT * FROM articles WHERE users_id NOT IN (SELECT follow_id FROM follow WHERE users_id = :users_id UNION SELECT id FROM users WHERE id = :users_id)");
+        $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function pics($id)
+    {
+        $stmt = $this->connect->prepare('SELECT id, url FROM pics WHERE id = :id');
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function likesCnt($articles_id)
+    {
+        $stmt = $this->connect->prepare('SELECT count(*) FROM likes WHERE articles_id = :articles_id');
+        $stmt->bindParam(':articles_id', $articles_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function comments($articles_id)
+    {
+        $stmt = $this->connect->prepare('SELECT count(*) FROM comments JOIN users ON comments.users_id = users.id WHERE articles_id = :articles_id');
+        $stmt->bindParam(':articles_id', $articles_id, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function update($data)
+    {
+        $stmt = $this->connect->prepare('UPDATE users SET profile_pic = :profile_pic WHERE id = :id');
+        $stmt->bindParam(':profile_pic', $data['profile_pic'], \PDO::PARAM_STR);
+        $stmt->bindParam(':id', $data['id'], \PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }

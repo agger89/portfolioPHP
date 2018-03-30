@@ -10,7 +10,14 @@ $follow = new \App\Follow($database->getConnect());
 $authors_id = $_POST['follow_id'];
 $follower_id = $_POST['users_id'];
 
-$follow->followReg($authors_id, $follower_id);
+$datetime = \Carbon\Carbon::now();
+$follow->followReg($authors_id, $follower_id, $datetime);
+$follow->notification([
+    'users_id' => $follower_id,
+    'action' => 'follow',
+    'target_type' => 'user',
+    'target_id' => $authors_id
+]);
 
 $authors_id = $_POST['follow_id'];
 

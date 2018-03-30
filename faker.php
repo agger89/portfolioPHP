@@ -11,7 +11,7 @@ $main = new \App\Main($database->getConnect());
 $maxRandomUsers = $main->maxRandomUsers();
 
 //지우는 데이터 위치
-$connect->query("DELETE FROM articles");
+//$connect->query("DELETE FROM articles");
 
 //// articles 데이터 생성
 //for ($i=0; $i < 100; $i++) {

@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 // isset = 변수에 값이 존재하는지 존재하면 true 리턴
 // 삼항연산자 (조건문)? true : false
 $errorMessage = isset($_SESSION['errorMessage']) ? $_SESSION['errorMessage'] : '';

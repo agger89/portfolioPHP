@@ -1,21 +1,16 @@
 <div class="store-down-content">
     <div class="text-wrap">
-        <h3 class="insta-title">Instagram</h3>
+        <h3 class="insta-title">Portfolio</h3>
         <p class="info-text"><span>Windows</span> 스토어에서 무료로 다운로드하세요.</p>
     </div>
-    <a href="https://www.microsoft.com/en-us/store/p/instagram/9nblggh5l9xt" class="down-btn" target="_blank">받기</a>
-</div>
-<!-- login loading -->
-<div id="login-progress">
-    <div id="login-bar"></div>
+    <a href="#" class="down-btn">받기</a>
 </div>
 <div class="content-wrap relative">
     <div class="login-wrap clear">
-        <div class="device-image hide md-inline-block"></div>
         <div class="right-area login-right-area">
             <div class="login-area">
                 <div class="top-login-area">
-                    <h1 class="insta-logo"></h1>
+                    <h1 class="insta-logo">Portfolio</h1>
                     <form action="../login_process.php" method="post" id="login-form">
                         <div class="form-wrap">
                             <div class="input-content-wrap">
@@ -27,12 +22,11 @@
                                 <input type="password" id="password" name="password" class="login-custom-input" placeholder="비밀번호">
                             </div>
                         </div>
-                        <button type="submit" name="submitBtn" class="common-btn-login-form block pointer submit-btn" onclick="move();">로그인</button>
+                        <button type="submit" name="submitBtn" class="common-btn-login-form block pointer submit-btn">로그인</button>
                         <?php if($errorMessage): ?>
                             <div class="error-message"><?= htmlspecialchars($errorMessage);?></div>
                         <?php endif; ?>
                     </form>
-                    <p class="find-pwd"><a href="#" class="block">비밀번호를 잊으셨나요?</a></p>
                 </div>
                 <div class="bottom-login-area">
                     <p>계정이 없으신가요? <a href="index.php" class="move-login-link inline-block">가입하기</a></p>
@@ -47,4 +41,3 @@
         </div><!-- right-area -->
     </div>
 </div>
-<script src="../js/login.js"></script>
