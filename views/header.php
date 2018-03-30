@@ -29,7 +29,6 @@
 
     <!-- lib js-->
     <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js'></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
