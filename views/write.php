@@ -1,9 +1,7 @@
 <div class="header-content-wrap">
     <div class="header-content relative clear">
         <div class="left-content content">
-            <a href="/" class="scale"><img src="../images/photo_page/insta_icon.png" alt=""></a>
-            <span class="line scale"></span>
-            <a href="/" class="scale"><img src="../images/photo_page/insta_logo.png" alt=""></a>
+            <a href="#" class="scale header-insta-logo">Portfolio</a>
         </div>
         <div class="right-content content">
             <ul class="icon-wrap">

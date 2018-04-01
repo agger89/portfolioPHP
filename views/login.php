@@ -32,12 +32,6 @@
                     <p>계정이 없으신가요? <a href="index.php" class="move-login-link inline-block">가입하기</a></p>
                 </div>
             </div><!-- login-area -->
-            <div class="app-download-area">
-                <p class="app-info-text">앱을 다운로드하세요.</p>
-                <a href="https://itunes.apple.com/app/instagram/id389801252?mt=8" class="app-store-link store-link-custom" target="_blank"></a>
-                <a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DsignupPage%26utm_medium%3Dbadge" class="google-play-link store-link-custom" target="_blank"></a>
-                <a href="https://www.microsoft.com/en-us/store/p/instagram/9nblggh5l9xt" class="microsoft-link store-link-custom" target="_blank"></a>
-            </div>
         </div><!-- right-area -->
     </div>
 </div>

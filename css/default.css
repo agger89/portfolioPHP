@@ -166,32 +166,6 @@ body{
 .login-wrap .bottom-login-area .move-login-link {
     color: #3897f0;
 }
-.login-wrap .app-download-area {
-    margin-top: 30px;
-}
-.login-wrap .app-download-area .app-info-text {
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-.login-wrap .app-download-area .store-link-custom {
-    display: inline-block;
-    height: 40px;
-    background-image: url(../images/landing_page/store_sprite_image01.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.login-wrap .app-download-area .app-store-link {
-    width: 136px;
-    background-position: 0 0;
-}
-.login-wrap .app-download-area .google-play-link {
-    width: 134px;
-    background-position: 55% 0;
-}
-.login-wrap .app-download-area .microsoft-link {
-    width: 111px;
-    background-position: 100% 0;
-}
 /* login loading */
 #login-progress {
     position: fixed;
@@ -291,11 +265,9 @@ body{
 
 /* 컨텐츠 바디 main */
 .body-content-wrap{
-    position: relative;
-    top: 75px;
     max-width: 1010px;
     padding: 30px 40px 60px;
-    margin: 0 auto;
+    margin: 75px auto 0;
     min-height: 700px;
 }
 .body-content-wrap .object-content-wrap{

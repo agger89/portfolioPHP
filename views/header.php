@@ -39,4 +39,3 @@
     <script src="../js/photoswipe-ui-default.min.js"></script>
     <script src="../lib/isotope-docs.min.js"></script>
 </head>
-<body>

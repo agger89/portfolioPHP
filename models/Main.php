@@ -25,8 +25,8 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
 
     public function articles($users_id, $offset)// article 메소드(함수)를 생성
     {
-        var_dump($offset);
-        $stmt = $this->connect->prepare('SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC LIMIT 2 OFFSET 1');
+//        var_dump($offset);
+        $stmt = $this->connect->prepare('SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC');
         $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
         $stmt->bindParam(':offset', $offset, \PDO::PARAM_INT);
         $stmt->execute(); // 위에서 반환한 쿼리를 서버로 전송

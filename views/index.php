@@ -41,12 +41,6 @@
                     <p>계정이 있으신가요? <a href="login.php" class="move-login-link inline-block">로그인</a></p>
                 </div>
             </div><!-- login-area -->
-            <div class="app-download-area">
-                <p class="app-info-text">앱을 다운로드하세요.</p>
-                <a href="#" class="app-store-link store-link-custom"></a>
-                <a href="#" class="google-play-link store-link-custom"></a>
-                <a href="#" class="microsoft-link store-link-custom"></a>
-            </div>
         </div><!-- right-area -->
     </div>
 </div>
