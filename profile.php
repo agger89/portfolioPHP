@@ -39,5 +39,6 @@ for($i=0; $i < count($articles); $i++) { // $articles 변수에 담겨있는 art
 }
 
 include 'views/header.php';
+include 'header_content.php';
 include 'views/profile.php';
 include 'views/footer.php';

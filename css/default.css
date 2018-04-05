@@ -21,6 +21,7 @@ body{
 .loader.md{
     width: 46px;
     height: 46px;
+    position: fixed;
     top: auto;
     bottom: 0;
     background-image: url(../images/icon/Loader-md.gif);
@@ -970,7 +971,7 @@ body{
     text-align: center;
 }
 .modal.status{
-    position: absolute;
+    top: 65px;
 }
 .modal.status.nav-up{
     -webkit-transform: translateY(-17px);
@@ -978,33 +979,24 @@ body{
 }
 .modal.status .modal-dialog{
     position: absolute;
-    right: 20px;
+    right: 25px;
     width: 450px;
     max-height: 362px;
     min-height: 100px;
-    overflow-y: scroll;
     -webkit-transform: translate(0);
     transform: translate(0);
     margin: 0 !important;
-}
-.modal.status .arrow-custom{
-    position: absolute;
-    right: 57px;
-    top: -7px;
-    -webkit-transform: rotate(135deg);
-    transform: rotate(135deg);
-    display: inline-block;
-    width: 14px;
-    height: 14px;
     background-color: #fff;
     border: solid 1px #e6e6e6;
-    border-top: 0;
-    border-right: 0;
-    z-index: 1;
+    overflow-y: scroll;
+}
+.modal.status.modal-down{
+    -webkit-transform: translateY(-22px);
+    transform: translateY(-22px);
 }
 .modal.status .modal-content{
-    box-shadow: 0 0 5px rgba(0,0,0,.0975);
-    border: solid 1px #e6e6e6;
+    box-shadow: none;
+    border: 0;
 }
 .modal.status .modal-content .modal-body{
     padding: 0;

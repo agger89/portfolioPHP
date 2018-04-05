@@ -7,5 +7,6 @@ if (!isset($_SESSION['is_login'])) {
 }
 
 include 'views/header.php';
+include 'header_content.php';
 include 'views/write.php';
 include 'views/footer.php';

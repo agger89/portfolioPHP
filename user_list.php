@@ -30,5 +30,6 @@ for($i=0; $i < count($notFollowerArti); $i++) {
 }
 
 include 'views/header.php';
+include 'header_content.php';
 include 'views/user_list.php';
 include 'views/footer.php';

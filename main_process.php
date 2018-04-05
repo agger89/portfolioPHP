@@ -19,13 +19,12 @@ $follow_ids = [$users_id];
 foreach ($follow as $item) {
     $follow_ids[] = $item['follow_id'];
 }
+
 $in = implode(",", $follow_ids); // 배열로 되어있는 $follow_ids의 값을 ,문자로 결합
 $users_id = $in;
 
-$offset = isset($_GET['last_id']) ? $_GET['last_id'] : 0;
-
-$articles = $main->articles($users_id, $offset);
-//var_dump($last_id);
+$last_id = isset($_GET['last_id']) ? $_GET['last_id'] : '';
+$articles = $main->articles($users_id, $last_id);
 for($i=0; $i < count($articles); $i++) { // $articles 변수에 담겨있는 articles 메소드의 값을 세어서 출력
 
     $articles[$i]['authors'] = $main->authors($articles[$i]['users_id']);

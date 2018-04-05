@@ -23,14 +23,12 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
         return $stmt->fetchAll(\PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
     }
 
-    public function articles($users_id, $offset)// article 메소드(함수)를 생성
+    public function articles($users_id, $last_id)// article 메소드(함수)를 생성
     {
-//        var_dump($offset);
-        $stmt = $this->connect->prepare('SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC');
+        $stmt = $this->connect->prepare("SELECT * FROM articles WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) OR users_id = :users_id ORDER BY id DESC");
         $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
-        $stmt->bindParam(':offset', $offset, \PDO::PARAM_INT);
+        $stmt->bindParam(':last_id', $last_id, \PDO::PARAM_INT);
         $stmt->execute(); // 위에서 반환한 쿼리를 서버로 전송
-
         return $stmt->fetchAll(\PDO::FETCH_ASSOC); // $stmt 변수에 값을 열 이름으로 인덱스된 배열로 반환
     }
 
@@ -143,12 +141,4 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-//    public function followerStatus($users_id)
-//    {
-//        $stmt = $this->connect->prepare("SELECT users.nickname,profile_pic, comments.content,users_id,articles_id,datetime FROM users JOIN comments ON users.id = comments.users_id WHERE users_id IN (SELECT follow_id FROM follow WHERE users_id = :users_id) ORDER BY comments.id DESC");
-//        $stmt->bindParam(':users_id', $users_id, \PDO::PARAM_INT);
-//        $stmt->execute();
-//
-//        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-//    }
 }

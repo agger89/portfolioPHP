@@ -239,6 +239,12 @@
     -o-transition-property: border;
     transition-property: border; }
 
+.trs-du-015 {
+    -webkit-transition-duration: 0.17s;
+    -moz-transition-duration: 0.17s;
+    -o-transition-duration: 0.17s;
+    transition-duration: 0.17s; }
+
 .trs-du-03 {
     -webkit-transition-duration: 0.3s;
     -moz-transition-duration: 0.3s;

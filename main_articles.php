@@ -1,7 +1,6 @@
-<?php require "main_process.php" ?>
-<?php foreach ($articles as $article): ?>
+<?php foreach ($articlesOffset as $article): ?>
     <?php $lastComment = count($article['comments']) -1; ?>
-    <div class="object-content-wrap" id="<?= sizeof($articles) -1?>">
+    <div class="object-content-wrap" id="<?= $article['id']?>">
         <div class="header-title-wrap">
             <a href="/profile.php?id=<?= htmlspecialchars($article['authors']['id']);?>&page=1" name="article_<?=$article['id']?>" class="inline-block">
                 <div class="icon-wrap header-object">

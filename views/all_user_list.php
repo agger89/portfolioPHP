@@ -6,7 +6,7 @@
         <div class="right-content content">
             <ul class="icon-wrap">
                 <li class="icon"><a href="user_list.php?id=<?= htmlspecialchars($_SESSION['id']);?>" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
-                <li class="icon"><a href="#" class="block"><img src="../images/photo_page/header_icon_2.png" alt=""></a></li>
+                <li class="icon"><a href="#" class="block" id="header-btn-status"><img src="../images/photo_page/header_icon_2.png" alt=""></a></li>
                 <li class="icon"><a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=1" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
             </ul>
         </div>
