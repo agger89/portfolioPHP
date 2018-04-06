@@ -3,7 +3,7 @@
         <h3 class="insta-title">Portfolio</h3>
         <p class="info-text"><span>Windows</span> 스토어에서 무료로 다운로드하세요.</p>
     </div>
-    <a href="#" class="down-btn">받기</a>
+    <a href="javascript:void(0);" class="down-btn">받기</a>
 </div>
 <div class="content-wrap relative">
     <div class="login-wrap clear">
