@@ -7,7 +7,7 @@ if (!isset($_SESSION['is_login'])) {
 }
 
 require 'config.php';
-require __DIR__. './vendor/autoload.php';
+require __DIR__. '/vendor/autoload.php';
 
 $database = new \App\Database($host, $dbname, $user, $pass);
 $user = new \App\User($database->getConnect());
@@ -30,6 +30,6 @@ for($i=0; $i < count($notFollowerArti); $i++) {
 }
 
 include 'views/header.php';
-include 'header_content.php';
+include 'views/header_content.php';
 include 'views/user_list.php';
 include 'views/footer.php';

@@ -1,17 +1,3 @@
-<div class="header-content-wrap nav-down trs-du-03">
-    <div class="header-content relative clear">
-        <div class="left-content content">
-            <a href="/" class="scale header-insta-logo">Portfolio</a>
-        </div>
-        <div class="right-content content">
-            <ul class="icon-wrap">
-                <li class="icon"><a href="user_list.php?id=<?= htmlspecialchars($_SESSION['id']);?>" class="block"><img src="../images/photo_page/header_icon_1.png" alt=""></a></li>
-                <li class="icon"><a href="#" class="block" id="header-btn-status"><img src="../images/photo_page/header_icon_2.png" alt=""></a></li>
-                <li class="icon"><a href="/profile.php?id=<?= htmlspecialchars($_SESSION['id'])?>&page=1" class="block"><img src="../images/photo_page/header_icon_3.png" alt=""></a></li>
-            </ul>
-        </div>
-    </div>
-</div><!-- header-content-wrap end -->
 <div class="body-content-wrap">
     <div class="user-find-body-wrap">
         <div class="recommend-person-listwrap all">

@@ -2,7 +2,7 @@
 session_start();
 
 require 'config.php';
-require __DIR__. './vendor/autoload.php';
+require __DIR__. '/vendor/autoload.php';
 
 $database = new \App\Database($host, $dbname, $user, $pass);
 $user = new \App\User($database->getConnect());
@@ -93,5 +93,6 @@ if (mb_strlen($password) >= 8 && mb_strlen($password) <= 12) {
 
 $_SESSION['is_login'] = true;
 $_SESSION['id'] = $user->register($email, $name, $nickname, $password);
+$_SESSION['nickname'] =  $_POST['nickname'];
 
 header('Location: main.php');

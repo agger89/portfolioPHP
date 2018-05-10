@@ -93,6 +93,16 @@ class Main // Main 클래스안에 밑에 있는 메소드(함수)들을 소속�
         $stmt->execute();
     }
 
+    public function deleteComment($content,$users_id,$articles_id,$date)
+    {
+        $stmt = $this->connect->prepare("DELETE FROM comments WHERE content = :content AND users_id = :users_id AND articles_id = :articles_id AND date = :date");
+        $stmt->bindParam(":content", $content, \PDO::PARAM_STR);
+        $stmt->bindParam(":users_id", $users_id, \PDO::PARAM_INT);
+        $stmt->bindParam(":articles_id", $articles_id, \PDO::PARAM_INT);
+        $stmt->bindParam(":date", $date, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
     public function notification($data)
     {
         $stmt = $this->connect->prepare("INSERT INTO notification(users_id, action, target_type, target_id, target_user_id, date, target_pic_url, target_content) VALUES(:users_id, :action, :target_type, :target_id, :target_user_id, :date, :target_pic_url, :target_content)");

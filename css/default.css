@@ -1,7 +1,13 @@
 /* 공통 */
 body{
     padding-right: 0 !important;
-    background-color: #fafafa;
+}
+/* auto border set issue */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    border-radius: 0;
 }
 .loader{
     display: block;
@@ -22,9 +28,12 @@ body{
     width: 46px;
     height: 46px;
     position: fixed;
-    top: auto;
     bottom: 0;
     background-image: url(../images/icon/Loader-md.gif);
+}
+.loader.xmd{
+    width: 40px;
+    height: 40px;
 }
 .error-message{
     margin: 15px 0;
@@ -47,6 +56,7 @@ body{
 .body-content-wrap .profile-body-wrap,
 .body-content-wrap .user-find-body-wrap{
     max-width: 975px;
+    padding-top: 30px;
     margin: 0 auto;
 }
 .sub-common-title{
@@ -75,21 +85,6 @@ body{
 .store-down-content .text-wrap .insta-title {
     font-size: 15px;
     font-weight: 600;
-}
-.store-down-content .text-wrap .info-text {
-    font-size: 12px;
-}
-.store-down-content .down-btn {
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    right: 15px;
-    padding: 6px 10px;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 14px;
 }
 .content-wrap {
     padding: 72px 40px 50px;
@@ -267,18 +262,20 @@ body{
 /* 컨텐츠 바디 main */
 .body-content-wrap{
     max-width: 1010px;
-    padding: 30px 40px 60px;
     margin: 75px auto 0;
-    min-height: 700px;
+    min-height: 500px;
 }
 .body-content-wrap .object-content-wrap{
     max-width: 614px;
-    margin: 0 auto 60px;
     border: 1px solid #e6e6e6;
+    border-bottom: 0;
     background-color: #fff;
 }
+.body-content-wrap .object-content-wrap:first-child{
+    border-top: 0;
+}
 .body-content-wrap .header-title-wrap{
-    padding: 15px 20px;
+    padding: 15px 16px;
     font-size: 0;
 }
 .body-content-wrap .header-object{
@@ -379,32 +376,50 @@ body{
     margin-top: 3px;
     font-weight: 600;
 }
-.profile-body-wrap .modal .modal-dialog{
+.profile-body-wrap .popup-close{
+    position: fixed;
+    top: 0;
+    right: 0;
+    border: 0;
+    background: none;
+    font-size: 34px;
+    font-family: sans-serif;
+    font-weight: normal;
+    color: #fff;
+    outline: none;
+    z-index: 3;
+}
+.profile-body-wrap .popup-back{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: .5;
+    z-index: 2;
+}
+.profile-body-wrap .popup-follow-list{
+    min-width: 300px;
+    width: 100%;
+    max-width: 600px;
     position: absolute;
     top: 15%;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
+    margin: 0;
+    background-color: #fff;
+    z-index: 3;
 }
-.profile-body-wrap .modal .modal-content{
-    border-radius: 0;
-}
-.profile-body-wrap .modal .close{
-    margin-right: 10px;
-    font-size: 34px;
-    font-family: sans-serif;
-    font-weight: normal;
-    color: #fff;
-    opacity: 1;
-}
-.profile-body-wrap .modal .modal-header{
+.profile-body-wrap .popup-follow-list .list-header{
     padding: 16px;
     border-bottom: solid 2px #dbdbdb;
     color: #262626;
     font-size: 16px;
     font-weight: 600;
 }
-.profile-body-wrap .modal .modal-body{
+.profile-body-wrap .popup-follow-list .list-body{
     display: block;
     height: 500px;
     padding: 0;
@@ -506,7 +521,6 @@ body{
     border-color: #3897f0;
     color: #fff;
 }
-
 .articles-container .tab-wrap{
     border-top: 1px solid #efefef;
 }
@@ -514,13 +528,15 @@ body{
     text-align: center;
 }
 .articles-container .tab-title-wrap .tab-title{
-    width: 50%;
-    font-size: 20px;
+    width: auto;
+    padding: 20px;
+    margin: 0 30px;
+    font-size: 12px;
+    font-weight: 600;
     color: #999;
 }
 .articles-container .tab-title-wrap .tab-title a{
-    padding: 20px;
-    color: #999;
+    padding: 18px 20px;
 }
 .articles-container .tab-title-wrap .tab-title a.on{
     border-top: 1px solid #000;
@@ -576,6 +592,14 @@ body{
     font-family: FontAwesome;
     font-size: 12px;
 }
+.articles-container .tab-content-wrap .no-article-text{
+    position: absolute;
+    top: 160px;
+    transform: translateX(-50%);
+    left: 50%;
+    font-weight: 600;
+    font-size: 14px;
+}
 .articles-container .tab-content-wrap .tab-content-save{
     text-align: center;
 }
@@ -603,15 +627,14 @@ body{
     font-weight: 600;
 }
 .upload-wrap .image-preview{
-    height: 400px;
+    height: 300px;
     padding: 5px;
     margin-bottom: 10px;
-    border: 1px dashed #ddd;
     text-align: center;
 }
 .upload-wrap .image-preview #img{
     width: auto;
-    max-height: 390px;
+    max-height: 300px;
 }
 .upload-wrap .comment-textarea{
     width: 320px;
@@ -782,6 +805,10 @@ body{
     margin-right: 5px;
     font-weight: 600;
 }
+.footer-comment-wrap .comment-wrap .comment .delete-comment{
+    display: block;
+    float: right;
+}
 .footer-comment-wrap .record-time{
     padding: 5px 0 10px;
     font-size: 10px;
@@ -842,6 +869,10 @@ body{
 }
 
 /* user_list */
+.recommend-person-listwrap.follow-high{
+    display: block;
+}
+
 .user-find-body-wrap .recommend-person-listwrap{
     padding: 0;
     margin-bottom: 60px;
@@ -852,13 +883,13 @@ body{
     display: inline-block;
 }
 .user-find-body-wrap .recommend-person-listwrap .all-show-person{
+    margin-bottom: 15px;
     float: right;
     font-size: 12px;
     font-weight: 600;
     color: #3897f0;
 }
 .user-find-body-wrap .recommend-person-listwrap .person-info-wrap{
-    width: 33.333% !important;
     height: auto !important;
     padding: 0;
     padding-left: 1%;
@@ -971,7 +1002,7 @@ body{
     text-align: center;
 }
 .modal.status{
-    top: 65px;
+    padding-right: 0 !important;
 }
 .modal.status.nav-up{
     -webkit-transform: translateY(-17px);
@@ -979,8 +1010,9 @@ body{
 }
 .modal.status .modal-dialog{
     position: absolute;
+    top: 65px;
     right: 25px;
-    width: 450px;
+    width: 300px;
     max-height: 362px;
     min-height: 100px;
     -webkit-transform: translate(0);
@@ -1002,7 +1034,7 @@ body{
     padding: 0;
 }
 .modal.status .follow-member{
-    padding: 12px 16px 13px;
+    padding: 10px 16px;
     border: 0;
 }
 .modal.status .follow-member:after{
@@ -1041,6 +1073,9 @@ body{
     -webkit-transform: translateY(-50%);
     left: 0;
     width: calc(100% - 45px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .modal.status .follow-member .status-nickname{
     color: #262626;

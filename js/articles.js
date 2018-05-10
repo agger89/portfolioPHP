@@ -117,30 +117,76 @@ $(document).ready(function() {
             class: "user-comment inline-block",
             style: "margin-left: 5px"
         }).text(articleContent).appendTo(pTag);
+        var delComm = $('<span>').attr({
+            class: "delete-comment pointer"
+        }).appendTo(pTag);
+        $('<img>').attr({
+            src: "../images/icon/comment-delete-btn.png"
+        }).prependTo(delComm);
+
+        // loder gif image
+        $("html").css("cursor", "wait");
+        $(thisParentBoard).find(".loader.sm").show();
 
         var thisParentWrap = $(this).parent().closest(".footer-comment-wrap").find(".comment-wrap");
         $(this).parent().find(".comment-textarea").val("");
 
+        var delay = 1000;
         $.ajax({
             type: "POST",
             url: "../comment_process.php",
             data: {target_id:articleId,target_user_id:articleAuthorId,target_pic_url:articlePicUrl,target_content:articleContent},
             dataType: 'json',
-            beforeSend: function() {
-                $("html").css("cursor", "wait");
-                $(".loader.sm").show();
-            },
             success: function(data) {
-                pTag.appendTo(thisParentWrap);
-            },
-            complete: function(data) {
-                $("html").css("cursor", "auto");
-                $(".loader.sm").hide();
-
+                setTimeout(function() {
+                    pTag.appendTo(thisParentWrap);
+                    $("html").css("cursor", "auto");
+                    $(thisParentBoard).find(".loader.sm").hide();
+                }, delay);
             }
         });
 
     });
+
+    // delete comment Ajax
+    // append 후 refresh 전에 클릭이벤트가 먹지 않을때 밑에처럼 한다
+    // 이벤트할 엘리먼트의 최상위 부모를 지정해주고 클릭이벤트 실행
+    $(".comment-wrap").on("click", ".delete-comment", function() {
+        var content = $(this).parent().find(".user-comment").text();
+        var articleId = $(this).parent().closest(".footer-comment-wrap").find(".article-id").attr("data-articleId");
+        // 현재 날짜
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1;
+        var yyyy = today.getFullYear();
+        if(dd<10) {
+            dd='0'+dd
+        }
+        if(mm<10) {
+            mm='0'+mm
+        }
+        var date = yyyy+'-' + mm+'-'+dd;
+
+        console.log(content);
+        console.log(articleId);
+        console.log(date);
+
+        if(confirm("정말 삭제하시겠습니까??") == true) {
+            $(this).parent().remove();
+            $.ajax({
+                type: "POST",
+                url: "../delete_comment_process.php",
+                data: {content:content,articleId:articleId,date:date},
+                dataType: 'json',
+                success: function(data) {
+                }
+            });
+        } else {
+            return false;
+        }
+
+    });
+
 
     // Enter submit comment
     $(".comment-textarea").on("keypress", function(event) {

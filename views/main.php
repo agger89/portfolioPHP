@@ -32,12 +32,12 @@
                             <span class="unlike-submit data-pass pointer"></span>
                         <?php } ?>
                     </form>
-                    <span class="comment-icon inline-block pointer"></span>
+                    <span class="comment-icon inline-block pointer" title="댓글 입력란으로 포커스 이동"></span>
                     <?php if( $article['users_id'] == $_SESSION['id']) : ?>
                         <form method="post" class="delete inline-block" action="../write_delete_process.php">
                             <input type="hidden" name="picsId" value="<?= $article['pics']['id'] ?>">
                             <input type="hidden" name="articleId" value="<?= $article['id'] ?>">
-                            <label for="delete-input" class="delete-label icon"></label>
+                            <label for="delete-input" class="delete-label icon" title="게시글 삭제"></label>
                             <input type="submit" name="delete" class="delete-input hide" id="delete-input">
                         </form>
                     <?php endif; ?>
@@ -49,6 +49,13 @@
                             <p class="comment">
                                 <a href="/profile.php?id=<?= htmlspecialchars($comment['id']);?>&page=1" class="inline-block"><span class="user-name inline-block"><?= htmlspecialchars($comment['nickname']) ;?></span></a>
                                 <span class="user-comment inline-block"><?= htmlspecialchars($comment['content']);?></span>
+                                <?php if($_SESSION['id'] == $comment['id']) : ?>
+                                    <span class="delete-comment pointer"
+                                          data-content="<?= $comment['content'] ?>"
+                                          data-articleId="<?= $article['id'] ?>"
+                                          data-date="<?= $comment['date'] ?>"
+                                          title="댓글 삭제"><img src="../images/icon/comment-delete-btn.png"></span>
+                                <?php endif; ?>
                             </p>
                         <?php endif; ?>
                     <?php endforeach; ?>

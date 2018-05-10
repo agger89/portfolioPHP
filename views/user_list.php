@@ -1,11 +1,11 @@
 <div class="body-content-wrap">
     <div class="user-find-body-wrap">
-        <div class="recommend-person-listwrap md-half-block">
+        <div class="recommend-person-listwrap follow-high md-half-block">
             <h3 class="sub-common-title">사람 찾기 <span>(나와 팔로우가 아닌 유저 중 팔로우가 많은 유저 3명)</span></h3>
             <a href="all_user_list.php?id=<?= htmlspecialchars($_SESSION['id']);?>" class="all-show-person">모두 보기</a>
             <ul class="row">
                 <?php foreach ($followTops as $followTop) : ?>
-                    <li class="person-info-wrap col-4">
+                    <li class="person-info-wrap col-12 col-sm-4">
                         <span class="block">
                             <a href="/profile.php?id=<?= htmlspecialchars($followTop['users_id']);?>&page=1" class="inline-block">
                                 <span class="profile-pic" style="background-image:url(<?= htmlspecialchars($followTop['profile_pic']); ?>)"></span>

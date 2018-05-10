@@ -7,9 +7,23 @@ $(document).ready(function() {
     });
 
     // 팔로우 리스트 모달
-    $("#myBtn").click(function(){
-        $("#myModal").modal();
+    $("#myBtn").on("click", function(){
+        removeHide();
     });
+    $(".popup-back, .popup-close").on("click", function() {
+        removeBlock();
+    })
+
+    function removeHide() {
+        $(".popup-follow-list").removeClass("hide").addClass("block");
+        $(".popup-back").removeClass("hide").addClass("block");
+        $(".popup-close").removeClass("hide").addClass("block");
+    }
+    function removeBlock() {
+        $(".popup-follow-list").removeClass("block").addClass("hide");
+        $(".popup-back").removeClass("block").addClass("hide");
+        $(".popup-close").removeClass("block").addClass("hide");
+    }
 
     // 프로필 사진 자동 제출
     $("#input_img").on("change", function() {
@@ -127,7 +141,6 @@ $(document).ready(function() {
             $( this ).addClass('is-checked');
         });
     });
-
 
 });
 

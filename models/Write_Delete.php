@@ -11,7 +11,7 @@ class Write_Delete
     }
 
     //
-    // 좋아요 와 댓글은 cascade 액션으로 글이 지워 지면 같이 지워지게 변경 해놓음
+    // 좋아요 와 댓글은 cascade 액션으로 게시글이 지워 지면 같이 지워지게 변경 해놓음
     //
 
     public function deletePic($id)

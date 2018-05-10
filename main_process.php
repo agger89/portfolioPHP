@@ -7,7 +7,7 @@ if (!isset($_SESSION['is_login'])) {
 }
 
 require 'config.php';
-require __DIR__. './vendor/autoload.php';
+require __DIR__. '/vendor/autoload.php';
 
 $database = new \App\Database($host, $dbname, $user, $pass);
 $main = new \App\Main($database->getConnect()); // $main 변수 안에 Main 클래스 생성해서 담고 Main 클래스안에 Database 클래스가 연결한 DB를 담는다

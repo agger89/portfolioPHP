@@ -7,7 +7,7 @@ if (!isset($_SESSION['is_login'])) {
 }
 
 require 'config.php';
-require __DIR__. './vendor/autoload.php';
+require __DIR__. '/vendor/autoload.php';
 
 $database = new \App\Database($host, $dbname, $user, $pass);
 $main = new \App\ArticleOffset($database->getConnect());

@@ -2,7 +2,7 @@
 session_start();
 
 require 'config.php';
-require __DIR__. './vendor/autoload.php';
+require __DIR__. '/vendor/autoload.php';
 
 $database = new \App\Database($host, $dbname, $user, $pass);
 $follow = new \App\Follow($database->getConnect());

@@ -49,38 +49,41 @@
                         <a href="javascript:void(0)" id="myBtn">팔로우 </a>
                         <span class="status-count"><?= htmlspecialchars(count($list)); ?></span>
                     </span>
+                    <?php if($errorMessage): ?>
+                        <span class="error-message"><?= htmlspecialchars($errorMessage);?></span>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="follow-list-title">팔로잉</h2>
-                    </div>
-                    <div class="modal-body">
-                        <div class="follow-list-wrap">
-                            <div class="follow-list-content">
-                                <?php foreach ($list as $lists) : ?>
-                                    <div class="follow-member relative">
-                                        <a href="/profile.php?id=<?= htmlspecialchars($lists['follow_id']);?>&page=1" class="block">
-                                            <div class="pic" style="background-image: url(<?= htmlspecialchars($lists['profile_pic'])?>)"></div>
-                                            <div class="right-group">
-                                                <div class="nickname"><?= $lists['nickname'] ?></div>
-                                                <div class="name"><?= $lists['name'] ?></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
+        <!-- follow list popup -->
+        <button type="button" class="popup-close hide">&times;</button>
+        <div class="popup-back hide"></div>
+        <div class="popup-follow-list hide">
+            <!-- Modal popup -->
+            <div class="list-content">
+                <div class="list-header">
+                    <h2 class="follow-list-title">팔로잉</h2>
+                </div>
+                <div class="list-body">
+                    <div class="follow-list-wrap">
+                        <div class="follow-list-content">
+                            <?php foreach ($list as $lists) : ?>
+                                <div class="follow-member relative">
+                                    <a href="/profile.php?id=<?= htmlspecialchars($lists['follow_id']);?>&page=1" class="block">
+                                        <div class="pic" style="background-image: url(<?= htmlspecialchars($lists['profile_pic'])?>)"></div>
+                                        <div class="right-group">
+                                            <div class="nickname"><?= $lists['nickname'] ?></div>
+                                            <div class="name"><?= $lists['name'] ?></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!-- Modal end -->
+        </div>
+        <!-- follow list popup end -->
         <div class="recommend-person-listwrap">
             <h3>추천 계정</h3>
             <div class="list-wrap">
@@ -106,42 +109,44 @@
             <?php if($_SESSION['nickname'] == $authors['nickname']) { ?>
             <div class="tab-wrap">
                 <div class="tab-title-wrap">
-                    <div class="tab-group clear">
-                        <div class="tab-title on">
-                            <div id="sorts" class="button-group">
-                                <a href="javascript:void(0);" class="hide md-half-inline-block button is-checked on">최신순</a>
-                                <a href="javascript:void(0);" class="hide md-half-inline-block button" data-sort-by="numberLike">좋아요순</a>
-                                <a href="javascript:void(0);" class="hide md-half-inline-block button" data-sort-by="numberComment">댓글순</a>
-                            </div>
+                    <div class="tab-title on">
+                        <div id="sorts" class="button-group">
+                            <a href="javascript:void(0);" class="button is-checked on">최신순</a>
+                            <a href="javascript:void(0);" class="button" data-sort-by="numberLike">좋아요순</a>
+                            <a href="javascript:void(0);" class="button" data-sort-by="numberComment">댓글순</a>
                         </div>
                     </div>
                 </div>
                 <div class="tab-content-wrap">
                     <div class="tab-content-articles tab-cont on">
                         <ul class="article-list-wrap row grid">
-                            <?php foreach ($articles as $article) : ?>
-                            <li class="article-list col-4 element-item">
-                                <span class="pic-wrap relative block">
-                                    <a href="javascript:void(0)" class="block" style="border: 1px solid #dbdbdb;">
-                                        <?php if($article['pics']['url']) { ?>
-                                            <span class="pic relative"
-                                                  style="background-image:url(<?= htmlspecialchars($article['pics']['url']);?>)"
-                                                  data-pic="<?= $article['pics']['url']?>"
-                                                  data-w="auto">
+                            <?php if(!empty($articles)) { ?>
+                                <?php foreach ($articles as $article) : ?>
+                                <li class="article-list col-4 element-item">
+                                    <span class="pic-wrap relative block">
+                                        <a href="javascript:void(0)" class="block" style="border: 1px solid #dbdbdb;">
+                                            <?php if($article['pics']['url']) { ?>
+                                                <span class="pic relative"
+                                                      style="background-image:url(<?= htmlspecialchars($article['pics']['url']);?>)"
+                                                      data-pic="<?= $article['pics']['url']?>"
+                                                      data-w="auto">
+                                                </span>
+                                            <?php } else { ?>
+                                            <span class="pic relative"><span class="no-img">NO IMAGE</span></span>
+                                            <?php } ?>
+                                        </a>
+                                        <a href="javascript:void(0)" class="pic-status hide">
+                                            <span class="pic-status-text-wrap">
+                                                <span class="numberLike"><i class="fas fa-heart"></i> <?= htmlspecialchars($article['likesCnt']['count(*)']); ?></span>
+                                                <span class="numberComment"><i class="fas fa-comment"></i> <?= htmlspecialchars($article['comments']['count(*)']); ?></span>
                                             </span>
-                                        <?php } else { ?>
-                                        <span class="pic relative"><span class="no-img">NO IMAGE</span></span>
-                                        <?php } ?>
-                                    </a>
-                                    <a href="javascript:void(0)" class="pic-status hide">
-                                        <span class="pic-status-text-wrap">
-                                            <span class="numberLike"><i class="fas fa-heart"></i> <?= htmlspecialchars($article['likesCnt']['count(*)']); ?></span>
-                                            <span class="numberComment"><i class="fas fa-comment"></i> <?= htmlspecialchars($article['comments']['count(*)']); ?></span>
-                                        </span>
-                                    </a>
-                                </span>
-                            </li>
-                            <?php endforeach; ?>
+                                        </a>
+                                    </span>
+                                </li>
+                                <?php endforeach; ?>
+                            <?php } else { ?>
+                                <span class="no-article-text">게시물이 없습니다.</span>
+                            <?php } ?>
                         </ul>
                         <div class="paging">
                             <div class="prev-wrap">
@@ -171,9 +176,9 @@
                     <div class="tab-group clear">
                         <div class="tab-title on">
                             <div id="sorts" class="button-group">
-                                <a href="javascript:void(0);" class="hide md-half-inline-block button is-checked on">최신순</a>
-                                <a href="javascript:void(0);" class="hide md-half-inline-block button" data-sort-by="numberLike">좋아요순</a>
-                                <a href="javascript:void(0);" class="hide md-half-inline-block button" data-sort-by="numberComment">댓글순</a>
+                                <a href="javascript:void(0);" class="button is-checked on">최신순</a>
+                                <a href="javascript:void(0);" class="button" data-sort-by="numberLike">좋아요순</a>
+                                <a href="javascript:void(0);" class="button" data-sort-by="numberComment">댓글순</a>
                             </div>
                         </div>
                     </div>
@@ -181,28 +186,32 @@
                 <div class="tab-content-wrap">
                     <div class="tab-content-articles tab-cont on">
                         <ul class="article-list-wrap row grid">
-                            <?php foreach ($articles as $article) : ?>
-                                <li class="article-list col-4 element-item">
-                                    <span class="pic-wrap relative block">
-                                        <a href="javascript:void(0)" class="block" style="border: 1px solid #dbdbdb;">
-                                            <?php if($article['pics']['url']) { ?>
-                                            <span class="pic relative"
-                                                  style="background-image:url(<?= htmlspecialchars($article['pics']['url']);?>)"
-                                                  data-pic="<?= $article['pics']['url']?>"
-                                                  data-w="auto">
-                                            <?php } else { ?>
-                                                <span class="pic relative"><span class="no-img">NO IMAGE</span></span>
-                                            <?php } ?>
-                                        </a>
-                                        <a href="javascript:void(0)" class="pic-status hide">
-                                            <span class="pic-status-text-wrap">
-                                                <span class="numberLike"><i class="fa fa-heart"></i> <?= htmlspecialchars($article['likesCnt']['count(*)']); ?></span>
-                                                <span class="numberComment"><i class="fa fa-comment"></i> <?= htmlspecialchars($article['comments']['count(*)']); ?></span>
-                                            </span>
-                                        </a>
-                                    </span>
-                                </li>
-                            <?php endforeach; ?>
+                            <?php if(!empty($articles)) { ?>
+                                <?php foreach ($articles as $article) : ?>
+                                    <li class="article-list col-4 element-item">
+                                        <span class="pic-wrap relative block">
+                                            <a href="javascript:void(0)" class="block" style="border: 1px solid #dbdbdb;">
+                                                <?php if($article['pics']['url']) { ?>
+                                                <span class="pic relative"
+                                                      style="background-image:url(<?= htmlspecialchars($article['pics']['url']);?>)"
+                                                      data-pic="<?= $article['pics']['url']?>"
+                                                      data-w="auto">
+                                                <?php } else { ?>
+                                                    <span class="pic relative"><span class="no-img">NO IMAGE</span></span>
+                                                <?php } ?>
+                                            </a>
+                                            <a href="javascript:void(0)" class="pic-status hide">
+                                                <span class="pic-status-text-wrap">
+                                                    <span class="numberLike"><i class="fa fa-heart"></i> <?= htmlspecialchars($article['likesCnt']['count(*)']); ?></span>
+                                                    <span class="numberComment"><i class="fa fa-comment"></i> <?= htmlspecialchars($article['comments']['count(*)']); ?></span>
+                                                </span>
+                                            </a>
+                                        </span>
+                                    </li>
+                                <?php endforeach; ?>
+                            <?php } else {?>
+                                <span class="no-article-text">게시물이 없습니다.</span>
+                            <?php } ?>
                         </ul>
                         <div class="paging">
                             <div class="prev-wrap">

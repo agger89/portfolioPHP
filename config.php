@@ -6,5 +6,5 @@ $dotenv->load();
 
 $host = getenv ('HOST');
 $dbname = getenv ('DBNAME');
-$user = getenv ('USER');
-$pass = getenv ('PASS');
+$user = getenv ('DBUSER');
+$pass = getenv ('DBPASS');

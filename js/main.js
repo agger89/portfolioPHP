@@ -1,8 +1,3 @@
-$(document).ready(function() {
-
-
-});
-
 // // 하단까지 스크롤시 데이터 불러오기
 // $(window).scroll(function() {
 //     if($(window).scrollTop() + $(window).height() >= $(document).height()) {

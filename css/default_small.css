@@ -1,3 +1,4 @@
+
 /* 로그인 폼 */
 .login-wrap .right-area{
     display: inline-block;
@@ -23,4 +24,33 @@
     margin: 0;
     border: 1px solid #e6e6e6;
 }
+@media screen and (min-width: 509px) {
+    /* header modal */
+    .modal.status .modal-dialog{
+        width: 450px;
+    }
+    .modal.status .follow-member .target-text{
+        white-space: initial;
+    }
+}
 
+@media screen and (min-width: 600px) {
+    body{
+        background-color: #fafafa;
+    }
+    /* 컨텐츠 바디 main */
+    .body-content-wrap{
+        padding: 60px 0;
+    }
+    .body-content-wrap .object-content-wrap{
+        margin: 0 auto 60px;
+        border-bottom: 1px solid #e6e6e6;
+    }
+    .body-content-wrap .object-content-wrap:first-child{
+        border-top: 1px solid #e6e6e6;
+    }
+    .body-content-wrap .profile-body-wrap,
+    .body-content-wrap .user-find-body-wrap{
+        padding-top: 0;
+    }
+}

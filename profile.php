@@ -7,7 +7,7 @@ if (!isset($_SESSION['is_login'])) {
 }
 
 require 'config.php';
-require __DIR__. './vendor/autoload.php';
+require __DIR__. '/vendor/autoload.php';
 
 $database = new \App\Database($host, $dbname, $user, $pass);
 $profile = new \App\Profile($database->getConnect());
@@ -38,7 +38,9 @@ for($i=0; $i < count($articles); $i++) { // $articles 변수에 담겨있는 art
     $articles[$i]['likesCnt'] = $profile->likesCnt($articles[$i]['id']);
 }
 
+
+require('Session.php');
 include 'views/header.php';
-include 'header_content.php';
+include 'views/header_content.php';
 include 'views/profile.php';
 include 'views/footer.php';

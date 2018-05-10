@@ -77,32 +77,43 @@ $(document).ready(function(){
     $('body').addClass("modal-custom");
 
     // Modal click event
+    var delay = 1000;
     $("#header-btn-status").on("click", function(){
         $("#status-modal").addClass("in").modal();
-        modalStatus();
+        $(".modal").css("display", "block");
+
+        // loder gif image
+        $("html").css("cursor", "wait");
+        $(".modal-dialog .loader.smd").show();
+
+        setTimeout(function() {
+            modalStatus();
+            $("html").css("cursor", "auto");
+            $(".modal-dialog .loader.smd").hide();
+        }, delay);
+
     });
 
     // Header Modal Ajax
     function modalStatus() {
         $.ajax({
             url: '/modal_status.php',
-            beforeSend: function() {
-                $("html").css("cursor", "wait");
-                $(".modal-dialog .loader.md").show();
-            },
             success: function(data) {
                 $("#status-modal .modal-dialog").append(data);
             },
-            complete: function() {
-                $("html").css("cursor", "auto");
-                $(".modal-dialog .loader.md").hide();
-            }
         })
     }
 
     // ajax data remove
     $("body").on("click", function(){
         $("#status-modal .modal-content").remove();
+    });
+
+    // modal hide
+    $(".modal-dialog").on("click", function() {
+        $("body").removeClass("modal-open");
+        $(".modal").css("display", "none");
+        $(".modal-backdrop").remove();
     });
 
 });
